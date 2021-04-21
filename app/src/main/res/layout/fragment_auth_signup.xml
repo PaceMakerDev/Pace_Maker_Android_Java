@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/auth_title_login"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/auth_signup"
+        android:paddingStart="20dp"
+        android:textSize="30sp"
+        android:textColor="@color/mainTheme" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/auth_title_login"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_edittext_signup_name"
+            android:background="@drawable/editview_auth_input"
+            android:hint="@string/auth_name"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:enabled="true"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"
+            android:inputType="textNoSuggestions"
+            android:layout_marginBottom="7dp"/>
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/auth_signup_textview_error_name"
+            android:paddingHorizontal="20dp"
+            android:textSize="11sp"
+            android:textColor="@color/error"
+            android:visibility="gone" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_edittext_signup_major"
+            android:background="@drawable/editview_auth_input"
+            android:hint="@string/auth_major"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:enabled="true"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"
+            android:layout_marginVertical="7dp"
+            android:inputType="textNoSuggestions" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/auth_signup_textview_error_major"
+            android:paddingHorizontal="20dp"
+            android:textSize="11sp"
+            android:textColor="@color/error"
+            android:visibility="gone" />
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_edittext_signup_email"
+            android:background="@drawable/editview_auth_input"
+            android:hint="@string/auth_email"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"
+            android:layout_marginVertical="7dp"
+            android:inputType="textEmailAddress" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/auth_signup_textview_error_email"
+            android:paddingHorizontal="20dp"
+            android:textSize="11sp"
+            android:textColor="@color/error"
+            android:visibility="gone" />
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_edittext_signup_pw"
+            android:background="@drawable/editview_auth_input"
+            android:hint="@string/auth_pw"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"
+            android:layout_marginVertical="7dp"
+            android:inputType="textPassword" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/auth_signup_textview_error_pw"
+            android:paddingHorizontal="20dp"
+            android:textSize="11sp"
+            android:textColor="@color/error"
+            android:visibility="gone" />
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_edittext_signup_pw_check"
+            android:background="@drawable/editview_auth_input"
+            android:hint="@string/auth_pw_check"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:inputType="textPassword" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/auth_signup_textview_error_pw_check"
+            android:paddingHorizontal="20dp"
+            android:textSize="11sp"
+            android:textColor="@color/error"
+            android:visibility="gone" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_button_student_card"
+            android:background="@drawable/button_line_maintheme"
+            android:textSize="15sp"
+            android:text="@string/auth_student_card"
+            android:textColor="@color/mainTheme"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:id="@+id/auth_button_signup_with_input"
+            android:background="@drawable/button_filled_maintheme"
+            android:textSize="15sp"
+            android:text="@string/auth_signup_eng"
+            android:textColor="#ffffff" />
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,12 @@
     <string name="auth_error_regex_password">비밀번호는 숫자, 문자, 특수문자 포함 8~20자로 입력해 주세요</string>
     <string name="auth_error_password_check">두 비밀번호가 일치하지 않습니다</string>
     <string name="auth_camera_instruction">프레임에 사진을 맞춰주세요</string>
+    <string name="title_activity_auth">AuthActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 
 </resources>
 

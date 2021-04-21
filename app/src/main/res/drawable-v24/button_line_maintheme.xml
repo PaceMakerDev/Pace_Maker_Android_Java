@@ -3,9 +3,11 @@
     android:shape="rectangle">
     <stroke
         android:width="3px"
-        android:color="@color/mainTheme"/>
+        android:color="@color/buttonColorSub"/>
+    <solid
+        android:color="@color/buttonColorSub" />
 
     <corners
-        android:radius="20dp" />
+        android:radius="12dp" />
 
 </shape>

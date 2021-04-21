@@ -60,4 +60,8 @@ public class MainActivity extends AppCompatActivity {
         }
         transaction.commit();
     }
+
+    public void startCameraActivity() {}
+
+    public
 }

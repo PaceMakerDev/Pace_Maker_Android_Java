@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,7 +25,7 @@
             android:value="true" />
 
         <activity
-            android:name=".auth.AuthActivity"
+            android:name=".auth.MainActivity"
             android:label="@string/title_activity_auth"></activity>
         <activity
             android:name=".MainActivity"

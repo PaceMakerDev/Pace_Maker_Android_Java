@@ -53,6 +53,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    // Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
+    // Scalars
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
     //OkHttp
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
     compileOnly 'com.google.android.wearable:wearable:2.6.0'

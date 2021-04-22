@@ -13,12 +13,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
+import com.example.pacemaker.auth.service.AuthService;
+import com.example.pacemaker.util.service.ServiceGenerator;
 
 public class MainActivity extends AppCompatActivity {
-    private String TAG = "Auth";
+    public static String TAG = "Auth";
     private Fragment mainFragment = new MainFragment();
     private Fragment loginFragment = new LoginFragment();
     private Fragment signUpFragment = new SignUpFragment();
+    private AuthService service;
 
     private TextView mTextView;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        service = ServiceGenerator.createService(AuthService.class);
     }
 
     public void setFragment(FragmentTypes frag) {
@@ -63,5 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void startCameraActivity() {}
 
-    public
+    //request function 설정하면 되는데, 이를 아예 다른 클래스로 빼버릴까
+
 }

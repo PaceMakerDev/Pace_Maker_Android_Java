@@ -3,11 +3,20 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="mainTheme">#30D4D3</color>
 
-    <color name="mainTheme">#0EBEAF</color>
-    <color name="inputBox">#8E8E93</color>
-    <color name="error">#ff0000</color>
-    <color name="hint">#808080</color>
+    <color name="title">#FFFFFF</color>
+    <color name="buttonColorMain">@color/mainTheme</color>
+    <color name="buttonColorSub">#FFFFFF</color>
+
+    <!-- Auth -->
+    <color name="loginHint">#929292</color>
+    <color name="signUpHint">#C4C4C4</color>
+    <color name="inputText">#FFFFFF</color>
+
+    <color name="inputBox">#212727</color>
+    <color name="error">#FF0A0A</color>
+    <color name="gray">#808080</color>
     <color name="black">#000000</color>
     <color name="lightGray">#E6E6E6</color>
 

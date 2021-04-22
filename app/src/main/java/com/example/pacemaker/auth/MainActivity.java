@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        setFragment(FragmentTypes.MAIN);
         service = ServiceGenerator.createService(AuthService.class);
+
     }
 
     public void setFragment(FragmentTypes frag) {

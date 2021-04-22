@@ -82,7 +82,7 @@ public class RequestProcess {
                     case 409:
                         //학번 중복
                         Log.d(MainActivity.TAG, "SignUp Fail : 학번중복(409)");
-                        DialogUtil.showAlertDialog(signUpFragmentContext, "로그인 오류", "아이디 혹은 비밀번호가 일치하지 않습니다");
+                        DialogUtil.showAlertDialog(signUpFragmentContext, "로그인 오류", "이미 가입된 학번이 있습니다.");
                         break;
                     default:
                         Log.d(MainActivity.TAG, "SignUp Fail : default");

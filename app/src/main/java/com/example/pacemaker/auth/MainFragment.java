@@ -1,6 +1,5 @@
 package com.example.pacemaker.auth;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
-import com.example.pacemaker.util.DialogUtil;
 
 public class MainFragment extends Fragment {
     @Nullable

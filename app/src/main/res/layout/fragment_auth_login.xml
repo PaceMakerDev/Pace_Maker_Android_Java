@@ -15,24 +15,22 @@
         app:layout_constraintWidth_max="400dp"
         app:layout_constraintWidth_min="300dp"
         android:layout_marginHorizontal="30dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:id="@+id/auth_title_login"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/auth_login"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textColor="@color/title" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:id="@+id/auth_title_login"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/auth_login"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/title" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/auth_login_edittext_email"
+                android:id="@+id/edittext_email"
                 app:layout_constraintTop_toBottomOf="@id/auth_title_login"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +49,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/auth_login_textview_error_email"
-                app:layout_constraintTop_toBottomOf="@id/auth_login_edittext_email"
+                android:id="@+id/error_text_email"
+                app:layout_constraintTop_toBottomOf="@id/edittext_email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:paddingHorizontal="20dp"
@@ -63,8 +61,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/auth_login_edittext_pw"
-                app:layout_constraintTop_toBottomOf="@id/auth_login_textview_error_email"
+                android:id="@+id/edittext_pw"
+                app:layout_constraintTop_toBottomOf="@id/error_text_email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:inputType="textPassword"
@@ -81,8 +79,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/auth_login_textview_error_pw"
-                app:layout_constraintTop_toBottomOf="@id/auth_login_edittext_pw"
+                android:id="@+id/error_text_pw"
+                app:layout_constraintTop_toBottomOf="@id/edittext_pw"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:paddingHorizontal="20dp"
@@ -93,9 +91,9 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/auth_button_signin"
+                android:id="@+id/button_login"
                 android:layout_marginTop="50dp"
-                app:layout_constraintTop_toBottomOf="@id/auth_login_textview_error_pw"
+                app:layout_constraintTop_toBottomOf="@id/error_text_pw"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/button_filled_maintheme"
@@ -108,7 +106,7 @@
                 android:layout_height="30dp"
                 android:id="@+id/auth_button_forgot_pw"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@id/auth_button_signin"
+                app:layout_constraintTop_toTopOf="@id/button_login"
                 app:layout_constraintVertical_bias="0.9"
                 android:gravity="center"
                 android:text="@string/auth_forgot_pw"

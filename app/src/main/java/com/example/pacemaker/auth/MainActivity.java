@@ -1,5 +1,6 @@
 package com.example.pacemaker.auth;
 
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,11 @@ import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.auth.service.AuthService;
+import com.example.pacemaker.util.AuthSecurity;
+import com.example.pacemaker.util.DialogUtil;
 import com.example.pacemaker.util.service.ServiceGenerator;
+
+import java.security.DigestException;
 
 public class MainActivity extends AppCompatActivity {
     public static String TAG = "Auth";
@@ -72,11 +77,19 @@ public class MainActivity extends AppCompatActivity {
     public void startCameraActivity() {}
 
     //request function 설정하면 되는데, 이를 아예 다른 클래스로 빼버릴까
-    public void requestSignIn(SignInDto signInDto) {
-        request.signIn(signInDto, loginFragment.requireContext());
+    public void requestSignIn(String email, String pw) {
+        try {
+            SignInDto signInDto = new SignInDto(email, AuthSecurity.encryptSHA256(pw));
+            DialogUtil.showAlertDialog(this, "타이틀", signInDto.getPassword());
+            request.signIn(signInDto, loginFragment.requireContext());
+        }
+        catch (DigestException e) {
+            Log.e(TAG, "Error : failed to generate SAH-256");
+        }
     }
 
     public void requestSignUp(SignUpDto signUpDto) {
+
         request.signUp(signUpDto, signUpFragment.requireContext());
     }
 

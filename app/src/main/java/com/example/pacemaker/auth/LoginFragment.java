@@ -1,9 +1,6 @@
 package com.example.pacemaker.auth;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.util.AuthValidator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginFragment extends Fragment {
@@ -101,5 +96,4 @@ public class LoginFragment extends Fragment {
             ((MainActivity)requireActivity()).requestSignIn(email, pw);
         }
     }
-
 }

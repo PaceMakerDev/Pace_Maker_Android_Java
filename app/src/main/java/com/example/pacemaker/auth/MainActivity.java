@@ -89,11 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void requestSignUp(SignUpDto signUpDto) {
-
         request.signUp(signUpDto, signUpFragment.requireContext());
-    }
-
-    public void test() {
-        Log.d(TAG, "test()");
     }
 }

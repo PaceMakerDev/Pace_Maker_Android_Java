@@ -1,6 +1,7 @@
 package com.example.pacemaker.auth;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -43,7 +44,7 @@ public class RequestProcess {
                         //로그인 성공
                         updateSharedPreference(response.body());
                         Log.d(MainActivity.TAG, "Login Successful");
-
+                        loginFragmentContext.startActivity(new Intent(loginFragmentContext, com.example.pacemaker.study.MainActivity.class));
                         break;
                     case 400:
                         //요청바디형식 잘못됨
@@ -74,6 +75,7 @@ public class RequestProcess {
                         //회원가입 성공
                         updateSharedPreference(response.body());
                         Log.d(MainActivity.TAG, "Signup Successful");
+                        signUpFragmentContext.startActivity(new Intent(signUpFragmentContext, com.example.pacemaker.study.MainActivity.class));
                         break;
                     case 400:
                         //요청 바디 형식 오류

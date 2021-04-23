@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
+import com.example.pacemaker.auth.models.SignInDto;
+import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.auth.service.AuthService;
 import com.example.pacemaker.util.service.ServiceGenerator;
 
@@ -22,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment loginFragment = new LoginFragment();
     private Fragment signUpFragment = new SignUpFragment();
     private AuthService service;
-
-    private TextView mTextView;
+    private RequestProcess request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         setFragment(FragmentTypes.MAIN);
         service = ServiceGenerator.createService(AuthService.class);
-
+        request = new RequestProcess(service, getSharedPreferences("auth", MODE_PRIVATE));
     }
 
     public void setFragment(FragmentTypes frag) {
@@ -70,5 +71,11 @@ public class MainActivity extends AppCompatActivity {
     public void startCameraActivity() {}
 
     //request function 설정하면 되는데, 이를 아예 다른 클래스로 빼버릴까
+    public void requestSignIn(SignInDto signInDto) {
+        request.signIn(signInDto, loginFragment.requireContext());
+    }
 
+    public void requestSignUp(SignUpDto signUpDto) {
+        request.signUp(signUpDto, signUpFragment.requireContext());
+    }
 }

@@ -28,7 +28,6 @@ import retrofit2.Response;
 public class RequestProcess {
     private final AuthService service;
     private final SharedPreferences preferences;
-    // loginfragment가 아닌 mainActivity의 context로도 dialog 뜨는지 실험해보기. 된다면 mainActivity context로 startactivity가 가능하다.
 
     public RequestProcess(AuthService service, SharedPreferences preferences ) {
         this.service = service;

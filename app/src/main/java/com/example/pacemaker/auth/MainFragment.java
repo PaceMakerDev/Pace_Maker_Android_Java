@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.util.DialogUtil;
 
 public class MainFragment extends Fragment {
@@ -19,18 +20,23 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_auth_main, container, false);
+        Button signInBtn = (Button)rootView.findViewById(R.id.auth_button_login);
+        Button signUpBtn = (Button)rootView.findViewById(R.id.auth_button_signup);
 
-        /*
-        Button btn = (Button)rootView.findViewById(R.id.auth_button_login);
-        btn.setOnClickListener(new View.OnClickListener() {
+        signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), com.example.pacemaker.study.MainActivity.class));
-
+                ((MainActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
             }
         });
 
-         */
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)requireActivity()).setFragment(FragmentTypes.SIGNUP);
+            }
+        });
+
         return rootView;
     }
 }

@@ -23,14 +23,26 @@ import android.view.WindowMetrics;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.util.DialogUtil;
+import com.google.common.util.concurrent.ListenableFuture;
+
+import java.util.concurrent.ExecutionException;
+
+import lombok.SneakyThrows;
 
 public class CameraActivity extends AppCompatActivity {
     private final int CAMERA_PERMISSION_CODE = 10323;
+    private float left, right, top, bottom;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,25 +55,12 @@ public class CameraActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, permissions, CAMERA_PERMISSION_CODE);
         }
         else {
-            //startCamera();
+            startCamera();
         }
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_PERMISSION_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                DialogUtil.showCriticalErrorDialog(this,
-                        "접근 권한 없음",
-                        "카메라 권한이 없을 시 앱을 사용하실 수 없습니다."
-                );
-            }
-        }
-    }
-
-    public void editBackground() {
+    private void editBackground() {
         Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.camera_background);
         Bitmap bitmap = Bitmap.createBitmap(background.getWidth(), background.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -71,9 +70,37 @@ public class CameraActivity extends AppCompatActivity {
         paint.setAntiAlias(true);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
-        canvas.drawRect(background.getWidth() / 8f, background.getHeight() / 4f, background.getWidth() / 8f * 7, background.getHeight() / 4f * 2, paint);
+        left = background.getWidth() / 8f;
+        top = background.getHeight() / 4f;
+        right = background.getWidth() / 8f * 7;
+        bottom = background.getHeight() / 4f * 2;
+        canvas.drawRect(left, top, right, bottom, paint);
         findViewById(R.id.camera_background).setBackground(new BitmapDrawable(getResources(), bitmap));
 
+    }
+
+    private void startCamera() {
+        ListenableFuture<ProcessCameraProvider> cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+        cameraProviderFuture.addListener(() -> {
+            try {
+                ProcessCameraProvider cameraProvider = (ProcessCameraProvider) cameraProviderFuture.get();
+                bindPreview(cameraProvider);
+            } catch (ExecutionException | InterruptedException e) {
+                // no errors expected.
+            }
+
+        }, ContextCompat.getMainExecutor(this));
+
+    }
+
+    private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
+        Preview preview = new Preview.Builder().build();
+
+        CameraSelector cameraSelector = new CameraSelector.Builder()
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .build();
+        preview.setSurfaceProvider(((PreviewView)findViewById(R.id.viewFinder)).getSurfaceProvider());
+        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview);
     }
 
     /*
@@ -105,4 +132,17 @@ public class CameraActivity extends AppCompatActivity {
     }
 
      */
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                DialogUtil.showCriticalErrorDialog(this,
+                        "접근 권한 없음",
+                        "카메라 권한이 없을 시 앱을 사용하실 수 없습니다."
+                );
+            }
+        }
+    }
 }

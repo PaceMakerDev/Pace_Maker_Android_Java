@@ -2,6 +2,7 @@ package com.example.pacemaker.auth;
 
 import android.app.Dialog;
 import android.content.pm.ActivityInfo;
+import android.content.res.loader.ResourcesProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void requestSignIn(String email, String pw) {
         try {
             SignInDto signInDto = new SignInDto(email, AuthSecurity.encryptSHA256(pw));
-            DialogUtil.showAlertDialog(this, "타이틀", signInDto.getPassword());
+            DialogUtil.showOkDialog(this, "타이틀", signInDto.getPassword());
             request.signIn(signInDto, loginFragment.requireContext());
         }
         catch (DigestException e) {

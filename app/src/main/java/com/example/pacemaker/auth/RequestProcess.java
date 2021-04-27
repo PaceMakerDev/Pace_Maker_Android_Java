@@ -51,7 +51,7 @@ public class RequestProcess {
                         break;
                     case 404:
                         Log.d(MainActivity.TAG, "Login fail : 아이디 비번 일치 안함(404)");
-                        DialogUtil.showAlertDialog(loginFragmentContext, "로그인 오류", "아이디 혹은 비밀번호가 일치하지 않습니다");
+                        DialogUtil.showOkDialog(loginFragmentContext, "로그인 오류", "아이디 혹은 비밀번호가 일치하지 않습니다");
                         break;
                     default:
                         Log.d(MainActivity.TAG, "Login fail : default");
@@ -60,7 +60,7 @@ public class RequestProcess {
 
             @Override
             public void onFailure(Call<AuthResponseDto> call, Throwable t) {
-                DialogUtil.showAlertDialog(loginFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
+                DialogUtil.showOkDialog(loginFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
             }
         });
     }
@@ -83,7 +83,7 @@ public class RequestProcess {
                     case 409:
                         //학번 중복
                         Log.d(MainActivity.TAG, "SignUp Fail : 학번중복(409)");
-                        DialogUtil.showAlertDialog(signUpFragmentContext, "로그인 오류", "이미 가입된 학번이 있습니다.");
+                        DialogUtil.showOkDialog(signUpFragmentContext, "로그인 오류", "이미 가입된 학번이 있습니다.");
                         break;
                     default:
                         Log.d(MainActivity.TAG, "SignUp Fail : default");
@@ -93,7 +93,7 @@ public class RequestProcess {
             @Override
             public void onFailure(Call<AuthResponseDto> call, Throwable t) {
                 Log.d(MainActivity.TAG, "SignUp Fail : 서버다운");
-                DialogUtil.showAlertDialog(signUpFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
+                DialogUtil.showOkDialog(signUpFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
             }
         });
     }

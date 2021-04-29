@@ -35,10 +35,10 @@ public class LoginFragment extends Fragment {
 
     private void initialSetUp(View view) {
         try {
-            inputMap.put("email", view.findViewById(R.id.edittext_email));
-            errorMsgMap.put("email", view.findViewById(R.id.error_text_email));
-            inputMap.put("pw", view.findViewById(R.id.edittext_pw));
-            errorMsgMap.put("pw", view.findViewById(R.id.error_text_pw));
+            inputMap.put("email", view.findViewById(R.id.login_edittext_email));
+            errorMsgMap.put("email", view.findViewById(R.id.login_error_text_email));
+            inputMap.put("pw", view.findViewById(R.id.login_edittext_pw));
+            errorMsgMap.put("pw", view.findViewById(R.id.login_error_text_pw));
         } catch (Exception e) {
             e.printStackTrace();
         }

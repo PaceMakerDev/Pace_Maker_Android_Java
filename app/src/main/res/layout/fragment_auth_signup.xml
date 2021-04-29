@@ -51,8 +51,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/auth_edittext_signup_name"
-                    android:text="이름입력"
+                    android:id="@+id/signup_edittext_name"
+                    android:enabled="false"
                     android:textSize="16sp"
                     android:textColor="@color/inputText" />
             </LinearLayout>
@@ -70,8 +70,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/auth_edittext_signup_major"
-                    android:text="IT대학 ㅇㅇㅇ학과"
+                    android:id="@+id/signup_edittext_major"
+                    android:enabled="false"
                     android:textSize="16sp"
                     android:textColor="@color/inputText" />
             </LinearLayout>
@@ -89,8 +89,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/auth_edittext_signup_id_num"
-                    android:text="20173847"
+                    android:id="@+id/signup_edittext_student_id"
+                    android:enabled="false"
                     android:textSize="16sp"
                     android:textColor="@color/inputText" />
             </LinearLayout>

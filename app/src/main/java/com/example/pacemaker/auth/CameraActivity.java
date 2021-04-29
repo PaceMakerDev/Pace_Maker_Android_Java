@@ -3,6 +3,7 @@ package com.example.pacemaker.auth;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -51,6 +52,9 @@ import java.util.concurrent.ExecutionException;
 import lombok.SneakyThrows;
 
 public class CameraActivity extends AppCompatActivity {
+    public static final String NAME = "name";
+    public static final String MAJOR = "major";
+    public static final String STUDENT_ID = "student_id";
     private final int CAMERA_PERMISSION_CODE = 10323;
     private int left, right, top, bottom;
     private ImageCapture imageCapture;
@@ -137,7 +141,7 @@ public class CameraActivity extends AppCompatActivity {
                             Log.d("Auth", "capture success");
                             String str = image.getWidth() + ", " + image.getHeight();
                             Log.d("Auth", str);
-
+                            sendImage();
                         }
 
                         @Override
@@ -147,6 +151,15 @@ public class CameraActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void sendImage() {
+        Intent intent = new Intent();
+        intent.putExtra(NAME, "고길동");
+        intent.putExtra(MAJOR, "소프트웨어학부");
+        intent.putExtra(STUDENT_ID, 20173333);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     /*

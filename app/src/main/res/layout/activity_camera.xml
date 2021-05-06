@@ -16,6 +16,7 @@
             android:id="@+id/viewFinder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/auth_textview_camera_instruction"/>
         <FrameLayout
@@ -24,6 +25,10 @@
             android:id="@+id/camera_background"
             android:background="@drawable/camera_background"
             >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_view" />
         </FrameLayout>
 
 

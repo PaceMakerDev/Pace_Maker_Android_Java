@@ -38,8 +38,8 @@ public class SignUpFragment extends Fragment {
     }
 
     public void setStudentInfo(String name, String major, String studentId) {
-        ((EditText)requireView().findViewById(R.id.signup_edittext_name)).setText(name);
-        ((EditText)requireView().findViewById(R.id.signup_edittext_major)).setText(major);
-        ((EditText)requireView().findViewById(R.id.signup_edittext_student_id)).setText(studentId);
+        ((EditText)requireView().findViewById(R.id.signup_edit_name)).setText(name);
+        ((EditText)requireView().findViewById(R.id.signup_edit_major)).setText(major);
+        ((EditText)requireView().findViewById(R.id.signup_edit_student_id)).setText(studentId);
     }
 }

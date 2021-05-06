@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Insets;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -16,7 +17,9 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.util.Size;
 import android.view.Display;
@@ -47,6 +50,10 @@ import com.example.pacemaker.util.DialogUtil;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import lombok.SneakyThrows;
@@ -56,7 +63,7 @@ public class CameraActivity extends AppCompatActivity {
     public static final String MAJOR = "major";
     public static final String STUDENT_ID = "student_id";
     private final int CAMERA_PERMISSION_CODE = 10323;
-    private int left, right, top, bottom;
+    private int left, right, top, bottom, bgHeight;
     private ImageCapture imageCapture;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +104,7 @@ public class CameraActivity extends AppCompatActivity {
         top = (int)(background.getHeight() / 4f);
         right = (int)(background.getWidth() / 12f * 11);
         bottom = (int)(top + (right - left)*0.7f);
+        bgHeight = background.getHeight();
 
         canvas.drawRect(left, top, right, bottom, paint);
         findViewById(R.id.camera_background).setBackground(new BitmapDrawable(getResources(), bitmap));
@@ -124,7 +132,7 @@ public class CameraActivity extends AppCompatActivity {
                 .build();
 
         preview.setSurfaceProvider(((PreviewView)findViewById(R.id.viewFinder)).getSurfaceProvider());
-        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, imageCapture, preview);
+        cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, imageCapture, preview);
     }
 
     private void captureImage() {
@@ -136,11 +144,22 @@ public class CameraActivity extends AppCompatActivity {
                         @Override
                         public void onCaptureSuccess(@NonNull ImageProxy image) {
                             super.onCaptureSuccess(image);
-                            //투명한 박스 만드는 곳에서 애초에 int로 바꾸기
-                            image.setCropRect(new Rect(left, top, right, bottom));
-                            Log.d("Auth", "capture success");
-                            String str = image.getWidth() + ", " + image.getHeight();
-                            Log.d("Auth", str);
+
+                            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                            byte[] bytes = new byte[buffer.capacity()];
+                            buffer.get(bytes);
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+                            Matrix matrix = new Matrix();
+                            matrix.postRotate(90f);
+                            bmp = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+
+                            float scale = (float) (right - left) / bgHeight;
+                            int scaledWidth = (int) (bmp.getHeight() * scale);
+                            int scaledHeight = (int) (((float) bottom - top) / bgHeight * bmp.getHeight());
+                            int scaledX = (int) ((bmp.getWidth() - scaledWidth) / 2);
+                            int scaledY = (int) ((float) top / bgHeight * bmp.getHeight());
+
+                            bmp = Bitmap.createBitmap(bmp, (int) scaledX, scaledY, (int) scaledWidth, scaledHeight);
                             sendImage();
                         }
 
@@ -161,36 +180,6 @@ public class CameraActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-
-    /*
-    public Size getWindowSize() {
-        int x = 0, y = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            WindowMetrics metrics = getWindowManager().getCurrentWindowMetrics();
-            WindowInsets windowInsets = metrics.getWindowInsets();
-            Insets insets = windowInsets.getInsetsIgnoringVisibility(WindowInsets.Type.navigationBars()
-                    | WindowInsets.Type.displayCutout());
-
-            int insetsWidth = insets.right + insets.left;
-            int insetsHeight = insets.top + insets.bottom;
-
-            Rect bounds = metrics.getBounds();
-            x = bounds.width() - insetsWidth;
-            y = bounds.height() - insetsHeight;
-        }
-        else {
-            WindowManager window = (WindowManager)getSystemService(WINDOW_SERVICE);
-            Display display = window.getDefaultDisplay();
-            Point point = new Point();
-            display.getSize(point);
-            x = point.x;
-            y = point.y;
-        }
-
-        return new Size(x, y);
-    }
-
-     */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -1,39 +1,24 @@
 package com.example.pacemaker.auth;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Insets;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.util.Size;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowInsets;
-import android.view.WindowManager;
-import android.view.WindowMetrics;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
@@ -49,14 +34,8 @@ import com.example.pacemaker.R;
 import com.example.pacemaker.util.DialogUtil;
 import com.google.common.util.concurrent.ListenableFuture;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
-
-import lombok.SneakyThrows;
 
 public class CameraActivity extends AppCompatActivity {
     public static final String NAME = "name";
@@ -68,7 +47,7 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
+        setContentView(R.layout.auth_activity_camera);
         editBackground();
 
 

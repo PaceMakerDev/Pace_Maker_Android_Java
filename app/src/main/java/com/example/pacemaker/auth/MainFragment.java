@@ -17,7 +17,7 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_auth_main, container, false);
+        View rootView = inflater.inflate(R.layout.auth_fragment_main, container, false);
         Button signInBtn = (Button)rootView.findViewById(R.id.auth_button_login);
         Button signUpBtn = (Button)rootView.findViewById(R.id.auth_button_signup);
 

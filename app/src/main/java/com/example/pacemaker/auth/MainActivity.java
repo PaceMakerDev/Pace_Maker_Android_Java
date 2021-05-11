@@ -1,18 +1,12 @@
 package com.example.pacemaker.auth;
 
-import android.app.Dialog;
 import android.content.pm.ActivityInfo;
-import android.content.res.loader.ResourcesProvider;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
@@ -36,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.auth_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setFragment(FragmentTypes.MAIN);

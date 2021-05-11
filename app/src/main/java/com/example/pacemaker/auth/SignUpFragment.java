@@ -19,7 +19,7 @@ public class SignUpFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_auth_signup, container, false);
+        View rootView = inflater.inflate(R.layout.auth_fragment_signup, container, false);
         startActivityForResult(new Intent(requireActivity(), CameraActivity.class), CAMERA_ACTIVITY_REQ_CODE);
         return rootView;
     }

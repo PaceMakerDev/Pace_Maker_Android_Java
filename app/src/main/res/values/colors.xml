@@ -8,6 +8,8 @@
     <color name="title">#FFFFFF</color>
     <color name="buttonColorMain">@color/mainTheme</color>
     <color name="buttonColorSub">#FFFFFF</color>
+    <color name="text_general">#FFFFFF</color>
+    <color name="text_maintheme_btn">#FFFFFF</color>
 
     <!-- Auth -->
     <color name="loginHint">#929292</color>

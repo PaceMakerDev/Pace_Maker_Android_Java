@@ -1,5 +1,6 @@
 package com.example.pacemaker.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity)requireActivity()).setFragment(FragmentTypes.SIGNUP);
+
             }
         });
 

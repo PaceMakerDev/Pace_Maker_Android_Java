@@ -62,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
                         R.anim.from_center_to_right);
                 transaction.addToBackStack(null);
                 transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.auth_main_frame, signUpFragment);
+                transaction.replace(R.id.auth_main_frame, new SignUpFragment());
                 break;
-
         }
         transaction.commit();
     }

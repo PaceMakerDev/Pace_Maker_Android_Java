@@ -145,7 +145,6 @@
                         android:background="@drawable/editview_auth_input"
                         android:hint="@string/auth_signup_email"
                         android:textColorHint="@color/signUpHint"
-                        android:maxLength="20"
                         android:textSize="14sp"
                         android:textColor="@color/inputText"
                         android:maxLines="1"
@@ -188,13 +187,12 @@
                         android:background="@drawable/editview_auth_input"
                         android:hint="@string/auth_signup_pw"
                         android:textColorHint="@color/signUpHint"
-                        android:maxLength="20"
                         android:textSize="14sp"
                         android:textColor="@color/inputText"
                         android:maxLines="1"
                         android:paddingHorizontal="20dp"
                         android:layout_marginBottom="7dp"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textPassword" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -236,7 +234,7 @@
                         android:maxLines="1"
                         android:paddingHorizontal="20dp"
                         android:layout_marginBottom="7dp"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textPassword" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

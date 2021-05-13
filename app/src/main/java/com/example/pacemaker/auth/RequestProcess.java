@@ -43,6 +43,7 @@ public class RequestProcess {
                         //로그인 성공
                         updateSharedPreference(response.body());
                         Log.d(MainActivity.TAG, "Login Successful");
+
                         loginFragmentContext.startActivity(new Intent(loginFragmentContext, com.example.pacemaker.study.MainActivity.class));
                         break;
                     case 400:

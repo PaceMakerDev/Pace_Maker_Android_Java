@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             request.signIn(signInDto, loginFragment.requireContext());
         }
         catch (DigestException e) {
-            Log.e(TAG, "Error : failed to generate SAH-256");
+            Log.e(TAG, "Error : failed to generate SHA-256");
         }
     }
 

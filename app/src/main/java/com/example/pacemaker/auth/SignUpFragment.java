@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.auth_fragment_signup, container, false);
-        //(new Intent(requireActivity(), CameraActivity.class), CAMERA_ACTIVITY_REQ_CODE);
+        startActivityForResult(new Intent(requireActivity(), CameraActivity.class), CAMERA_ACTIVITY_REQ_CODE);
 
         TextView showAgreementBtn = rootView.findViewById(R.id.auth_text_show_agreement);
         showAgreementBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +49,9 @@ public class SignUpFragment extends Fragment {
         EditText pw_check = rootView.findViewById(R.id.signup_edit_pw_check);
         TextView pw_check_error = rootView.findViewById(R.id.signup_text_error_pw_check);
         pw_check.addTextChangedListener(new PasswordCheckTextWatcher(pw_check_error, pw_input, getResources()));
+
+        RadioGroup attendanceRadioGroup = rootView.findViewById(R.id.auth_radio_gorup_attendance);
+
         return rootView;
     }
 

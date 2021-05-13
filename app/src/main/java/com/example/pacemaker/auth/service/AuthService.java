@@ -12,6 +12,6 @@ public interface AuthService {
     @POST("/v1/auth/sign-up")
     Call<AuthResponseDto> signUpUser(@Body SignUpDto signUpDto);
 
-    @POST("/v1/auth/sign-in")
+    @POST("/v1/auth/signin")
     Call<AuthResponseDto> signInUser(@Body SignInDto signInDto);
 }

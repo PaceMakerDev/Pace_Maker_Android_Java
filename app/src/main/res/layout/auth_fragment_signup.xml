@@ -270,6 +270,7 @@
                         <RadioGroup
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
+                            android:id="@+id/auth_radio_gorup_attendance"
                             android:orientation="horizontal"
                             android:layout_marginTop="10dp">
                             <RadioButton
@@ -299,6 +300,13 @@
                             android:textColor="@color/inputText"
                             android:textSize="16sp" />
                     </LinearLayout>
+                    <DatePicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:datePickerMode="spinner"
+                        android:calendarViewShown="false"
+                        android:calendarTextColor="@color/white" />
+                    <!--
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -371,6 +379,7 @@
                             android:textSize="16sp" />
 
                     </LinearLayout>
+                    -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -12,15 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignUpDto {
-    @SerializedName("email")
     private String email;
-
-    @SerializedName("major")
-    private String major;
-
-    @SerializedName("name")
     private String name;
-
-    @SerializedName("password")
+    private String major;
+    private String studentId;
     private String password;
+    private String birthday;
+    private String academicStatus;
 }

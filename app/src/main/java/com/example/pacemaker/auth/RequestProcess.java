@@ -43,7 +43,6 @@ public class RequestProcess {
                         //로그인 성공
                         updateSharedPreference(response.body());
                         Log.d(MainActivity.TAG, "Login Successful");
-
                         loginFragmentContext.startActivity(new Intent(loginFragmentContext, com.example.pacemaker.study.MainActivity.class));
                         break;
                     case 400:
@@ -103,9 +102,8 @@ public class RequestProcess {
         SharedPreferences.Editor editor = preferences.edit();
         User user = body.getUser();
         editor.putString("accessToken", body.getAccessToken());
-        editor.putString("userEmail", user.getEmail());
+        editor.putString("refreshToken", body.getRefreshToken());
         editor.putString("userName", user.getName());
-        editor.putString("userMajor", user.getEmail());
         editor.putInt("userId", user.getId());
         editor.apply();
     }

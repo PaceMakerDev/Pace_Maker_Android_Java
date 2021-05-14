@@ -138,19 +138,10 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="41dp"
                         android:id="@+id/signup_edit_email"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/editview_auth_input"
                         android:hint="@string/auth_signup_email"
-                        android:textColorHint="@color/signUpHint"
-                        android:textSize="14sp"
-                        android:textColor="@color/inputText"
-                        android:maxLines="1"
-                        android:paddingHorizontal="20dp"
-                        android:layout_marginBottom="7dp"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        style="@style/AuthSignUpEditViewStyle"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -180,19 +171,10 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="41dp"
                         android:id="@+id/signup_edit_pw"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/editview_auth_input"
                         android:hint="@string/auth_signup_pw"
-                        android:textColorHint="@color/signUpHint"
-                        android:textSize="14sp"
-                        android:textColor="@color/inputText"
-                        android:maxLines="1"
-                        android:paddingHorizontal="20dp"
-                        android:layout_marginBottom="7dp"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        style="@style/AuthSignUpEditViewStyle"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -222,19 +204,9 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="41dp"
                         android:id="@+id/signup_edit_pw_check"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/editview_auth_input"
-                        android:textColorHint="@color/signUpHint"
-                        android:maxLength="20"
-                        android:textSize="14sp"
-                        android:textColor="@color/inputText"
-                        android:maxLines="1"
-                        android:paddingHorizontal="20dp"
-                        android:layout_marginBottom="7dp"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        style="@style/AuthEditViewStyle"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

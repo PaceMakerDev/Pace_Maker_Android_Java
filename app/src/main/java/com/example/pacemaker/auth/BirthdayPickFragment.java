@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.enums.SignUpInputs;
 
 import java.util.Calendar;
 
@@ -21,11 +22,13 @@ public class BirthdayPickFragment extends DialogFragment
     TextView edit_year;
     TextView edit_month;
     TextView edit_day;
+    SignUpFragment fragment;
 
-    public BirthdayPickFragment(TextView edit_year, TextView edit_month, TextView edit_day) {
+    public BirthdayPickFragment(TextView edit_year, TextView edit_month, TextView edit_day, SignUpFragment fragment) {
         this.edit_year = edit_year;
         this.edit_month = edit_month;
         this.edit_day = edit_day;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -51,5 +54,9 @@ public class BirthdayPickFragment extends DialogFragment
         edit_year.setText(year);
         edit_month.setText(month);
         edit_day.setText(day);
+        fragment.setValidation(SignUpInputs.BIRTH_YEAR, true);
+        fragment.setValidation(SignUpInputs.BIRTH_MONTH, true);
+        fragment.setValidation(SignUpInputs.BIRTH_DAY, true);
+        fragment.updateSignUpButton();
     }
 }

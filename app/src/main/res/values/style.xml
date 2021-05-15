@@ -15,8 +15,6 @@
         <item name="maxLines">1</item>
     </style>
     <style name="AuthSignUpEditViewStyle" parent="@style/AuthEditViewStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">41dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:paddingEnd">10dp</item>

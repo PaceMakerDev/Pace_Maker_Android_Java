@@ -138,6 +138,8 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                     <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
                         android:id="@+id/signup_edit_email"
                         android:hint="@string/auth_signup_email"
                         android:inputType="textEmailAddress"
@@ -171,6 +173,8 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                     <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
                         android:id="@+id/signup_edit_pw"
                         android:hint="@string/auth_signup_pw"
                         android:inputType="textPassword"
@@ -203,10 +207,14 @@
                             android:textColor="@color/error"
                             android:textSize="14sp" />
                     </LinearLayout>
+
                     <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
                         android:id="@+id/signup_edit_pw_check"
-                        android:inputType="textPassword"
-                        style="@style/AuthEditViewStyle"/>
+                        style="@style/AuthSignUpEditViewStyle"
+                        android:inputType="textPassword" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -248,6 +256,7 @@
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/radio_attend"
                                 android:button="@drawable/radio_button_grey_mint"
                                 android:text="  재학"
                                 android:textColor="@color/white"
@@ -255,6 +264,7 @@
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/radio_take_off"
                                 android:text="  휴학"
                                 android:button="@drawable/radio_button_grey_mint"
                                 android:textColor="@color/white" />
@@ -410,6 +420,7 @@
                     android:textColor="@color/text_disabled_btn"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="20dp"
+                    android:enabled="false"
                     android:background="@drawable/button_filled_disabled" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

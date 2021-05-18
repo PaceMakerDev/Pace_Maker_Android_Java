@@ -3,18 +3,21 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="mainTheme">#30D4D3</color>
+    <color name="mainTheme">#0DFFFE</color>
 
     <color name="title">#FFFFFF</color>
-    <color name="buttonColorMain">@color/mainTheme</color>
-    <color name="buttonColorSub">#FFFFFF</color>
+
     <color name="text_general">#FFFFFF</color>
     <color name="text_maintheme_btn">#FFFFFF</color>
 
     <!--Button-->
-    <color name="buttonFilledText">#FFFFFF</color>
-    <color name="buttonLineText">@color/mainTheme</color>
+    <color name="buttonBackgroundMain">@color/mainTheme</color>
+    <color name="buttonBackgroundLine">#FFFFFF</color>
+    <color name="buttonBackgroundDisabled">494E4D</color>
+    <color name="buttonFilledText">#161C1E</color>
+    <color name="buttonLineText">#4A4A4A</color>
     <color name="buttonDisabledText">#DCDCDC</color>
+
 
     <!--Text-->
     <color name="textMain">#FFFFFF</color>

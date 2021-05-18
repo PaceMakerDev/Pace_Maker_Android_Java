@@ -28,6 +28,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.example.pacemaker.R;
@@ -43,6 +44,7 @@ public class CameraActivity extends AppCompatActivity {
     public static final String STUDENT_ID = "student_id";
     private final int CAMERA_PERMISSION_CODE = 10323;
     private int left, right, top, bottom, bgHeight;
+    private Bitmap card;
     private ImageCapture imageCapture;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class CameraActivity extends AppCompatActivity {
                 captureImage();
             }
         });
+        CameraCheckFragment fragment = new CameraCheckFragment();
 
     }
 
@@ -139,7 +142,9 @@ public class CameraActivity extends AppCompatActivity {
                             int scaledY = (int) ((float) top / bgHeight * bmp.getHeight());
 
                             bmp = Bitmap.createBitmap(bmp, (int) scaledX, scaledY, (int) scaledWidth, scaledHeight);
-                            sendImage();
+                            card = bmp;
+                            //sendImage();
+                            setFragment();
                         }
 
                         @Override
@@ -151,6 +156,20 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void setFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(
+                R.anim.from_right_to_center,
+                R.anim.from_center_to_left,
+                R.anim.from_left_to_center,
+                R.anim.from_center_to_right
+        );
+        transaction.addToBackStack(null);
+        transaction.setReorderingAllowed(true);
+        transaction.replace(R.id.auth_main_frame, new CameraCheckFragment());
+        transaction.commit();
+    }
+
     private void sendImage() {
         Intent intent = new Intent();
         intent.putExtra(NAME, "고길동");
@@ -158,6 +177,10 @@ public class CameraActivity extends AppCompatActivity {
         intent.putExtra(STUDENT_ID, 20173333);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    public Bitmap getCard() {
+        return card;
     }
 
     @Override

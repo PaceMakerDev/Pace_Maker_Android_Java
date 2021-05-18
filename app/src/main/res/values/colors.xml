@@ -13,7 +13,7 @@
     <!--Button-->
     <color name="buttonBackgroundMain">@color/mainTheme</color>
     <color name="buttonBackgroundLine">#FFFFFF</color>
-    <color name="buttonBackgroundDisabled">494E4D</color>
+    <color name="buttonBackgroundDisabled">#494E4D</color>
     <color name="buttonFilledText">#161C1E</color>
     <color name="buttonLineText">#4A4A4A</color>
     <color name="buttonDisabledText">#DCDCDC</color>

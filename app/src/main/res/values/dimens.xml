@@ -14,7 +14,7 @@
     inner_frame_layout_padding (below variable) on round screens.
     -->
     <dimen name="inner_frame_layout_padding">5dp</dimen>
-    <dimen name="title">18sp</dimen>
-    <dimen name="normal_text_size">16sp</dimen>
-    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="title">16sp</dimen>
+    <dimen name="normal_text_size">14sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
 </resources>

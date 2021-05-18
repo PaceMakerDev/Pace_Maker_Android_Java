@@ -36,7 +36,8 @@
             android:id="@+id/auth_title_login"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/title_scan"
-            android:textSize="20sp"
+            android:textSize="@dimen/title"
+            android:textStyle="bold"
             android:textColor="@color/title" />
 
 

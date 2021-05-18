@@ -16,6 +16,10 @@
     <color name="buttonLineText">@color/mainTheme</color>
     <color name="buttonDisabledText">#DCDCDC</color>
 
+    <!--Text-->
+    <color name="textMain">#FFFFFF</color>
+    <color name="textSub">#C4C4C4</color>
+
     <!-- Auth -->
     <color name="loginHint">#929292</color>
     <color name="signUpHint">#C4C4C4</color>

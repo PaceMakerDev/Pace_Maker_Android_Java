@@ -24,7 +24,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="@string/auth_login"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
                 android:textColor="@color/title" />
 
             <EditText

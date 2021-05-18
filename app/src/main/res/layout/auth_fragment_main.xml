@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,11 +49,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_filled_maintheme"
             android:text="@string/auth_login"
-            android:textColor="#ffffff"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+            style="@style/ButtonFilled"
+             />
 
         <Button
             android:id="@+id/auth_button_signup"
@@ -64,11 +63,8 @@
             app:layout_constraintTop_toTopOf="@+id/auth_button_login"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="15dp"
-            android:background="@drawable/button_line_maintheme"
             android:text="@string/auth_signup"
-            android:textStyle="bold"
-            android:textColor="@color/mainTheme"
-            android:textSize="17sp" />
+            style="@style/ButtonLine" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

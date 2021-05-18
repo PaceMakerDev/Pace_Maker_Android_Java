@@ -7,6 +7,9 @@
     <!-- Common -->
     <string name="app_name_ko">페이스메이커</string>
 
+    <!-- Title -->
+    <string name="title_scan">학생증 스캔하기</string>
+
     <!-- Auth -->
     <string name="auth_missing_info">아이디 혹은 비밀번호를 잊으셨나요?</string>
     <string name="auth_title_message">당신의 곁에서 공부를 도와주는</string>

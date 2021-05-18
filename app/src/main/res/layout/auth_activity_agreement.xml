@@ -26,8 +26,9 @@
             android:id="@+id/signup_title"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/auth_signup"
+            android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/title"
             android:textColor="@color/title" />
 
         <ScrollView
@@ -48,6 +49,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/signup_text_agreement"
+                    android:textSize="@dimen/small_text_size"
+
                     android:text="@string/auth_agreement"
                     android:textColor="@color/text_general" />
 
@@ -56,11 +59,9 @@
                     android:layout_height="48dp"
                     android:id="@+id/auth_button_agree"
                     android:text="동의하기"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_maintheme_btn"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="30dp"
-                    android:background="@drawable/button_filled_maintheme" />
+                    style="@style/ButtonFilled" />
             </LinearLayout>
         </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>

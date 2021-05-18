@@ -42,7 +42,6 @@ public class EmailTextWatcher implements TextWatcher {
             fragment.setValidation(SignUpInputs.EMAIL, false);
         }
         fragment.updateSignUpButton();
-
     }
 
     @Override

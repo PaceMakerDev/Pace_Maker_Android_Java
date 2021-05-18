@@ -20,4 +20,22 @@
         <item name="android:paddingEnd">10dp</item>
         <item name="android:layout_marginBottom">7dp</item>
     </style>
+
+    <!--Button-->
+    <style name="ButtonStyle">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ButtonFilled" parent="ButtonStyle">
+        <item name="android:background">@drawable/button_filled_maintheme</item>
+        <item name="android:textColor">@color/buttonFilledText</item>
+    </style>
+    <style name="ButtonLine" parent="ButtonStyle">
+        <item name="android:background">@drawable/button_line_maintheme</item>
+        <item name="android:textColor">@color/buttonLineText</item>
+    </style>
+    <style name="ButtonDisabled" parent="ButtonStyle">
+        <item name="android:background">@drawable/button_filled_disabled</item>
+        <item name="android:textColor">@color/buttonDisabledText</item>
+    </style>
 </resources>

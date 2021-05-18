@@ -148,7 +148,15 @@ public class SignUpFragment extends Fragment {
     }
 
     public void requestSignUp() {
-
+        String name = ((EditText)viewMap.get(SignUpInputs.NAME)).getText().toString();
+        String major = ((EditText)viewMap.get(SignUpInputs.MAJOR)).getText().toString();
+        String studentId = ((EditText)viewMap.get(SignUpInputs.STUDENT_ID)).getText().toString();
+        String email = ((EditText)viewMap.get(SignUpInputs.EMAIL)).getText().toString();
+        String pw = ((EditText)viewMap.get(SignUpInputs.PW)).getText().toString();
+        String attend = attendance.name();
+        String birthYear = ((EditText)viewMap.get(SignUpInputs.BIRTH_YEAR)).getText().toString();
+        String birthMonth = ((EditText)viewMap.get(SignUpInputs.BIRTH_MONTH)).getText().toString();
+        String birthDay = ((EditText)viewMap.get(SignUpInputs.BIRTH_DAY)).getText().toString();
     }
 
     public void setValidation(SignUpInputs input, boolean result) {

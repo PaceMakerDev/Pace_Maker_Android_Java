@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,10 +96,8 @@
                 app:layout_constraintTop_toBottomOf="@id/login_error_text_pw"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/button_filled_maintheme"
-                android:textSize="16sp"
-                android:text="@string/auth_signin"
-                android:textColor="#ffffff" />
+                style="@style/ButtonFilled"
+                android:text="@string/auth_signin" />
 
             <TextView
                 android:layout_width="match_parent"

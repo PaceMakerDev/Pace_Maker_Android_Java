@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.pacemaker.R;
@@ -21,9 +22,9 @@ import java.security.DigestException;
 
 public class MainActivity extends AppCompatActivity {
     public static String TAG = "Auth";
-    private Fragment mainFragment = new MainFragment();
-    private Fragment loginFragment = new LoginFragment();
-    private Fragment signUpFragment = new SignUpFragment();
+    private Fragment mainFragment;
+    private Fragment loginFragment;
+    private Fragment signUpFragment;
     private AuthService service;
     private RequestProcess request;
 
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.auth_activity);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        mainFragment = new MainFragment();
+        loginFragment = new LoginFragment();
+        signUpFragment = new SignUpFragment();
 
         setFragment(FragmentTypes.MAIN);
         service = ServiceGenerator.createService(AuthService.class);
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         R.anim.from_center_to_right);
                 transaction.addToBackStack(null);
                 transaction.setReorderingAllowed(true);
+                loginFragment = new LoginFragment();
                 transaction.replace(R.id.auth_main_frame, loginFragment);
                 break;
             case SIGNUP:
@@ -62,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                         R.anim.from_center_to_right);
                 transaction.addToBackStack(null);
                 transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.auth_main_frame, new SignUpFragment());
+                signUpFragment = new SignUpFragment();
+                transaction.replace(R.id.auth_main_frame, signUpFragment);
                 break;
         }
         transaction.commit();

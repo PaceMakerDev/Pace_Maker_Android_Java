@@ -50,7 +50,8 @@ public class BirthdayPickFragment extends DialogFragment
         // month : 0 ~ 11
         String month = Integer.toString(i1+1);
         String day = Integer.toString(i2);
-
+        if (month.length() == 1)
+            month = "0".concat(month);
         edit_year.setText(year);
         edit_month.setText(month);
         edit_day.setText(day);

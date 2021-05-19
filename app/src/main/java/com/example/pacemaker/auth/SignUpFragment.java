@@ -21,8 +21,9 @@ import androidx.fragment.app.Fragment;
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.AttendanceStatus;
 import com.example.pacemaker.auth.enums.SignUpInputs;
+import com.example.pacemaker.auth.models.SignUpDto;
+import com.example.pacemaker.auth.textwatchers.BaseTextWatcher;
 import com.example.pacemaker.auth.textwatchers.EmailTextWatcher;
-import com.example.pacemaker.auth.textwatchers.InputTextWatcher;
 import com.example.pacemaker.auth.textwatchers.PasswordCheckTextWatcher;
 import com.example.pacemaker.auth.textwatchers.PasswordTextWatcher;
 
@@ -75,6 +76,13 @@ public class SignUpFragment extends Fragment {
     }
 
     private void setErrorMessages(View view) {
+        EditText name = (EditText)viewMap.get(SignUpInputs.NAME);
+        name.addTextChangedListener(new BaseTextWatcher(this, SignUpInputs.NAME));
+        EditText major = (EditText)viewMap.get(SignUpInputs.MAJOR);
+        name.addTextChangedListener(new BaseTextWatcher(this, SignUpInputs.MAJOR));
+        EditText studentID = (EditText)viewMap.get(SignUpInputs.STUDENT_ID);
+        name.addTextChangedListener(new BaseTextWatcher(this, SignUpInputs.STUDENT_ID));
+
         EditText email_input = (EditText)viewMap.get(SignUpInputs.EMAIL);
         TextView email_error = view.findViewById(R.id.signup_text_error_email);
         email_input.addTextChangedListener(new EmailTextWatcher(email_error, getResources(), this));
@@ -119,6 +127,11 @@ public class SignUpFragment extends Fragment {
                 attendance = AttendanceStatus.TAKE_OFF;
             updateSignUpButton();
         });
+
+        Button requestBtn = view.findViewById(R.id.auth_button_request_signup);
+        requestBtn.setOnClickListener((view1 -> {
+            requestSignUp();
+        }));
     }
 
     public void updateSignUpButton() {
@@ -127,10 +140,12 @@ public class SignUpFragment extends Fragment {
             btn.setEnabled(true);
             btn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.button_filled_maintheme, null));
             btn.setTextColor(getResources().getColor(R.color.buttonFilledText, null));
+            btn.setEnabled(true);
         } else {
             btn.setEnabled(false);
             btn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.button_filled_disabled, null));
             btn.setTextColor(getResources().getColor(R.color.buttonDisabledText, null));
+            btn.setEnabled(false);
         }
     }
 
@@ -154,9 +169,13 @@ public class SignUpFragment extends Fragment {
         String email = ((EditText)viewMap.get(SignUpInputs.EMAIL)).getText().toString();
         String pw = ((EditText)viewMap.get(SignUpInputs.PW)).getText().toString();
         String attend = attendance.name();
-        String birthYear = ((EditText)viewMap.get(SignUpInputs.BIRTH_YEAR)).getText().toString();
-        String birthMonth = ((EditText)viewMap.get(SignUpInputs.BIRTH_MONTH)).getText().toString();
-        String birthDay = ((EditText)viewMap.get(SignUpInputs.BIRTH_DAY)).getText().toString();
+        String birthYear = ((TextView)viewMap.get(SignUpInputs.BIRTH_YEAR)).getText().toString();
+        String birthMonth = ((TextView)viewMap.get(SignUpInputs.BIRTH_MONTH)).getText().toString();
+        String birthDay = ((TextView)viewMap.get(SignUpInputs.BIRTH_DAY)).getText().toString();
+        String birth = String.format("%s-%s-%s", birthYear, birthMonth, birthDay);
+        SignUpDto signUpDto = new SignUpDto(email, name, major, studentId, pw, birth, attend);
+
+        ((MainActivity)requireActivity()).requestSignUp(signUpDto);
     }
 
     public void setValidation(SignUpInputs input, boolean result) {

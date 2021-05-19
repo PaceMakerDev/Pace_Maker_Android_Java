@@ -10,10 +10,15 @@ import androidx.fragment.app.Fragment;
 import com.example.pacemaker.auth.models.AuthResponseDto;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
+import com.example.pacemaker.auth.models.SuccessResponseData;
 import com.example.pacemaker.auth.models.User;
 import com.example.pacemaker.auth.service.AuthService;
 import com.example.pacemaker.util.DialogUtil;
 
+import java.io.IOException;
+
+import okhttp3.Request;
+import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,7 +71,10 @@ public class RequestProcess {
     }
 
     public void signUp(SignUpDto signUpDto, Context signUpFragmentContext) {
-        service.signUpUser(signUpDto).enqueue(new Callback<AuthResponseDto>() {
+        Call<AuthResponseDto> call = service.signUpUser(signUpDto);
+        String log = requestBody2String(call.request());
+        Log.d("Auth", log);
+        call.enqueue(new Callback<AuthResponseDto>() {
             @Override
             public void onResponse(Call<AuthResponseDto> call, Response<AuthResponseDto> response) {
                 switch (response.code()) {
@@ -82,11 +90,12 @@ public class RequestProcess {
                         break;
                     case 409:
                         //학번 중복
+
                         Log.d(MainActivity.TAG, "SignUp Fail : 학번중복(409)");
                         DialogUtil.showOkDialog(signUpFragmentContext, "로그인 오류", "이미 가입된 학번이 있습니다.");
                         break;
                     default:
-                        Log.d(MainActivity.TAG, "SignUp Fail : default");
+                        Log.d(MainActivity.TAG, "SignUp Fail : default" + response.code());
                 }
             }
 
@@ -100,11 +109,23 @@ public class RequestProcess {
 
     private void updateSharedPreference(AuthResponseDto body) {
         SharedPreferences.Editor editor = preferences.edit();
-        User user = body.getUser();
-        editor.putString("accessToken", body.getAccessToken());
-        editor.putString("refreshToken", body.getRefreshToken());
+        SuccessResponseData data = body.getData();
+        User user = data.getUser();
+        editor.putString("accessToken", data.getAccessToken());
+        editor.putString("refreshToken", data.getRefreshToken());
         editor.putString("userName", user.getName());
         editor.putInt("userId", user.getId());
         editor.apply();
+    }
+
+    private String requestBody2String(final Request request) {
+        try {
+            final Request copy = request.newBuilder().build();
+            final Buffer buffer = new Buffer();
+            copy.body().writeTo(buffer);
+            return buffer.readUtf8();
+        } catch (final IOException e) {
+            return "did not work";
+        }
     }
 }

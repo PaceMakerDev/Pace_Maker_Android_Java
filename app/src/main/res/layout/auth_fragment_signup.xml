@@ -65,7 +65,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/signup_edit_name"
-                            android:enabled="false"
                             android:textSize="16sp"
                             android:textColor="@color/inputText" />
                     </LinearLayout>
@@ -84,7 +83,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/signup_edit_major"
-                            android:enabled="false"
                             android:textSize="16sp"
                             android:textColor="@color/inputText" />
                     </LinearLayout>
@@ -103,9 +101,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/signup_edit_student_id"
-                            android:enabled="false"
                             android:textSize="16sp"
-                            android:textColor="@color/inputText" />
+                            android:maxLength="8"
+                            android:textColor="@color/inputText"
+                            android:inputType="number"/>
                     </LinearLayout>
 
 

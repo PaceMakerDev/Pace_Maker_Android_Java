@@ -9,7 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface AuthService {
-    @POST("/v1/auth/sign-up")
+    @POST("/v1/auth/signup")
     Call<AuthResponseDto> signUpUser(@Body SignUpDto signUpDto);
 
     @POST("/v1/auth/signin")

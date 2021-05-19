@@ -10,6 +10,14 @@
         android:id="@+id/auth_main_frame"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/auth_main_frame"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
 
@@ -84,12 +92,8 @@
 
 
 
-    <!--
-    <TextureView
-        android:id="@+id/camera_textureView"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
-        -->
+
+
 
 
 

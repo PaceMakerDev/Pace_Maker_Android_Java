@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignUpFragment extends Fragment {
-    public static final int CAMERA_ACTIVITY_REQ_CODE = 15555;
     public static final int AGREEMENT_ACTIVITY_REQ_CODE = 13333;
     private Map<SignUpInputs, View> viewMap;
     private AttendanceStatus attendance = AttendanceStatus.EMPTY;
@@ -41,7 +40,6 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.auth_fragment_signup, container, false);
-        startActivityForResult(new Intent(requireActivity(), CameraActivity.class), CAMERA_ACTIVITY_REQ_CODE);
 
         setUpViews(rootView);
 
@@ -128,9 +126,11 @@ public class SignUpFragment extends Fragment {
         if (validateInputs()) {
             btn.setEnabled(true);
             btn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.button_filled_maintheme, null));
+            btn.setTextColor(getResources().getColor(R.color.buttonFilledText, null));
         } else {
             btn.setEnabled(false);
             btn.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.button_filled_disabled, null));
+            btn.setTextColor(getResources().getColor(R.color.buttonDisabledText, null));
         }
     }
 
@@ -166,20 +166,8 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_ACTIVITY_REQ_CODE) {
-            assert data != null;
-            String name = data.getExtras().getString(CameraActivity.NAME);
-            String major = data.getExtras().getString(CameraActivity.MAJOR);
-            int studentId = data.getExtras().getInt(CameraActivity.STUDENT_ID);
-            setValidation(SignUpInputs.NAME, true);
-            setValidation(SignUpInputs.MAJOR, true);
-            setValidation(SignUpInputs.STUDENT_ID, true);
 
-            setStudentInfo(name, major, Integer.toString(studentId));
-            updateSignUpButton();
-        }
-
-        else if (resultCode == Activity.RESULT_OK && requestCode == AGREEMENT_ACTIVITY_REQ_CODE) {
+        if (resultCode == Activity.RESULT_OK && requestCode == AGREEMENT_ACTIVITY_REQ_CODE) {
             assert data != null;
             ((CheckBox)requireView().findViewById(R.id.auth_checkbox_agreement)).setChecked(true);
             isAgreed = true;

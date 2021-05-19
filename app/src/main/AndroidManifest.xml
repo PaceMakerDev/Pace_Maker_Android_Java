@@ -14,8 +14,6 @@
 
         <activity android:name=".study.MainActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".auth.CameraActivity"
-            android:launchMode="singleTop" />
         <activity android:name=".auth.AgreementActivity"
             android:launchMode="singleTop" />
         <activity

@@ -1,6 +1,5 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.util.camera;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,8 +12,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,9 +23,7 @@ import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.example.pacemaker.R;
@@ -50,25 +45,8 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.auth_activity_camera);
-        editBackground();
 
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            String [] permissions = {Manifest.permission.CAMERA};
-            ActivityCompat.requestPermissions(this, permissions, CAMERA_PERMISSION_CODE);
-        }
-        else {
-            startCamera();
-        }
-
-        Button captureBtn = ((Button)findViewById(R.id.camera_capture_button));
-        captureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                captureImage();
-            }
-        });
-        CameraCheckFragment fragment = new CameraCheckFragment();
 
     }
 
@@ -143,8 +121,7 @@ public class CameraActivity extends AppCompatActivity {
 
                             bmp = Bitmap.createBitmap(bmp, (int) scaledX, scaledY, (int) scaledWidth, scaledHeight);
                             card = bmp;
-                            //sendImage();
-                            setFragment();
+                            //sendImage()
                         }
 
                         @Override
@@ -156,21 +133,9 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private void setFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(
-                R.anim.from_right_to_center,
-                R.anim.from_center_to_left,
-                R.anim.from_left_to_center,
-                R.anim.from_center_to_right
-        );
-        transaction.addToBackStack(null);
-        transaction.setReorderingAllowed(true);
-        transaction.replace(R.id.auth_main_frame, new CameraCheckFragment());
-        transaction.commit();
-    }
 
-    private void sendImage() {
+
+    public void sendImage() {
         Intent intent = new Intent();
         intent.putExtra(NAME, "고길동");
         intent.putExtra(MAJOR, "소프트웨어학부");

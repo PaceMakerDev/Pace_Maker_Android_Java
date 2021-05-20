@@ -36,7 +36,8 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/success_check_mark" />
+                android:src="@drawable/success_check_mark"
+                android:id="@+id/check_mark"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mainFragment;
     private Fragment loginFragment;
     private Fragment signUpFragment;
+    private Fragment singUpSuccessFragment;
     private AuthService service;
     private RequestProcess request;
 
@@ -70,6 +71,17 @@ public class MainActivity extends AppCompatActivity {
                 signUpFragment = new SignUpFragment();
                 transaction.replace(R.id.auth_main_frame, signUpFragment);
                 break;
+            case SIGN_UP_SUCCESS:
+                transaction.setCustomAnimations(
+                        R.anim.from_right_to_center,
+                        R.anim.from_center_to_left,
+                        R.anim.from_left_to_center,
+                        R.anim.from_center_to_right);
+                transaction.addToBackStack(null);
+                transaction.setReorderingAllowed(true);
+                singUpSuccessFragment = new SignUpSuccessFragment();
+                transaction.replace(R.id.auth_main_frame, singUpSuccessFragment);
+                break;
         }
         transaction.commit();
     }
@@ -82,6 +94,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void requestSignUp(SignUpDto signUpDto) {
-        request.signUp(signUpDto, signUpFragment.requireContext());
+        request.signUp(signUpDto, signUpFragment.requireContext(), this);
     }
 }

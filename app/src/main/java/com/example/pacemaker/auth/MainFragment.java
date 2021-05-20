@@ -26,6 +26,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
+                //((MainActivity)requireActivity()).setFragment(FragmentTypes.SIGN_UP_SUCCESS);
             }
         });
 

@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.AuthResponseDto;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
@@ -72,7 +73,7 @@ public class RequestProcess {
         });
     }
 
-    public void signUp(SignUpDto signUpDto, Context signUpFragmentContext) {
+    public void signUp(SignUpDto signUpDto, Context signUpFragmentContext, MainActivity activity) {
         Call<AuthResponseDto> call = service.signUpUser(signUpDto);
         call.enqueue(new Callback<AuthResponseDto>() {
             @Override
@@ -82,9 +83,7 @@ public class RequestProcess {
                         //회원가입 성공
                         updateSharedPreference(response.body());
                         Log.d(MainActivity.TAG, "Signup Successful");
-                        Intent intent = new Intent(signUpFragmentContext, com.example.pacemaker.study.MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        signUpFragmentContext.startActivity(intent);
+                        activity.setFragment(FragmentTypes.SIGN_UP_SUCCESS);
                         break;
                     case 400:
                         //요청 바디 형식 오류

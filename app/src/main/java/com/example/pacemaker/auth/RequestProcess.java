@@ -92,7 +92,6 @@ public class RequestProcess {
                         break;
                     case 409:
                         //학번 중복
-
                         Log.d(MainActivity.TAG, "SignUp Fail : 학번중복(409)");
                         DialogUtil.showOkDialog(signUpFragmentContext, "로그인 오류", "이미 가입된 학번이 있습니다.");
                         break;

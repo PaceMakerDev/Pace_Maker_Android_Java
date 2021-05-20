@@ -72,8 +72,6 @@ public class RequestProcess {
 
     public void signUp(SignUpDto signUpDto, Context signUpFragmentContext) {
         Call<AuthResponseDto> call = service.signUpUser(signUpDto);
-        String log = requestBody2String(call.request());
-        Log.d("Auth", log);
         call.enqueue(new Callback<AuthResponseDto>() {
             @Override
             public void onResponse(Call<AuthResponseDto> call, Response<AuthResponseDto> response) {

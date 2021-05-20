@@ -7,24 +7,12 @@
         <item name="android:datePickerMode">spinner</item>
     </style>
 
-    <style name="AuthEditViewStyle">
-        <item name="android:background">@drawable/editview_auth_input</item>
-        <item name="android:textColorHint">@color/signUpHint</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/inputText</item>
-        <item name="maxLines">1</item>
-    </style>
-    <style name="AuthSignUpEditViewStyle" parent="@style/AuthEditViewStyle">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:paddingEnd">10dp</item>
-        <item name="android:layout_marginBottom">7dp</item>
-    </style>
+
 
     <!--Button-->
     <style name="ButtonStyle">
         <item name="android:textSize">@dimen/normal_text_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/nanum_gothic_extra_bold_font</item>
     </style>
     <style name="ButtonFilled" parent="ButtonStyle">
         <item name="android:background">@drawable/button_filled_maintheme</item>
@@ -38,4 +26,56 @@
         <item name="android:background">@drawable/button_filled_disabled</item>
         <item name="android:textColor">@color/buttonDisabledText</item>
     </style>
+
+    <!--EditText-->
+    <style name="EditTextWithHint">
+        <item name="android:background">@drawable/edittext_with_hint</item>
+        <item name="android:textColor">@color/inputText</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:fontFamily">@font/nanum_gothic_font</item>
+    </style>
+    <style name="AuthSignUpEditViewStyle" parent="@style/EditTextWithHint">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColorHint">@color/signUpHint</item>
+        <item name="android:layout_marginBottom">7dp</item>
+    </style>
+    <style name="AuthLoginEditViewStyle" parent="@style/EditTextWithHint">
+        <item name="android:textColorHint">@color/loginHint</item>
+        <item name="android:layout_marginBottom">7dp</item>
+    </style>
+
+    <!--TextView-->
+    <style name="ErrorText">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="fontFamily">@font/nanum_gothic_font</item>
+    </style>
+    <style name="AuthTitle">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/title</item>
+        <item name="fontFamily">@font/nanum_gothic_font</item>
+    </style>
+    <style name="AuthInputText">
+        <item name="android:fontFamily">@font/nanum_gothic_font</item>
+        <item name="android:textColor">@color/inputText</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+    <style name="AuthInputGuideStyle" parent="AuthInputText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/nanum_gothic_extra_bold_font</item>
+    </style>
+
+
 </resources>

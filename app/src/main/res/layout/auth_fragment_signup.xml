@@ -33,14 +33,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="30dp"
-                    android:gravity="center"
                     android:id="@+id/signup_title"
                     app:layout_constraintTop_toTopOf="parent"
                     android:text="@string/auth_signup"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/title"
-                    android:textStyle="bold"
-                    android:textColor="@color/title" />
+                    style="@style/AuthTitle"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -58,15 +54,12 @@
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
                             android:text="이름"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/inputText" />
+                            style="@style/AuthInputGuideStyle" />
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/signup_edit_name"
-                            android:textSize="16sp"
-                            android:textColor="@color/inputText" />
+                            style="@style/AuthInputText" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -76,15 +69,12 @@
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
                             android:text="학부/학과"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/inputText" />
+                            style="@style/AuthInputGuideStyle" />
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/signup_edit_major"
-                            android:textSize="16sp"
-                            android:textColor="@color/inputText" />
+                            style="@style/AuthInputText" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -94,17 +84,14 @@
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
                             android:text="학번"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/inputText" />
+                            style="@style/AuthInputGuideStyle" />
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/signup_edit_student_id"
-                            android:textSize="16sp"
                             android:maxLength="8"
-                            android:textColor="@color/inputText"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            style="@style/AuthInputText" />
                     </LinearLayout>
 
 
@@ -127,8 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="아이디"
-                            android:textColor="@color/inputText"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -148,10 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/signup_text_error_email"
-                        android:paddingHorizontal="20dp"
-                        android:textSize="11sp"
-                        android:textColor="@color/error"
-                        android:visibility="gone" />
+                        style="@style/ErrorText"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -162,8 +145,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="비밀번호"
-                            android:textColor="@color/inputText"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -183,10 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/signup_text_error_pw"
-                        android:paddingHorizontal="20dp"
-                        android:textSize="11sp"
-                        android:textColor="@color/error"
-                        android:visibility="gone" />
+                        style="@style/ErrorText"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -197,8 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="비밀번호 확인"
-                            android:textColor="@color/inputText"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -219,10 +197,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/signup_text_error_pw_check"
-                        android:paddingHorizontal="20dp"
-                        android:textSize="11sp"
-                        android:textColor="@color/error"
-                        android:visibility="gone" />
+                        style="@style/ErrorText"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -233,8 +208,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="학적정보"
-                            android:textColor="@color/inputText"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -279,8 +253,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="생년월일"
-                            android:textColor="@color/inputText"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -294,14 +267,8 @@
                             android:id="@+id/signup_edit_birth_year"
                             android:layout_weight="3"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/editview_auth_input"
-                            android:maxLength="20"
-                            android:textSize="14sp"
-                            android:textColor="@color/inputText"
-                            android:maxLines="1"
                             android:gravity="center"
-                            android:paddingHorizontal="20dp"
-                            android:layout_marginBottom="7dp" />
+                            style="@style/AuthSignUpEditViewStyle"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -317,14 +284,8 @@
                             android:layout_weight="2"
                             android:layout_marginTop="10dp"
                             android:layout_marginStart="10dp"
-                            android:background="@drawable/editview_auth_input"
-                            android:maxLength="20"
-                            android:textSize="14sp"
-                            android:textColor="@color/inputText"
-                            android:maxLines="1"
                             android:gravity="center"
-                            android:paddingHorizontal="20dp"
-                            android:layout_marginBottom="7dp" />
+                            style="@style/AuthSignUpEditViewStyle" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -340,14 +301,8 @@
                             android:layout_weight="2"
                             android:layout_marginTop="10dp"
                             android:layout_marginStart="10dp"
-                            android:background="@drawable/editview_auth_input"
-                            android:maxLength="20"
-                            android:textSize="14sp"
-                            android:textColor="@color/inputText"
-                            android:maxLines="1"
                             android:gravity="center"
-                            android:paddingHorizontal="20dp"
-                            android:layout_marginBottom="7dp" />
+                            style="@style/AuthSignUpEditViewStyle" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -368,8 +323,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="약관동의"
-                            android:textColor="@color/inputText"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -387,10 +341,9 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/auth_text_agreement"
                             android:text="이용약관 동의"
-                            android:textColor="@color/inputText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:textSize="16sp" />
+                            style="@style/AuthInputGuideStyle" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
@@ -407,7 +360,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/auth_text_show_agreement"
                         android:text="@string/auth_show_agreement"
-                        android:textColor="#838383" />
+                        android:textColor="#838383"
+                        android:fontFamily="@font/nanum_gothic_font"/>
                 </LinearLayout>
 
                 <Button

@@ -19,14 +19,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-                android:gravity="center"
                 android:id="@+id/auth_title_login"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="@string/auth_login"
-                android:textAlignment="center"
-                android:textSize="@dimen/title"
-                android:textStyle="bold"
-                android:textColor="@color/title" />
+                style="@style/AuthTitle"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -36,46 +32,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/editview_auth_input"
                 android:hint="@string/auth_email"
-                android:textColorHint="@color/loginHint"
-                android:maxLength="20"
-                android:textSize="16sp"
-                android:textColor="@color/inputText"
-                android:maxLines="1"
-                android:paddingHorizontal="20dp"
-                android:layout_marginBottom="7dp"
-                android:inputType="textEmailAddress" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/login_error_text_email"
-                app:layout_constraintTop_toBottomOf="@id/login_edittext_email"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:paddingHorizontal="20dp"
-                android:textSize="11sp"
-                android:textColor="@color/error"
-                android:visibility="gone" />
+                android:inputType="textEmailAddress"
+                style="@style/AuthLoginEditViewStyle" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/login_edittext_pw"
-                app:layout_constraintTop_toBottomOf="@id/login_error_text_email"
+                app:layout_constraintTop_toBottomOf="@id/login_edittext_email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:inputType="textPassword"
-                android:background="@drawable/editview_auth_input"
                 android:hint="@string/auth_pw"
-                android:textColorHint="@color/loginHint"
-                android:maxLength="20"
-                android:textSize="16sp"
-                android:textColor="@color/inputText"
-                android:maxLines="1"
-                android:paddingHorizontal="20dp"
-                android:layout_marginTop="7dp" />
+                style="@style/AuthLoginEditViewStyle" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -84,10 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@id/login_edittext_pw"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:paddingHorizontal="20dp"
-                android:textSize="11sp"
-                android:textColor="@color/error"
-                android:visibility="gone" />
+                style="@style/ErrorText"/>
 
             <Button
                 android:layout_width="match_parent"

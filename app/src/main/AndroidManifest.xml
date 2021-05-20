@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PaceMaker">
 
         <activity android:name=".study.MainActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTask" />
         <activity android:name=".auth.AgreementActivity"
             android:launchMode="singleTop" />
         <activity

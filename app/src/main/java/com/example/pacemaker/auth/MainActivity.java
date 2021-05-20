@@ -77,15 +77,8 @@ public class MainActivity extends AppCompatActivity {
     public void startCameraActivity() {}
 
     //request function 설정하면 되는데, 이를 아예 다른 클래스로 빼버릴까
-    public void requestSignIn(String email, String pw) {
-        try {
-            SignInDto signInDto = new SignInDto(email, AuthSecurity.encryptSHA256(pw));
-            DialogUtil.showOkDialog(this, "타이틀", signInDto.getPassword());
-            request.signIn(signInDto, loginFragment.requireContext());
-        }
-        catch (DigestException e) {
-            Log.e(TAG, "Error : failed to generate SHA-256");
-        }
+    public void requestSignIn(SignInDto signInDto) {
+        request.signIn(signInDto, loginFragment.requireContext());
     }
 
     public void requestSignUp(SignUpDto signUpDto) {

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.models.SignInDto;
 
 import java.util.HashMap;
 
@@ -92,8 +93,9 @@ public class LoginFragment extends Fragment {
         public void requestSignIn() {
             String email = inputMap.get("email").getText().toString();
             String pw = inputMap.get("pw").getText().toString();
+            SignInDto signInDto = new SignInDto(email, pw);
 
-            ((MainActivity)requireActivity()).requestSignIn(email, pw);
+            ((MainActivity)requireActivity()).requestSignIn(signInDto);
         }
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_max="400dp"
+        app:layout_constraintWidth_min="300dp"
+        android:layout_marginHorizontal="30dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/auth_title_login"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/auth_find_pw"
+            style="@style/AuthTitle"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/edit_auth_name"
+            app:layout_constraintTop_toBottomOf="@id/auth_title_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="50dp"
+            android:hint="@string/auth_name"
+            android:inputType="text"
+            style="@style/AuthLoginEditViewStyle" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edit_auth_email"
+            app:layout_constraintTop_toBottomOf="@id/edit_auth_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="textEmailAddress"
+            android:hint="@string/auth_email"
+            style="@style/AuthLoginEditViewStyle" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/btn_find_pw"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@id/edit_auth_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/ButtonFilled"
+            android:text="@string/auth_find_pw" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,10 @@
 package com.example.pacemaker.auth.service;
 
 import com.example.pacemaker.auth.models.AuthResponseDto;
+import com.example.pacemaker.auth.models.FindEmailRequestDto;
+import com.example.pacemaker.auth.models.FindEmailResponseDto;
+import com.example.pacemaker.auth.models.FindPwRequestDto;
+import com.example.pacemaker.auth.models.FindPwResponseDto;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
 
@@ -14,4 +18,10 @@ public interface AuthService {
 
     @POST("/v1/auth/signin")
     Call<AuthResponseDto> signInUser(@Body SignInDto signInDto);
+
+    @POST("/v1/auth/email/find")
+    Call<FindEmailResponseDto> findEmail(@Body FindEmailRequestDto findEmailRequestDto);
+
+    @POST("/v1/auth/password/find")
+    Call<FindPwResponseDto> findPassword(@Body FindPwRequestDto findPwRequestDto);
 }

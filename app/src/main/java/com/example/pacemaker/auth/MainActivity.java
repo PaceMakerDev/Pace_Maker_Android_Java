@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
+import com.example.pacemaker.auth.models.FindEmailRequestDto;
+import com.example.pacemaker.auth.models.FindPwRequestDto;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.auth.service.AuthService;
@@ -26,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private Fragment loginFragment;
     private Fragment signUpFragment;
     private Fragment singUpSuccessFragment;
-    private AuthService service;
+    private Fragment findEmailFragment;
+    private Fragment findEmailSuccessFragment;
+    private Fragment findPasswordFragment;
+    private Fragment findPasswordSuccessFragment;
+
     private RequestProcess request;
 
     @Override
@@ -34,54 +40,74 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.auth_activity);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        mainFragment = new MainFragment();
-        loginFragment = new LoginFragment();
-        signUpFragment = new SignUpFragment();
 
         setFragment(FragmentTypes.MAIN);
-        service = ServiceGenerator.createService(AuthService.class);
+        AuthService service = ServiceGenerator.createService(AuthService.class);
         request = new RequestProcess(service, getSharedPreferences("auth", MODE_PRIVATE));
     }
 
+    public void showSuccessfulEmailFind(String name, String email) {
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
+        bundle.putString("email", email);
+        findEmailSuccessFragment = new FindEmailSuccessFragment();
+        findEmailSuccessFragment.setArguments(bundle);
+        setFragment(FragmentTypes.FIND_EMAIL_SUCCESS);
+    }
+
+    public void showSuccessfulPasswordFind(String name, String email) {
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
+        bundle.putString("email", email);
+        findPasswordSuccessFragment = new FindPasswordSuccessFragment();
+        findPasswordSuccessFragment.setArguments(bundle);
+        setFragment(FragmentTypes.FIND_PW_SUCCESS);
+    }
+
+
     public void setFragment(FragmentTypes frag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch(frag) {
-            case MAIN:
-                transaction.replace(R.id.auth_main_frame, mainFragment);
-                break;
-            case LOGIN:
-                transaction.setCustomAnimations(
-                        R.anim.from_right_to_center,
-                        R.anim.from_center_to_left,
-                        R.anim.from_left_to_center,
-                        R.anim.from_center_to_right);
-                transaction.addToBackStack(null);
-                transaction.setReorderingAllowed(true);
-                loginFragment = new LoginFragment();
-                transaction.replace(R.id.auth_main_frame, loginFragment);
-                break;
-            case SIGNUP:
-                transaction.setCustomAnimations(
-                        R.anim.from_right_to_center,
-                        R.anim.from_center_to_left,
-                        R.anim.from_left_to_center,
-                        R.anim.from_center_to_right);
-                transaction.addToBackStack(null);
-                transaction.setReorderingAllowed(true);
-                signUpFragment = new SignUpFragment();
-                transaction.replace(R.id.auth_main_frame, signUpFragment);
-                break;
-            case SIGN_UP_SUCCESS:
-                transaction.setCustomAnimations(
-                        R.anim.from_right_to_center,
-                        R.anim.from_center_to_left,
-                        R.anim.from_left_to_center,
-                        R.anim.from_center_to_right);
-                transaction.addToBackStack(null);
-                transaction.setReorderingAllowed(true);
-                singUpSuccessFragment = new SignUpSuccessFragment();
-                transaction.replace(R.id.auth_main_frame, singUpSuccessFragment);
-                break;
+        if (frag == FragmentTypes.MAIN) {
+            mainFragment = new MainFragment();
+            transaction.replace(R.id.auth_main_frame, mainFragment);
+        }
+
+        else {
+            transaction.setCustomAnimations(
+                    R.anim.from_right_to_center,
+                    R.anim.from_center_to_left,
+                    R.anim.from_left_to_center,
+                    R.anim.from_center_to_right);
+            transaction.addToBackStack(null);
+            transaction.setReorderingAllowed(true);
+
+            switch(frag) {
+                case LOGIN:
+                    loginFragment = new LoginFragment();
+                    transaction.replace(R.id.auth_main_frame, loginFragment);
+                    break;
+                case SIGNUP:
+                    signUpFragment = new SignUpFragment();
+                    transaction.replace(R.id.auth_main_frame, signUpFragment);
+                    break;
+                case SIGN_UP_SUCCESS:
+                    singUpSuccessFragment = new SignUpSuccessFragment();
+                    transaction.replace(R.id.auth_main_frame, singUpSuccessFragment);
+                    break;
+                case FIND_EMAIL:
+                    findEmailFragment = new FindEmailFragment();
+                    transaction.replace(R.id.auth_main_frame, findEmailFragment);
+                    break;
+                case FIND_EMAIL_SUCCESS:
+                    transaction.replace(R.id.auth_main_frame, findEmailSuccessFragment);
+                    break;
+                case FIND_PW:
+                    findPasswordFragment = new FindPasswordFragment();
+                    transaction.replace(R.id.auth_main_frame, findPasswordFragment);
+                    break;
+                case FIND_PW_SUCCESS:
+                    transaction.replace(R.id.auth_main_frame, findPasswordSuccessFragment);
+            }
         }
         transaction.commit();
     }
@@ -95,5 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void requestSignUp(SignUpDto signUpDto) {
         request.signUp(signUpDto, signUpFragment.requireContext(), this);
+    }
+
+    public void requestFindEmail(FindEmailRequestDto findEmailRequestDto) {
+        request.findEmail(findEmailRequestDto, findEmailFragment.requireContext(), this);
+    }
+
+    public void requestFindPassword(FindPwRequestDto findPwRequestDto) {
+        request.findPassword(findPwRequestDto, findPasswordFragment.requireContext(), this);
     }
 }

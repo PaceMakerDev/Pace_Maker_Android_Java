@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.SignInDto;
 
 import java.util.HashMap;
@@ -30,6 +31,16 @@ public class LoginFragment extends Fragment {
 
         Button signInBtn = (Button)rootView.findViewById(R.id.button_login);
         signInBtn.setOnClickListener(new SignInClickListener());
+
+        TextView findEmail = rootView.findViewById(R.id.auth_button_forgot_email);
+        findEmail.setOnClickListener((view) -> {
+            ((MainActivity)requireActivity()).setFragment(FragmentTypes.FIND_EMAIL);
+        });
+
+        TextView findPassword = rootView.findViewById(R.id.auth_button_forgot_pw);
+        findPassword.setOnClickListener((view) -> {
+            ((MainActivity)requireActivity()).setFragment(FragmentTypes.FIND_PW);
+        });
 
         return rootView;
     }

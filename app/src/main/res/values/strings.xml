@@ -18,8 +18,10 @@
     <string name="auth_login">로그인</string>
     <string name="auth_signup">회원가입</string>
     <string name="auth_email">아이디</string>
+    <string name="auth_find_email">아이디 찾기</string>
+    <string name="auth_find_pw">비밀번호 찾기</string>
     <string name="auth_signup_email">이메일 형식으로 적어주세요</string>
-    <string name="auth_signup_pw">영문+숫자 조합 8-16자리</string>
+    <string name="auth_signup_pw">영문+숫자+특수문자 조합 8-16자리</string>
     <string name="auth_std_id">학번</string>
     <string name="auth_pw">비밀번호</string>
     <string name="auth_major">학부/학과</string>

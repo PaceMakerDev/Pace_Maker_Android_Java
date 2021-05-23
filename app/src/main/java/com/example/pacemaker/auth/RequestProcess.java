@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.AuthResponseDto;
+import com.example.pacemaker.auth.models.FindEmailRequestDto;
+import com.example.pacemaker.auth.models.FindEmailResponseDto;
+import com.example.pacemaker.auth.models.FindPwRequestDto;
+import com.example.pacemaker.auth.models.FindPwResponseDto;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.auth.models.SuccessResponseData;
@@ -127,5 +131,80 @@ public class RequestProcess {
         } catch (final IOException e) {
             return "did not work";
         }
+    }
+
+    public void findEmail(FindEmailRequestDto findEmailRequestDto, Context findEmailFragmentContext, MainActivity activity) {
+        Call<FindEmailResponseDto> call = service.findEmail(findEmailRequestDto);
+        String name = findEmailRequestDto.getName();
+        call.enqueue(new Callback<FindEmailResponseDto>() {
+            @Override
+            public void onResponse(Call<FindEmailResponseDto> call, Response<FindEmailResponseDto> response) {
+                switch (response.code()) {
+                    case 200:
+                        //이메일 찾기 성공
+                        Log.d(MainActivity.TAG, "Find Email Successful");
+                        String email = response.body().getUserEmail().getEmail();
+                        activity.showSuccessfulEmailFind(name, email);
+                        break;
+                    case 400:
+                        //요청 바디 형식 오류
+                        Log.d(MainActivity.TAG, "Find Email Fail : 요청바디형식오류(400)");
+                        break;
+                    case 404:
+                        //학번 중복
+                        Log.d(MainActivity.TAG, "Find Email Fail : 일치하는 정보 없음(404)");
+                        DialogUtil.showOkDialog(findEmailFragmentContext, "아이디 찾기 오류", "일치하는 정보가 없습니다");
+                        break;
+                    default:
+                        Log.d(MainActivity.TAG, "Find Email Fail : default" + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FindEmailResponseDto> call, Throwable t) {
+                Log.d(MainActivity.TAG, "Find Email Fail : 서버다운");
+                DialogUtil.showOkDialog(findEmailFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
+            }
+        });
+    }
+
+    public void findPassword(FindPwRequestDto findPwRequestDto, Context findPwFragmentContext, MainActivity activity) {
+        Call<FindPwResponseDto> call = service.findPassword(findPwRequestDto);
+        Log.d("Auth", requestBody2String(call.request()));
+        call.enqueue(new Callback<FindPwResponseDto>() {
+            @Override
+            public void onResponse(Call<FindPwResponseDto> call, Response<FindPwResponseDto> response) {
+                switch (response.code()) {
+                    case 200:
+                        //비밀번호 찾기 성공
+                        Log.d(MainActivity.TAG, "Find Password Successful");
+                        String email = response.body().getUserNameAndEmail().getEmail();
+                        String name = response.body().getUserNameAndEmail().getName();
+                        activity.showSuccessfulPasswordFind(name, email);
+                        break;
+                    case 400:
+                        //요청 바디 형식 오류
+                        Log.d(MainActivity.TAG, "Find Password Fail : 요청바디형식오류(400)");
+                        break;
+                    case 404:
+                        //학번 중복
+                        Log.d(MainActivity.TAG, "Find Password Fail : 일치하는 정보 없음(404)");
+                        DialogUtil.showOkDialog(findPwFragmentContext, "비밀번호 찾기 오류", "일치하는 정보가 없습니다");
+                        break;
+                    case 500:
+                        Log.d(MainActivity.TAG, "Find Password Fail : 서버오류로 이메일을 못보냄");
+                        DialogUtil.showOkDialog(findPwFragmentContext, "비밀번호 찾기 오류", "죄송합니다. 서버 오류로 인해 해당 이메일로 임시 비밀번호를 보내지 못했습니다. 다시 시도해주세요");
+                        break;
+                    default:
+                        Log.d(MainActivity.TAG, "Find Email Fail : default" + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FindPwResponseDto> call, Throwable t) {
+                Log.d(MainActivity.TAG, "Find Password Fail : 서버다운");
+                DialogUtil.showOkDialog(findPwFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
+            }
+        });
     }
 }

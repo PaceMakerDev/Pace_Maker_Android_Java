@@ -13,14 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
 
 public class FindPasswordFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.auth_fragment_find_pw, container, false);
+        View rootView = inflater.inflate(R.layout.auth_fragment_find_password, container, false);
 
         EditText editTextName = rootView.findViewById(R.id.edit_auth_name);
 

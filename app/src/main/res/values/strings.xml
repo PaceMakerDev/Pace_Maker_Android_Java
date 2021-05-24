@@ -14,7 +14,9 @@
     <string name="auth_missing_info">아이디 혹은 비밀번호를 잊으셨나요?</string>
     <string name="auth_title_message">당신의 곁에서 공부를 도와주는</string>
     <string name="auth_forgot_pw">비밀번호 잊어버렸어요</string>
-
+    <string name="auth_change_pw">비밀번호 변경하기</string>
+    <string name="auth_new_pw">새 비밀번호</string>
+    <string name="auth_confirm_new_pw">새 비밀번호 확인</string>
     <string name="auth_login">로그인</string>
     <string name="auth_signup">회원가입</string>
     <string name="auth_email">아이디</string>

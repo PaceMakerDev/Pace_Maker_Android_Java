@@ -18,7 +18,7 @@ public class FindPasswordSuccessFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.auth_fragment_find_pw_success, container, false);
+        View rootView = inflater.inflate(R.layout.auth_fragment_find_password_success, container, false);
         String name = getArguments().getString("name");
         String email = getArguments().getString("email");
         TextView textViewName = rootView.findViewById(R.id.text_info1);

@@ -24,12 +24,8 @@ public class FindEmailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.auth_fragment_find_email, container, false);
-
         EditText editTextName = rootView.findViewById(R.id.edit_auth_name);
-
-
         EditText editTextStdId = rootView.findViewById(R.id.edit_auth_student_id);
-
 
         Button findEmailBtn = rootView.findViewById(R.id.btn_find_email);
         findEmailBtn.setOnClickListener((view) -> {

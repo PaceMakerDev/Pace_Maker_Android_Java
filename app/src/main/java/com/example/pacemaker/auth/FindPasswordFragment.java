@@ -20,14 +20,10 @@ public class FindPasswordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.auth_fragment_find_password, container, false);
-
         EditText editTextName = rootView.findViewById(R.id.edit_auth_name);
-
-
         EditText editTextEmail = rootView.findViewById(R.id.edit_auth_email);
-
-
         Button findPasswordBtn = rootView.findViewById(R.id.btn_find_pw);
+
         findPasswordBtn.setOnClickListener((view) -> {
             String name= editTextName.getText().toString();
             String email = editTextEmail.getText().toString();

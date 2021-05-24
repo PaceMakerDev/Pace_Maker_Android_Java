@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment findEmailSuccessFragment;
     private Fragment findPasswordFragment;
     private Fragment findPasswordSuccessFragment;
+    private Fragment changePasswordFragment;
 
     private RequestProcess request;
 
@@ -107,16 +108,20 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case FIND_PW_SUCCESS:
                     transaction.replace(R.id.auth_main_frame, findPasswordSuccessFragment);
+                    break;
+                case CHANGE_PASSWORD:
+                    changePasswordFragment = new ChangePasswordFragment();
+                    transaction.replace(R.id.auth_main_frame, changePasswordFragment);
+                    break;
             }
         }
         transaction.commit();
     }
 
-    public void startCameraActivity() {}
 
     //request function 설정하면 되는데, 이를 아예 다른 클래스로 빼버릴까
     public void requestSignIn(SignInDto signInDto) {
-        request.signIn(signInDto, loginFragment.requireContext());
+        request.signIn(signInDto, loginFragment.requireContext(), this);
     }
 
     public void requestSignUp(SignUpDto signUpDto) {
@@ -130,4 +135,6 @@ public class MainActivity extends AppCompatActivity {
     public void requestFindPassword(FindPwRequestDto findPwRequestDto) {
         request.findPassword(findPwRequestDto, findPasswordFragment.requireContext(), this);
     }
+
+    public void requestChangePassword() {}
 }

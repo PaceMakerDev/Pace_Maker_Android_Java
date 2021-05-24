@@ -44,18 +44,23 @@ public class RequestProcess {
         this.preferences = preferences;
     }
 
-    public void signIn(SignInDto signInDto, Context loginFragmentContext) {
+    public void signIn(SignInDto signInDto, Context loginFragmentContext, MainActivity activity) {
         service.signInUser(signInDto).enqueue(new Callback<AuthResponseDto>() {
             @Override
             public void onResponse(Call<AuthResponseDto> call, Response<AuthResponseDto> response) {
                 switch (response.code()) {
                     case 200:
                         //로그인 성공
-                        updateSharedPreference(response.body());
                         Log.d(MainActivity.TAG, "Login Successful");
-                        Intent intent = new Intent(loginFragmentContext, com.example.pacemaker.study.MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        loginFragmentContext.startActivity(intent);
+                        if (response.body().getData().isShouldChangePassword()) {
+                            activity.setFragment(FragmentTypes.CHANGE_PASSWORD);
+                        }
+                        else {
+                            updateSharedPreference(response.body());
+                            Intent intent = new Intent(loginFragmentContext, com.example.pacemaker.study.MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            loginFragmentContext.startActivity(intent);
+                        }
                         break;
                     case 400:
                         //요청바디형식 잘못됨

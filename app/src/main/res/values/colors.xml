@@ -18,6 +18,10 @@
     <color name="buttonLineText">#4A4A4A</color>
     <color name="buttonDisabledText">#DCDCDC</color>
 
+    <!--Nav-->
+    <color name="nav_background">#171C1E</color>
+    <color name="nav_selected">#02FFFD</color>
+    <color name="nav_unselected">#686868</color>
 
     <!--Text-->
     <color name="textMain">#FFFFFF</color>

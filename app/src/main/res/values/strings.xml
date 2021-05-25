@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">PaceMaker</string>
-    <string name="title_home">홈</string>
-    <string name="title_mystudy">내 스터디</string>
-    <string name="title_settings">설정</string>
+    <string name="title_my_study">나의 스터디</string>
+    <string name="title_study_search">스터디룸 찾기</string>
+    <string name="title_study_league">스터디 리그</string>
+    <string name="title_my_page">마이페이지</string>
 
     <!-- Common -->
     <string name="app_name_ko">페이스메이커</string>

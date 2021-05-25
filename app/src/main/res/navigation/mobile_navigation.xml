@@ -6,41 +6,66 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.ssutudy.study.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:id="@+id/nav_my_study"
+        android:name="com.example.pacemaker.study.ui.mystudy.MyStudyFragment"
+        android:label="@string/title_my_study"
         tools:layout="@layout/fragment_main_home" >
         <action
-            android:id="@+id/action_navigation_home_to_navigation_settings"
-            app:destination="@id/navigation_settings" />
+            android:id="@+id/action_nav_my_study_to_nav_study_search"
+            app:destination="@id/nav_study_search" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_mystudy2"
-            app:destination="@id/navigation_mystudy" />
+            android:id="@+id/action_nav_my_study_to_nav_study_league"
+            app:destination="@id/nav_study_league" />
+        <action
+            android:id="@+id/action_nav_my_study_to_nav_my_page"
+            app:destination="@id/nav_my_page" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_mystudy"
-        android:name="com.example.ssutudy.study.ui.mystudy.MyStudyFragment"
-        android:label="@string/title_mystudy"
+        android:id="@+id/nav_study_search"
+        android:name="com.example.pacemaker.study.ui.studysearch.StudySearchFragment"
+        android:label="@string/title_study_search"
         tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_navigation_mystudy_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_nav_study_search_to_nav_study_league"
+            app:destination="@id/nav_study_league" />
         <action
-            android:id="@+id/action_navigation_mystudy_to_navigation_settings"
-            app:destination="@id/navigation_settings" />
+            android:id="@+id/action_nav_study_search_to_nav_my_page"
+            app:destination="@id/nav_my_page" />
+        <action
+            android:id="@+id/action_nav_study_search_to_nav_my_study"
+            app:destination="@id/nav_my_study" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.example.ssutudy.study.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
+        android:id="@+id/nav_study_league"
+        android:name="com.example.pacemaker.study.ui.studyleague.StudyLeagueFragment"
+        android:label="@string/title_study_league"
         tools:layout="@layout/fragment_notifications" >
         <action
-            android:id="@+id/action_navigation_settings_to_navigation_mystudy"
-            app:destination="@id/navigation_mystudy" />
+            android:id="@+id/action_nav_study_league_to_nav_study_search"
+            app:destination="@id/nav_study_search" />
         <action
-            android:id="@+id/action_navigation_settings_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_nav_study_league_to_nav_my_page"
+            app:destination="@id/nav_my_page" />
+        <action
+            android:id="@+id/action_nav_study_league_to_nav_my_study"
+            app:destination="@id/nav_my_study" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_my_page"
+        android:name="com.example.pacemaker.study.ui.mypage.MyPageFragment"
+        android:label="@string/title_my_page"
+        tools:layout="@layout/fragment_notifications" >
+
+        <action
+            android:id="@+id/action_nav_my_page_to_nav_my_study2"
+            app:destination="@id/nav_my_study" />
+        <action
+            android:id="@+id/action_nav_my_page_to_nav_study_league"
+            app:destination="@id/nav_study_league" />
+        <action
+            android:id="@+id/action_nav_my_page_to_nav_study_search"
+            app:destination="@id/nav_study_search" />
     </fragment>
 </navigation>

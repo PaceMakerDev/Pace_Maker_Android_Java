@@ -8,9 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.SignUpFragment;
+import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.enums.SignUpInputs;
-import com.example.pacemaker.util.AuthValidator;
 
 
 public class PasswordCheckTextWatcher implements TextWatcher {

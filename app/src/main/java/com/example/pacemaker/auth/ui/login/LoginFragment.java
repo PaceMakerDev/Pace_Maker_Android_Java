@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.ui.login;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.MainActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.SignInDto;
 

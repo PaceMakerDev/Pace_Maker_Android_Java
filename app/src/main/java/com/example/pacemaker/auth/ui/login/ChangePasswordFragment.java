@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.ui.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

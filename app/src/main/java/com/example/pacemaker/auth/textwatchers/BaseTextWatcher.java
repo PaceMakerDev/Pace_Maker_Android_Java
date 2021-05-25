@@ -1,11 +1,9 @@
 package com.example.pacemaker.auth.textwatchers;
 
-import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.TextView;
 
-import com.example.pacemaker.auth.SignUpFragment;
+import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.enums.SignUpInputs;
 
 public class BaseTextWatcher implements TextWatcher {

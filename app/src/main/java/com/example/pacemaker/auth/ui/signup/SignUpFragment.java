@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.ui.signup;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.MainActivity;
 import com.example.pacemaker.auth.enums.AttendanceStatus;
 import com.example.pacemaker.auth.enums.SignUpInputs;
 import com.example.pacemaker.auth.models.SignUpDto;

@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.service.request;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.pacemaker.auth.MainActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.AuthResponseDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
@@ -43,6 +44,7 @@ public class RequestProcess {
         this.service = service;
         this.preferences = preferences;
     }
+
 
     public void signIn(SignInDto signInDto, Context loginFragmentContext, MainActivity activity) {
         service.signInUser(signInDto).enqueue(new Callback<AuthResponseDto>() {

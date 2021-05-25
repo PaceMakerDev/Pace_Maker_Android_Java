@@ -1,18 +1,13 @@
 package com.example.pacemaker.auth.textwatchers;
 
-import android.app.Dialog;
 import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.SignUpFragment;
+import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.enums.SignUpInputs;
 import com.example.pacemaker.util.AuthValidator;
 

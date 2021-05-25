@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.ui.findinfos;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.auth.MainActivity;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 
 public class FindEmailFragment extends Fragment {

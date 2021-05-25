@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.ui.signup;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.SignUpInputs;
+import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 
 import java.util.Calendar;
 

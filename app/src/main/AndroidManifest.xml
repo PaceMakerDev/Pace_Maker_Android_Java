@@ -14,7 +14,7 @@
 
         <activity android:name=".study.MainActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".auth.AgreementActivity"
+        <activity android:name=".auth.ui.signup.AgreementActivity"
             android:launchMode="singleTop" />
         <activity
             android:name=".auth.MainActivity"

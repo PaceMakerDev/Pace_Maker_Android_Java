@@ -1,4 +1,4 @@
-package com.example.pacemaker.auth;
+package com.example.pacemaker.auth.ui.signup;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,12 +1,9 @@
 package com.example.pacemaker.auth;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.pacemaker.R;
@@ -16,11 +13,16 @@ import com.example.pacemaker.auth.models.FindPwRequestDto;
 import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.auth.service.AuthService;
-import com.example.pacemaker.util.AuthSecurity;
-import com.example.pacemaker.util.DialogUtil;
+import com.example.pacemaker.auth.service.request.RequestProcess;
+import com.example.pacemaker.auth.ui.findinfos.FindEmailFragment;
+import com.example.pacemaker.auth.ui.findinfos.FindEmailSuccessFragment;
+import com.example.pacemaker.auth.ui.findinfos.FindPasswordFragment;
+import com.example.pacemaker.auth.ui.findinfos.FindPasswordSuccessFragment;
+import com.example.pacemaker.auth.ui.login.ChangePasswordFragment;
+import com.example.pacemaker.auth.ui.login.LoginFragment;
+import com.example.pacemaker.auth.ui.signup.SignUpFragment;
+import com.example.pacemaker.auth.ui.signup.SignUpSuccessFragment;
 import com.example.pacemaker.util.service.ServiceGenerator;
-
-import java.security.DigestException;
 
 public class MainActivity extends AppCompatActivity {
     public static String TAG = "Auth";

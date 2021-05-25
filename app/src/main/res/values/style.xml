@@ -77,6 +77,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/nanum_gothic_extra_bold_font</item>
     </style>
-
+    <style name="SubTitleStyle">
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">@dimen/sub_title</item>
+        <item name="android:fontFamily">@font/nanum_gothic_extra_bold_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

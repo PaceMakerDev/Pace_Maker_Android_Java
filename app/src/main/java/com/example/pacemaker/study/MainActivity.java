@@ -9,6 +9,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,16 +28,18 @@ public class MainActivity extends AppCompatActivity {
         navView.setSelectedItemId(R.id.nav_my_study);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        /*
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_my_study, R.id.nav_study_search, R.id.nav_study_league, R.id.nav_my_page)
+                .build();
+        NavHostFragment navHostFragment =
+                (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+        //NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
         NavigationUI.setupWithNavController(navView, navController);
 
-         */
+
     }
 
 }

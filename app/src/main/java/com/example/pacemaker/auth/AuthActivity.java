@@ -1,5 +1,6 @@
 package com.example.pacemaker.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,7 @@ import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpSuccessFragment;
 import com.example.pacemaker.util.service.ServiceGenerator;
 
-public class MainActivity extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
     public static String TAG = "Auth";
     private Fragment mainFragment;
     private Fragment loginFragment;
@@ -43,10 +44,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.auth_activity);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        checkAccessToken();
         setFragment(FragmentTypes.MAIN);
         AuthService service = ServiceGenerator.createService(AuthService.class);
         request = new RequestProcess(service, getSharedPreferences("auth", MODE_PRIVATE));
+    }
+
+    private void checkAccessToken() {
+        if (getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", "empty").compareTo("empty") != 0) {
+            startStudyActivity();
+        }
+    }
+
+    public void startStudyActivity() {
+        Intent intent = new Intent(this, com.example.pacemaker.study.StudyActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     public void showSuccessfulEmailFind(String name, String email) {

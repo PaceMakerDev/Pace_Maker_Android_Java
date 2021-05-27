@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.MainActivity;
+import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 
 public class FindPasswordSuccessFragment extends Fragment {
@@ -30,7 +30,7 @@ public class FindPasswordSuccessFragment extends Fragment {
 
         Button loginBtn = rootView.findViewById(R.id.button_login);
         loginBtn.setOnClickListener((view) -> {
-            ((MainActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
+            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
         });
         return rootView;
     }

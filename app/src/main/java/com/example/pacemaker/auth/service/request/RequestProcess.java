@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.pacemaker.auth.MainActivity;
+import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.AuthResponseDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
@@ -46,34 +44,34 @@ public class RequestProcess {
     }
 
 
-    public void signIn(SignInDto signInDto, Context loginFragmentContext, MainActivity activity) {
+    public void signIn(SignInDto signInDto, Context loginFragmentContext, AuthActivity activity) {
         service.signInUser(signInDto).enqueue(new Callback<AuthResponseDto>() {
             @Override
             public void onResponse(Call<AuthResponseDto> call, Response<AuthResponseDto> response) {
                 switch (response.code()) {
                     case 200:
                         //로그인 성공
-                        Log.d(MainActivity.TAG, "Login Successful");
+                        Log.d(AuthActivity.TAG, "Login Successful");
                         if (response.body().getData().isShouldChangePassword()) {
                             activity.setFragment(FragmentTypes.CHANGE_PASSWORD);
                         }
                         else {
                             updateSharedPreference(response.body());
-                            Intent intent = new Intent(loginFragmentContext, com.example.pacemaker.study.MainActivity.class);
+                            Intent intent = new Intent(loginFragmentContext, com.example.pacemaker.study.StudyActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             loginFragmentContext.startActivity(intent);
                         }
                         break;
                     case 400:
                         //요청바디형식 잘못됨
-                        Log.d(MainActivity.TAG, "Login fail : 요청바디형식 잘못됨(400)");
+                        Log.d(AuthActivity.TAG, "Login fail : 요청바디형식 잘못됨(400)");
                         break;
                     case 404:
-                        Log.d(MainActivity.TAG, "Login fail : 아이디 비번 일치 안함(404)");
+                        Log.d(AuthActivity.TAG, "Login fail : 아이디 비번 일치 안함(404)");
                         DialogUtil.showOkDialog(loginFragmentContext, "로그인 오류", "아이디 혹은 비밀번호가 일치하지 않습니다");
                         break;
                     default:
-                        Log.d(MainActivity.TAG, "Login fail : default");
+                        Log.d(AuthActivity.TAG, "Login fail : default");
                 }
             }
 
@@ -84,7 +82,7 @@ public class RequestProcess {
         });
     }
 
-    public void signUp(SignUpDto signUpDto, Context signUpFragmentContext, MainActivity activity) {
+    public void signUp(SignUpDto signUpDto, Context signUpFragmentContext, AuthActivity activity) {
         Call<AuthResponseDto> call = service.signUpUser(signUpDto);
         call.enqueue(new Callback<AuthResponseDto>() {
             @Override
@@ -93,26 +91,26 @@ public class RequestProcess {
                     case 201:
                         //회원가입 성공
                         updateSharedPreference(response.body());
-                        Log.d(MainActivity.TAG, "Signup Successful");
+                        Log.d(AuthActivity.TAG, "Signup Successful");
                         activity.setFragment(FragmentTypes.SIGN_UP_SUCCESS);
                         break;
                     case 400:
                         //요청 바디 형식 오류
-                        Log.d(MainActivity.TAG, "SignUp Fail : 요청바디형식오류(400)");
+                        Log.d(AuthActivity.TAG, "SignUp Fail : 요청바디형식오류(400)");
                         break;
                     case 409:
                         //학번 중복
-                        Log.d(MainActivity.TAG, "SignUp Fail : 학번중복(409)");
+                        Log.d(AuthActivity.TAG, "SignUp Fail : 학번중복(409)");
                         DialogUtil.showOkDialog(signUpFragmentContext, "로그인 오류", "이미 가입된 학번이 있습니다.");
                         break;
                     default:
-                        Log.d(MainActivity.TAG, "SignUp Fail : default" + response.code());
+                        Log.d(AuthActivity.TAG, "SignUp Fail : default" + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<AuthResponseDto> call, Throwable t) {
-                Log.d(MainActivity.TAG, "SignUp Fail : 서버다운");
+                Log.d(AuthActivity.TAG, "SignUp Fail : 서버다운");
                 DialogUtil.showOkDialog(signUpFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
             }
         });
@@ -140,7 +138,7 @@ public class RequestProcess {
         }
     }
 
-    public void findEmail(FindEmailRequestDto findEmailRequestDto, Context findEmailFragmentContext, MainActivity activity) {
+    public void findEmail(FindEmailRequestDto findEmailRequestDto, Context findEmailFragmentContext, AuthActivity activity) {
         Call<FindEmailResponseDto> call = service.findEmail(findEmailRequestDto);
         String name = findEmailRequestDto.getName();
         call.enqueue(new Callback<FindEmailResponseDto>() {
@@ -149,33 +147,33 @@ public class RequestProcess {
                 switch (response.code()) {
                     case 200:
                         //이메일 찾기 성공
-                        Log.d(MainActivity.TAG, "Find Email Successful");
+                        Log.d(AuthActivity.TAG, "Find Email Successful");
                         String email = response.body().getUserEmail().getEmail();
                         activity.showSuccessfulEmailFind(name, email);
                         break;
                     case 400:
                         //요청 바디 형식 오류
-                        Log.d(MainActivity.TAG, "Find Email Fail : 요청바디형식오류(400)");
+                        Log.d(AuthActivity.TAG, "Find Email Fail : 요청바디형식오류(400)");
                         break;
                     case 404:
                         //학번 중복
-                        Log.d(MainActivity.TAG, "Find Email Fail : 일치하는 정보 없음(404)");
+                        Log.d(AuthActivity.TAG, "Find Email Fail : 일치하는 정보 없음(404)");
                         DialogUtil.showOkDialog(findEmailFragmentContext, "아이디 찾기 오류", "일치하는 정보가 없습니다");
                         break;
                     default:
-                        Log.d(MainActivity.TAG, "Find Email Fail : default" + response.code());
+                        Log.d(AuthActivity.TAG, "Find Email Fail : default" + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<FindEmailResponseDto> call, Throwable t) {
-                Log.d(MainActivity.TAG, "Find Email Fail : 서버다운");
+                Log.d(AuthActivity.TAG, "Find Email Fail : 서버다운");
                 DialogUtil.showOkDialog(findEmailFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
             }
         });
     }
 
-    public void findPassword(FindPwRequestDto findPwRequestDto, Context findPwFragmentContext, MainActivity activity) {
+    public void findPassword(FindPwRequestDto findPwRequestDto, Context findPwFragmentContext, AuthActivity activity) {
         Call<FindPwResponseDto> call = service.findPassword(findPwRequestDto);
         Log.d("Auth", requestBody2String(call.request()));
         call.enqueue(new Callback<FindPwResponseDto>() {
@@ -184,32 +182,32 @@ public class RequestProcess {
                 switch (response.code()) {
                     case 200:
                         //비밀번호 찾기 성공
-                        Log.d(MainActivity.TAG, "Find Password Successful");
+                        Log.d(AuthActivity.TAG, "Find Password Successful");
                         String email = response.body().getUserNameAndEmail().getEmail();
                         String name = response.body().getUserNameAndEmail().getName();
                         activity.showSuccessfulPasswordFind(name, email);
                         break;
                     case 400:
                         //요청 바디 형식 오류
-                        Log.d(MainActivity.TAG, "Find Password Fail : 요청바디형식오류(400)");
+                        Log.d(AuthActivity.TAG, "Find Password Fail : 요청바디형식오류(400)");
                         break;
                     case 404:
                         //학번 중복
-                        Log.d(MainActivity.TAG, "Find Password Fail : 일치하는 정보 없음(404)");
+                        Log.d(AuthActivity.TAG, "Find Password Fail : 일치하는 정보 없음(404)");
                         DialogUtil.showOkDialog(findPwFragmentContext, "비밀번호 찾기 오류", "일치하는 정보가 없습니다");
                         break;
                     case 500:
-                        Log.d(MainActivity.TAG, "Find Password Fail : 서버오류로 이메일을 못보냄");
+                        Log.d(AuthActivity.TAG, "Find Password Fail : 서버오류로 이메일을 못보냄");
                         DialogUtil.showOkDialog(findPwFragmentContext, "비밀번호 찾기 오류", "죄송합니다. 서버 오류로 인해 해당 이메일로 임시 비밀번호를 보내지 못했습니다. 다시 시도해주세요");
                         break;
                     default:
-                        Log.d(MainActivity.TAG, "Find Email Fail : default" + response.code());
+                        Log.d(AuthActivity.TAG, "Find Email Fail : default" + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<FindPwResponseDto> call, Throwable t) {
-                Log.d(MainActivity.TAG, "Find Password Fail : 서버다운");
+                Log.d(AuthActivity.TAG, "Find Password Fail : 서버다운");
                 DialogUtil.showOkDialog(findPwFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
             }
         });

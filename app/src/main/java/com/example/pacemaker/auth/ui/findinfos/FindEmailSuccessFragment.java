@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.MainActivity;
+import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 
 public class FindEmailSuccessFragment extends Fragment {
@@ -31,7 +30,7 @@ public class FindEmailSuccessFragment extends Fragment {
 
         Button loginBtn = rootView.findViewById(R.id.button_login);
         loginBtn.setOnClickListener((view) -> {
-            ((MainActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
+            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
         });
         return rootView;
     }

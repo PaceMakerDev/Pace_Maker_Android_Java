@@ -17,6 +17,14 @@
     <color name="buttonFilledText">#161C1E</color>
     <color name="buttonLineText">#4A4A4A</color>
     <color name="buttonDisabledText">#DCDCDC</color>
+    <color name="buttonChartSelected">#02FFFD</color>
+    <color name="buttonChartUnselected">#C4C4C4</color>
+
+    <!-- Chart -->
+    <color name="axisLabel">#838383</color>
+    <color name="previousBar">#F1FFFF</color>
+    <color name="todayBar">#02FFFD</color>
+
 
     <!--Nav-->
     <color name="nav_background">#171C1E</color>

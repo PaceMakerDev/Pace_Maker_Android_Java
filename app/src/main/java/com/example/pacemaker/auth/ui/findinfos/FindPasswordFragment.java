@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.MainActivity;
+import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
 
 public class FindPasswordFragment extends Fragment {
@@ -30,7 +30,7 @@ public class FindPasswordFragment extends Fragment {
             String email = editTextEmail.getText().toString();
             Log.d("Auth", String.format("%s, %s", name, email));
             FindPwRequestDto findPwRequestDto = new FindPwRequestDto(name, email);
-            ((MainActivity)requireActivity()).requestFindPassword(findPwRequestDto);
+            ((AuthActivity)requireActivity()).requestFindPassword(findPwRequestDto);
         });
         return rootView;
     }

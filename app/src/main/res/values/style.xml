@@ -27,6 +27,19 @@
         <item name="android:background">@drawable/button_filled_disabled</item>
         <item name="android:textColor">@color/buttonDisabledText</item>
     </style>
+    <style name="ButtonChart">
+        <item name="fontFamily">@font/nanum_gothic_extra_bold_font</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@color/buttonChartSelected</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/edittext_with_hint</item>
+    </style>
+    <style name="ButtonChartUnselected" parent="ButtonChart">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/buttonChartUnselected</item>
+    </style>
 
     <!--EditText-->
     <style name="EditTextWithHint">

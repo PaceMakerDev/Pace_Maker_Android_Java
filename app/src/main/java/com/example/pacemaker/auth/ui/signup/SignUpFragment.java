@@ -19,7 +19,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.auth.MainActivity;
+import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.enums.AttendanceStatus;
 import com.example.pacemaker.auth.enums.SignUpInputs;
 import com.example.pacemaker.auth.models.SignUpDto;
@@ -176,7 +176,7 @@ public class SignUpFragment extends Fragment {
         String birth = String.format("%s-%s-%s", birthYear, birthMonth, birthDay);
         SignUpDto signUpDto = new SignUpDto(email, name, major, studentId, pw, birth, attend);
 
-        ((MainActivity)requireActivity()).requestSignUp(signUpDto);
+        ((AuthActivity)requireActivity()).requestSignUp(signUpDto);
     }
 
     public void setValidation(SignUpInputs input, boolean result) {

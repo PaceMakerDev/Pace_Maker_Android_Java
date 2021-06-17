@@ -23,10 +23,16 @@ import com.example.pacemaker.auth.ui.login.ChangePasswordFragment;
 import com.example.pacemaker.auth.ui.login.LoginFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpSuccessFragment;
+import com.example.pacemaker.util.DialogUtil;
 import com.example.pacemaker.util.service.ServiceGenerator;
 
 public class AuthActivity extends AppCompatActivity {
     public static String TAG = "Auth";
+    public static final String ACCESS_TOKEN = "accessToken";
+    public static final String REFRESH_TOKEN = "refreshToken";
+    public static final String USER_NAME = "userName";
+    public static final String USER_ID = "userId";
+
     private Fragment mainFragment;
     private Fragment loginFragment;
     private Fragment signUpFragment;
@@ -51,7 +57,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void checkAccessToken() {
-        if (getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", "empty").compareTo("empty") != 0) {
+        if (!getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", "").isEmpty()) {
             startStudyActivity();
         }
     }

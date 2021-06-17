@@ -1,5 +1,7 @@
 package com.example.pacemaker.study.ui.mystudy.models;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,9 +9,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class StudyTimeData {
-    private String date;
-    private int time;
+@AllArgsConstructor
+public class GraphResponse {
+    private boolean success;
+    private ArrayList<BarGraphData> data;
 }

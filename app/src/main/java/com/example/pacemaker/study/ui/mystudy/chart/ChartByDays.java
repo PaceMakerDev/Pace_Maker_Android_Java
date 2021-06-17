@@ -1,7 +1,6 @@
 package com.example.pacemaker.study.ui.mystudy.chart;
 
 import android.content.res.Resources;
-import android.view.View;
 
 import com.example.pacemaker.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -10,6 +9,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ChartByDays {
         this.chart  = chart;
     }
 
-    public void setCommonAttributes(Resources resources) {
+    public void setCommonAttributes(Resources resources, ValueFormatter xAxisValueFormatter) {
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);  // x축 데이터의 위치
         xAxis.setTextSize(10f);   //텍스트 사이즈 (float으로해줘야함)
@@ -37,11 +37,15 @@ public class ChartByDays {
         xAxis.setDrawAxisLine(true);
         xAxis.setAxisLineWidth(1f);
         xAxis.setAxisLineColor(resources.getColor(R.color.white, null));
+        xAxis.setValueFormatter(xAxisValueFormatter);
+
 
         YAxis yAxis = chart.getAxisLeft();
-        yAxis.setDrawGridLines(false);
+        yAxis.setDrawGridLines(true);
         yAxis.setDrawAxisLine(false);
+        yAxis.setGranularity(1f);
         yAxis.setTextColor(resources.getColor(R.color.axisLabel, null));
+        yAxis.setValueFormatter(new StudyYValueFormatter());
 
         chart.getAxisRight().setEnabled(false);
         chart.getLegend().setEnabled(false);
@@ -50,20 +54,21 @@ public class ChartByDays {
         chart.setDoubleTapToZoomEnabled(false);
         chart.getDescription().setEnabled(false);
         chart.setTouchEnabled(false);
-        chart.animateY(1000);
+        chart.animateY(500);
+        chart.setXAxisRenderer(new StudyXAxisRenderer(chart.getViewPortHandler(), chart.getXAxis(), chart.getTransformer(YAxis.AxisDependency.LEFT)));
+        chart.setExtraBottomOffset(20f);
     }
 
 
     public void drawChart(Resources resources) {
         XAxis xAxis = chart.getXAxis();
-        xAxis.setAxisMinimum(xMin-0.5f);   // 데이터의 최소 표시값
+        //xAxis.setAxisMinimum(xMin-0.5f);   // 데이터의 최소 표시값
 
         YAxis yAxis = chart.getAxisLeft();
         yAxis.setGranularity(1f);
         yAxis.setAxisMinimum(0f);
-        float gap = (int)(yMax / 10);
+        float gap = Math.max(1f, (int)(yMax / 10));
         yAxis.setAxisMaximum(yMax + gap);   // y축의 왼쪽 데이터 최대값
-
         addData(resources);
     }
 
@@ -92,6 +97,7 @@ public class ChartByDays {
         set.setColor(barColor); //색깔 지정
         set.setValueTextSize(10f);  //글자크기
         set.setValueTextColor(barColor);
+        set.setValueFormatter(new StudyYValueFormatter());
         set.setDrawValues(true);    //값을 그리기
         return set;
     }

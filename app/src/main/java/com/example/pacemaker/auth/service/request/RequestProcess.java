@@ -38,7 +38,7 @@ public class RequestProcess {
     private final AuthService service;
     private final SharedPreferences preferences;
 
-    public RequestProcess(AuthService service, SharedPreferences preferences ) {
+    public RequestProcess(AuthService service, SharedPreferences preferences) {
         this.service = service;
         this.preferences = preferences;
     }
@@ -120,10 +120,10 @@ public class RequestProcess {
         SharedPreferences.Editor editor = preferences.edit();
         SuccessResponseData data = body.getData();
         User user = data.getUser();
-        editor.putString("accessToken", data.getAccessToken());
-        editor.putString("refreshToken", data.getRefreshToken());
-        editor.putString("userName", user.getName());
-        editor.putInt("userId", user.getId());
+        editor.putString(AuthActivity.ACCESS_TOKEN, data.getAccessToken());
+        editor.putString(AuthActivity.REFRESH_TOKEN, data.getRefreshToken());
+        editor.putString(AuthActivity.USER_NAME, user.getName());
+        editor.putInt(AuthActivity.USER_ID, user.getId());
         editor.apply();
     }
 

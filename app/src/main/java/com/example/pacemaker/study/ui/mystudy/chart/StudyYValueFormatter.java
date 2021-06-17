@@ -2,14 +2,12 @@ package com.example.pacemaker.study.ui.mystudy.chart;
 
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
-public class XValueFormatter extends ValueFormatter {
-    private int month;
+import java.util.ArrayList;
 
-    public XValueFormatter(int month) {
-        this.month = month;
-    }
+public class StudyYValueFormatter extends ValueFormatter {
+
     @Override
     public String getFormattedValue(float value) {
-        return month + "/" + (int)value;
+        return (int)value + "h";
     }
 }

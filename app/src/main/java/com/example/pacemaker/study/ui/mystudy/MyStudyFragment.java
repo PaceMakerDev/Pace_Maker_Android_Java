@@ -10,12 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.study.StudyActivity;
 import com.example.pacemaker.study.ui.mystudy.chart.ChartAdapter;
 import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.models.BarGraphData;
+import com.example.pacemaker.study.ui.mystudy.models.Study;
 import com.github.mikephil.charting.charts.BarChart;
 
 import java.util.ArrayList;
@@ -35,10 +38,20 @@ public class MyStudyFragment extends Fragment {
         ((StudyActivity)requireActivity()).requestDrawGraph(GraphType.WEEKLY);
 
         // 삭제 시 layout에서의 id도 지우기 (R.id.temp)
-        TextView tmp = rootView.findViewById(R.id.temp);
+        TextView tmp = rootView.findViewById(R.id.subtitle);
         tmp.setOnClickListener(view -> {
             ((StudyActivity) requireActivity()).logout();
         });
+
+        //Test : StudyRoom test
+        ArrayList<Study> studyList = new ArrayList<Study>();
+        studyList.add(new Study("name"));
+        studyList.add(new Study("name"));
+        RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_recycler_view);
+        StudyRoomRecyclerViewAdapter adapter = new StudyRoomRecyclerViewAdapter(studyList);
+        studyRecyclerView.setAdapter(adapter);
+        studyRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+
         return rootView;
     }
 

@@ -20,10 +20,12 @@
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="sub_title">18sp</dimen>
 
+
     <!--Nav View-->
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
     <dimen name="nav_view_item_size">24dp</dimen>
+    <dimen name="nav_view_height">100dp</dimen>
 
     <dimen name="padding_top">50dp</dimen>
 </resources>

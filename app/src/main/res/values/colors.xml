@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="mainTheme">#0DFFFE</color>
+    <color name="mainTheme2">#02FFFD</color>
 
     <color name="title">#FFFFFF</color>
 
@@ -17,18 +18,21 @@
     <color name="buttonFilledText">#161C1E</color>
     <color name="buttonLineText">#4A4A4A</color>
     <color name="buttonDisabledText">#DCDCDC</color>
-    <color name="buttonChartSelected">#02FFFD</color>
+    <color name="buttonChartSelected">@color/mainTheme2</color>
     <color name="buttonChartUnselected">#C4C4C4</color>
 
     <!-- Chart -->
     <color name="axisLabel">#838383</color>
     <color name="previousBar">#F1FFFF</color>
-    <color name="todayBar">#02FFFD</color>
+    <color name="todayBar">@color/mainTheme2</color>
+
+    <!-- Study -->
+    <color name="tagEdge">@color/mainTheme2</color>
 
 
     <!--Nav-->
     <color name="nav_background">#171C1E</color>
-    <color name="nav_selected">#02FFFD</color>
+    <color name="nav_selected">@color/mainTheme2</color>
     <color name="nav_unselected">#686868</color>
 
     <!--Text-->

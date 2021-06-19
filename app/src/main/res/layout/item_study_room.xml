@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="154dp"
+    android:layout_marginVertical="10dp"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/study_room_list">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/layer1">
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/study_room_tag"
+                        android:background="@drawable/study_room_tag"
+                        android:fontFamily="@font/nanum_gothic_extra_bold_font"
+                        android:textSize="12sp"
+                        android:textColor="@color/tagEdge"
+                        android:gravity="center"
+                        android:text="어학" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:id="@+id/study_room_time"
+                        android:layout_gravity="end"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/gmarket_sans_bold"
+                        android:textColor="@color/white"
+                        android:text="02:52:43" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/study_room_name"
+                    app:layout_constraintTop_toBottomOf="@id/layer1"
+                    android:text="OPIC IH 달성"
+                    android:maxLines="1"
+                    android:fontFamily="@font/nanum_gothic_extra_bold_font"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="10dp" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/view1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/study_room_name"
+                    android:layout_marginVertical="30dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/study_room_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/view1"
+                    app:layout_constraintWidth_percent="0.45"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/study_room_ranking"
+                        android:gravity="center"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/gmarket_sans_bold"
+                        android:text="11" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/gmarket_sans_bold"
+                        android:text="스터디룸 랭킹" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/study_room_name"
+                    app:layout_constraintStart_toEndOf="@id/view1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.45"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/study_room_my_ranking"
+                        android:gravity="center"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/gmarket_sans_bold"
+                        android:text="3" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/small_text_size"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/gmarket_sans_bold"
+                        android:text="나의 랭킹" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+</LinearLayout>

@@ -25,6 +25,9 @@
     <color name="axisLabel">#838383</color>
     <color name="previousBar">#F1FFFF</color>
     <color name="todayBar">@color/mainTheme2</color>
+    <color name="firstStudy">#03FFFD</color>
+    <color name="secondStudy">#AFFFFF</color>
+    <color name="thirdStudy">#FFFFFF</color>
 
     <!-- Study -->
     <color name="tagEdge">@color/mainTheme2</color>
@@ -39,6 +42,7 @@
     <color name="textMain">#FFFFFF</color>
     <color name="textSub">#C4C4C4</color>
     <color name="error">#FF0A0A</color>
+    <color name="my_study_ranking_background">#4D4D4D</color>
 
     <!-- Auth -->
     <color name="loginHint">#929292</color>

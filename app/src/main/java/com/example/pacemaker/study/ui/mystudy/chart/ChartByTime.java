@@ -1,8 +1,10 @@
 package com.example.pacemaker.study.ui.mystudy.chart;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 
 import com.example.pacemaker.R;
+import com.example.pacemaker.study.ui.mystudy.models.BarGraphData;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -17,16 +19,47 @@ import java.util.ArrayList;
 import lombok.Setter;
 
 @Setter
-public class ChartByDays {
+public class ChartByTime {
     private BarChart chart;
-    private float xMin, yMax;
+    private float yMax;
     private ArrayList<BarEntry> dataList;
 
-    public ChartByDays(BarChart chart) {
+    public ChartByTime(BarChart chart) {
         this.chart  = chart;
     }
 
-    public void setCommonAttributes(Resources resources, ValueFormatter xAxisValueFormatter) {
+    public void drawChart(Resources resources) {
+        ArrayList<IBarDataSet> barDataSet = new ArrayList<IBarDataSet>();
+        //공부한 날짜가 하루밖에 없을 경우 고려한 케이스
+        if (dataList.size() > 1) {
+            BarDataSet previousDataSet = createPreviousSet(resources.getColor(R.color.previousBar, null));
+            barDataSet.add(previousDataSet);
+        }
+        BarDataSet todayDataSet = createTodaySet(resources.getColor(R.color.todayBar, null));
+        barDataSet.add(todayDataSet);
+
+        BarData data = new BarData(barDataSet);
+        data.setBarWidth(0.6f);
+        chart.setData(data);
+    }
+
+    public void setUpData(Resources resources, ArrayList<BarGraphData> graphDataList) {
+        dataList = new ArrayList<BarEntry>();
+        yMax = 0;
+        for (int i = 0; i < graphDataList.size(); i++) {
+            dataList.add(new BarEntry((float)i, (float)graphDataList.get(i).getYAxis()));
+            yMax = Math.max(yMax, graphDataList.get(i).getYAxis());
+        }
+
+        ArrayList<String> xLabelList = new ArrayList<String>();
+        for (BarGraphData data : graphDataList) {
+            xLabelList.add(data.getXAxis());
+        }
+
+        setCommonAttributes(resources, new StudyXValueFormatter(xLabelList));
+    }
+
+    private void setCommonAttributes(Resources resources, ValueFormatter xAxisValueFormatter) {
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);  // x축 데이터의 위치
         xAxis.setTextSize(10f);   //텍스트 사이즈 (float으로해줘야함)
@@ -39,11 +72,13 @@ public class ChartByDays {
         xAxis.setAxisLineColor(resources.getColor(R.color.white, null));
         xAxis.setValueFormatter(xAxisValueFormatter);
 
-
         YAxis yAxis = chart.getAxisLeft();
         yAxis.setDrawGridLines(true);
         yAxis.setDrawAxisLine(false);
         yAxis.setGranularity(1f);
+        yAxis.setAxisMinimum(0f);
+        float gap = Math.max(1f, (int)(yMax / 10));
+        yAxis.setAxisMaximum(yMax + gap);   // y축의 왼쪽 데이터 최대값
         yAxis.setTextColor(resources.getColor(R.color.axisLabel, null));
         yAxis.setValueFormatter(new StudyYValueFormatter());
 
@@ -58,37 +93,6 @@ public class ChartByDays {
         chart.setXAxisRenderer(new StudyXAxisRenderer(chart.getViewPortHandler(), chart.getXAxis(), chart.getTransformer(YAxis.AxisDependency.LEFT)));
         chart.setExtraBottomOffset(20f);
     }
-
-
-    public void drawChart(Resources resources) {
-        XAxis xAxis = chart.getXAxis();
-        //xAxis.setAxisMinimum(xMin-0.5f);   // 데이터의 최소 표시값
-
-        YAxis yAxis = chart.getAxisLeft();
-        yAxis.setGranularity(1f);
-        yAxis.setAxisMinimum(0f);
-        float gap = Math.max(1f, (int)(yMax / 10));
-        yAxis.setAxisMaximum(yMax + gap);   // y축의 왼쪽 데이터 최대값
-        addData(resources);
-    }
-
-
-    private void addData(Resources resources) {
-        ArrayList<IBarDataSet> barDataSet = new ArrayList<IBarDataSet>();
-        if (dataList.size() > 1) {
-            BarDataSet previousDataSet = createPreviousSet(resources.getColor(R.color.previousBar, null));
-            barDataSet.add(previousDataSet);
-        }
-        BarDataSet todayDataSet = createTodaySet(resources.getColor(R.color.todayBar, null));
-        barDataSet.add(todayDataSet);
-
-        BarData data = new BarData(barDataSet);
-        data.setBarWidth(0.6f);
-        chart.setData(data);
-    }
-
-
-
 
     private BarDataSet createTodaySet(int barColor) {
         BarDataSet set = new BarDataSet(dataList.subList(dataList.size()-1, dataList.size()), "study time");

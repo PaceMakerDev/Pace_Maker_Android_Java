@@ -63,7 +63,6 @@ public class StudyActivity extends AppCompatActivity {
     public void requestDrawGraph(GraphType type) {
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         MyStudyFragment fragment = (MyStudyFragment)navHostFragment.getChildFragmentManager().getFragments().get(0);
-        Log.d("mystudy", "requestdrawgraph");
         myStudyRequest.drawChart(fragment, type);
     }
 
@@ -71,6 +70,12 @@ public class StudyActivity extends AppCompatActivity {
         String oldToken = getSharedPreferences("auth", MODE_PRIVATE).getString("refreshToken", null);
         if (oldToken != null)
             commonRequest.refreshToken(this);
+    }
+
+    public void requestTodayRecord() {
+        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        MyStudyFragment fragment = (MyStudyFragment)navHostFragment.getChildFragmentManager().getFragments().get(0);
+        myStudyRequest.showTodayRecord(fragment);
     }
 
     public void logout() {

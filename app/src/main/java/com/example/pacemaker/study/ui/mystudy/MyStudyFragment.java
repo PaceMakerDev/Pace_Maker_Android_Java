@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,22 +21,32 @@ import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.models.BarGraphData;
 import com.example.pacemaker.study.ui.mystudy.models.Study;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 
 import java.util.ArrayList;
 
 public class MyStudyFragment extends Fragment {
     private BarChart chart;
+    private HorizontalBarChart horizontalChart;
     private ChartAdapter chartAdapter;
     private ArrayList<Button> graphBtnList;
+    private TextView todayRecord;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.study_fragment_my_study, container, false);
         setUpGraphButtons(rootView);
         chart = rootView.findViewById(R.id.chart_study_time);
-        chartAdapter = new ChartAdapter(chart, getResources());
+        horizontalChart = rootView.findViewById(R.id.horizontal_chart_study_time);
+        LinearLayout inner_chart_layout = rootView.findViewById(R.id.inner_chart_layout);
 
-        ((StudyActivity)requireActivity()).requestDrawGraph(GraphType.WEEKLY);
+        chartAdapter = new ChartAdapter(chart, horizontalChart, inner_chart_layout, getResources());
+
+        //((StudyActivity)requireActivity()).requestDrawGraph(GraphType.WEEKLY);
+        todayRecord = rootView.findViewById(R.id.text_today_study_record);
+        ((StudyActivity)requireActivity()).requestTodayRecord();
+        changeGraph(GraphType.DAILY);
 
         // 삭제 시 layout에서의 id도 지우기 (R.id.temp)
         TextView tmp = rootView.findViewById(R.id.subtitle);
@@ -55,8 +66,17 @@ public class MyStudyFragment extends Fragment {
         return rootView;
     }
 
-    public void drawChart(ArrayList<BarGraphData> graphDataList) {
-        chartAdapter.drawChartByDaily(graphDataList);
+    public void drawChartByTime(ArrayList<BarGraphData> graphDataList) {
+        chartAdapter.drawChartByTime(graphDataList);
+    }
+
+    public void drawChartByStudy( ) {
+        chartAdapter.drawChartByStudy();
+    }
+
+    public void showTodayRecord(int time) {
+        String record = time + ":00";
+        todayRecord.setText(record);
     }
 
     private void setUpGraphButtons(View view) {
@@ -106,6 +126,7 @@ public class MyStudyFragment extends Fragment {
 
     private void changeGraph(GraphType type) {
         chart.removeAllViews();
+        horizontalChart.removeAllViews();
         switch (type) {
             case DAILY:
                 ((StudyActivity)requireActivity()).requestDrawGraph(GraphType.DAILY);
@@ -116,7 +137,10 @@ public class MyStudyFragment extends Fragment {
             case MONTHLY:
                 ((StudyActivity)requireActivity()).requestDrawGraph(GraphType.MONTHLY);
                 break;
+            case ROOM:
+                ((StudyActivity)requireActivity()).requestDrawGraph(GraphType.ROOM);
         }
     }
+
 
 }

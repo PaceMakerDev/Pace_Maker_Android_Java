@@ -32,6 +32,7 @@ public class AuthActivity extends AppCompatActivity {
     public static final String REFRESH_TOKEN = "refreshToken";
     public static final String USER_NAME = "userName";
     public static final String USER_ID = "userId";
+    public static final String SHARED_AUTH_ID = "auth";
 
     private Fragment mainFragment;
     private Fragment loginFragment;
@@ -53,11 +54,11 @@ public class AuthActivity extends AppCompatActivity {
         checkAccessToken();
         setFragment(FragmentTypes.MAIN);
         AuthService service = ServiceGenerator.createService(AuthService.class);
-        request = new RequestProcess(service, getSharedPreferences("auth", MODE_PRIVATE));
+        request = new RequestProcess(service, getSharedPreferences(SHARED_AUTH_ID, MODE_PRIVATE));
     }
 
     private void checkAccessToken() {
-        if (!getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", "").isEmpty()) {
+        if (!getSharedPreferences(SHARED_AUTH_ID, MODE_PRIVATE).getString("accessToken", "").isEmpty()) {
             startStudyActivity();
         }
     }

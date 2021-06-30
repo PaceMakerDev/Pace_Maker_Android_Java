@@ -9,6 +9,7 @@ import com.example.pacemaker.auth.models.SignInDto;
 import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.study.ui.mystudy.models.BarGraphData;
 import com.example.pacemaker.study.ui.mystudy.models.GraphResponse;
+import com.example.pacemaker.study.ui.mystudy.models.UserStudyResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -25,4 +26,8 @@ public interface MyStudyService {
 
     @GET("/v1/users/{userId}/study-logs/weekly")
     Call<GraphResponse> requestWeeklyStudyData(@Path("userId") int userId);
+
+    @GET("/v1/users/{userId}/studies")
+    Call<UserStudyResponse> requestUserStudyList(@Path("userId") int userId);
+
 }

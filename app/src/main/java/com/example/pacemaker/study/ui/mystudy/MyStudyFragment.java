@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class MyStudyFragment extends Fragment {
     private ChartAdapter chartAdapter;
     private ArrayList<Button> graphBtnList;
     private TextView todayRecord;
+    private StudyRoomRecyclerViewAdapter adapter;
 
     @Nullable
     @Override
@@ -43,7 +45,7 @@ public class MyStudyFragment extends Fragment {
 
         chartAdapter = new ChartAdapter(chart, horizontalChart, inner_chart_layout, getResources());
 
-        //((StudyActivity)requireActivity()).requestDrawGraph(GraphType.WEEKLY);
+        // API : 오늘 공부한 시간 업데이트 되면 수정하기
         todayRecord = rootView.findViewById(R.id.text_today_study_record);
         ((StudyActivity)requireActivity()).requestTodayRecord();
         changeGraph(GraphType.DAILY);
@@ -54,14 +56,11 @@ public class MyStudyFragment extends Fragment {
             ((StudyActivity) requireActivity()).logout();
         });
 
-        //Test : StudyRoom test
-        ArrayList<Study> studyList = new ArrayList<Study>();
-        studyList.add(new Study("name"));
-        studyList.add(new Study("name"));
-        RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_recycler_view);
-        StudyRoomRecyclerViewAdapter adapter = new StudyRoomRecyclerViewAdapter(studyList);
+        RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_list_recycler_view);
+        adapter = new StudyRoomRecyclerViewAdapter();
         studyRecyclerView.setAdapter(adapter);
         studyRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        ((StudyActivity)requireActivity()).requestStudyList();
 
         return rootView;
     }
@@ -78,6 +77,36 @@ public class MyStudyFragment extends Fragment {
         String record = time + ":00";
         todayRecord.setText(record);
     }
+
+    public void showEmptyStudyList() {
+        View rootView = requireView();
+        LinearLayout emptyStudyListLayout = rootView.findViewById(R.id.empty_study_list_layout);
+        RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_list_recycler_view);
+        ImageView background = rootView.findViewById(R.id.study_list_background);
+
+        emptyStudyListLayout.setVisibility(View.VISIBLE);
+        studyRecyclerView.setVisibility(View.GONE);
+        background.setVisibility(View.GONE);
+    }
+
+    public void setStudyList(ArrayList<Study> studyList) {
+        adapter.setStudy(studyList);
+        adapter.notifyDataSetChanged();
+        showStudyList();
+    }
+
+    public void showStudyList() {
+        View rootView = requireView();
+        LinearLayout emptyStudyListLayout = rootView.findViewById(R.id.empty_study_list_layout);
+        RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_list_recycler_view);
+        ImageView background = rootView.findViewById(R.id.study_list_background);
+
+        emptyStudyListLayout.setVisibility(View.GONE);
+        studyRecyclerView.setVisibility(View.VISIBLE);
+        background.setVisibility(View.VISIBLE);
+    }
+
+
 
     private void setUpGraphButtons(View view) {
         graphBtnList = new ArrayList<Button>();
@@ -141,6 +170,4 @@ public class MyStudyFragment extends Fragment {
                 ((StudyActivity)requireActivity()).requestDrawGraph(GraphType.ROOM);
         }
     }
-
-
 }

@@ -17,6 +17,7 @@ import com.example.pacemaker.util.service.ServiceGenerator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -36,10 +37,10 @@ public class StudyActivity extends AppCompatActivity {
         CommonService commonService = ServiceGenerator.createService(CommonService.class,
                 getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", null));
         // API : userid바꿔주기
-        myStudyRequest = new MyStudyRequest(myStudyService, 2);
+        int userId = getSharedPreferences(AuthActivity.SHARED_AUTH_ID, MODE_PRIVATE).getInt(AuthActivity.USER_ID, -1);
+        Log.d("MyStudy", userId + " id");
+        myStudyRequest = new MyStudyRequest(myStudyService, userId);
         commonRequest = new CommonRequest(commonService, getSharedPreferences("auth", MODE_PRIVATE));
-        
-
     }
 
     private void setUpNavigationBar() {
@@ -61,21 +62,24 @@ public class StudyActivity extends AppCompatActivity {
     }
 
     public void requestDrawGraph(GraphType type) {
-        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        MyStudyFragment fragment = (MyStudyFragment)navHostFragment.getChildFragmentManager().getFragments().get(0);
+        MyStudyFragment fragment = (MyStudyFragment)getCurrentFragment();
         myStudyRequest.drawChart(fragment, type);
     }
 
     public void refreshToken() {
-        String oldToken = getSharedPreferences("auth", MODE_PRIVATE).getString("refreshToken", null);
+        String oldToken = getSharedPreferences(AuthActivity.SHARED_AUTH_ID, MODE_PRIVATE).getString("refreshToken", null);
         if (oldToken != null)
             commonRequest.refreshToken(this);
     }
 
     public void requestTodayRecord() {
-        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        MyStudyFragment fragment = (MyStudyFragment)navHostFragment.getChildFragmentManager().getFragments().get(0);
+        MyStudyFragment fragment = (MyStudyFragment)getCurrentFragment();
         myStudyRequest.showTodayRecord(fragment);
+    }
+
+    public void requestStudyList() {
+        MyStudyFragment fragment = (MyStudyFragment)getCurrentFragment();
+        myStudyRequest.showUserStudy(fragment);
     }
 
     public void logout() {
@@ -88,5 +92,12 @@ public class StudyActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.example.pacemaker.auth.AuthActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    private Fragment getCurrentFragment() {
+        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        Fragment fragment = navHostFragment.getChildFragmentManager().getFragments().get(0);
+
+        return fragment;
     }
 }

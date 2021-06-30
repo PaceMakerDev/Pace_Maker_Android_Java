@@ -6,6 +6,8 @@ import com.example.pacemaker.study.ui.mystudy.MyStudyFragment;
 import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.models.BarGraphData;
 import com.example.pacemaker.study.ui.mystudy.models.GraphResponse;
+import com.example.pacemaker.study.ui.mystudy.models.Study;
+import com.example.pacemaker.study.ui.mystudy.models.UserStudyResponse;
 import com.example.pacemaker.study.ui.mystudy.service.MyStudyService;
 
 import java.util.ArrayList;
@@ -130,6 +132,31 @@ public class MyStudyRequest {
             @Override
             public void onFailure(Call<GraphResponse> call, Throwable t) {
                 Log.d("MyStudy", "onfailure");
+            }
+        });
+    }
+
+    public void showUserStudy(MyStudyFragment fragment) {
+        service.requestUserStudyList(userId).enqueue(new Callback<UserStudyResponse>() {
+            @Override
+            public void onResponse(Call<UserStudyResponse> call, Response<UserStudyResponse> response) {
+                Log.d("MyStudy", "showUserStudy() code : " + response.code());
+                switch (response.code()) {
+                    case 200:
+                        ArrayList<Study> studyList = response.body().getStudyList();
+                        Log.d("MyStudy", "size : " + studyList.size());
+                        if (studyList.size() > 0) {
+                            fragment.setStudyList(studyList);
+                        }
+                        else {
+                            fragment.showEmptyStudyList();
+                        }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserStudyResponse> call, Throwable t) {
+                Log.d("MyStudy", "showUserStudy() : Failure\n" + t.getLocalizedMessage());
             }
         });
     }

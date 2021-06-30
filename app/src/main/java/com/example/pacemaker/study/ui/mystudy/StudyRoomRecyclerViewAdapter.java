@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,12 +16,13 @@ import com.example.pacemaker.R;
 import com.example.pacemaker.study.ui.mystudy.models.Study;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class StudyRoomRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Study> studyList;
 
-    public StudyRoomRecyclerViewAdapter(ArrayList<Study> studyList) {
-        this.studyList = studyList;
+    public StudyRoomRecyclerViewAdapter() {
+        this.studyList = new ArrayList<Study>();
     }
     @NonNull
     @Override
@@ -37,11 +39,33 @@ public class StudyRoomRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        View view = holder.itemView;
+        Study study = studyList.get(position);
 
+        TextView title = view.findViewById(R.id.study_room_name);
+        title.setText(study.getTitle());
+        TextView studyRoomRanking = view.findViewById(R.id.study_room_ranking);
+        studyRoomRanking.setText(Integer.toString(study.getStudyRanking()));
+        TextView userRanking = view.findViewById(R.id.study_room_my_ranking);
+        userRanking.setText(Integer.toString(study.getUserRankingInStudy()));
+
+        TextView textViewStudyTime = view.findViewById(R.id.study_room_time);
+        int studyTime = study.getStudyTimeInSecond();
+        int hour = studyTime/3600;
+        studyTime %= 3600;
+        int min = studyTime / 60;
+        studyTime %= 60;
+        int second = studyTime;
+        String studyTimeStr = String.format(Locale.KOREA,"%02d:%02d:%02d", hour, min, second);
+        textViewStudyTime.setText(studyTimeStr);
     }
 
     @Override
     public int getItemCount() {
         return studyList.size();
+    }
+
+    public void setStudy(ArrayList<Study> studyList) {
+        this.studyList = studyList;
     }
 }

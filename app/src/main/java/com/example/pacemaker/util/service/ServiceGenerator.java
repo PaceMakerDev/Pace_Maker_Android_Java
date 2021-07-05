@@ -17,13 +17,12 @@ public class ServiceGenerator {
     private static Retrofit retrofit = builder.build();
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null);
+        return createService(serviceClass, null, null);
     }
-
-    public static <S> S createService(Class<S> serviceClass, String authToken) {
+    //-----------------------------------------------------sharedpreferences 받아서 업데이트된 accesstoken 적용해줘야함. 또한 현재 refresh token을 사용하여 accestoken받는 과정에서 401에러남. 로그아웃 호출해야함
+    public static <S> S createService(Class<S> serviceClass, String authToken, String refreshToken) {
         if (!TextUtils.isEmpty(authToken)) {
-            RequestInterceptor interceptor = new RequestInterceptor("Bearer " + authToken);
-
+            RequestInterceptor interceptor = new RequestInterceptor(BASE_URL, authToken, refreshToken);
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor);
 

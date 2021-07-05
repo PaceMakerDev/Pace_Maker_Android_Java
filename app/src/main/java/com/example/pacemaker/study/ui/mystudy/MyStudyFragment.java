@@ -53,7 +53,7 @@ public class MyStudyFragment extends Fragment {
         // 삭제 시 layout에서의 id도 지우기 (R.id.temp)
         TextView tmp = rootView.findViewById(R.id.subtitle);
         tmp.setOnClickListener(view -> {
-            ((StudyActivity) requireActivity()).logout();
+            ((StudyActivity) requireActivity()).refreshToken();
         });
 
         RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_list_recycler_view);

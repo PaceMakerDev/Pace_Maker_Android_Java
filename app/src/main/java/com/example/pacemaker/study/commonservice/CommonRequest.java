@@ -12,6 +12,8 @@ import com.example.pacemaker.study.StudyActivity;
 import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.util.DialogUtil;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +30,18 @@ public class CommonRequest {
     public void refreshToken(AppCompatActivity activity) {
         String oldToken = preferences.getString(AuthActivity.REFRESH_TOKEN, null);
         // token request를 execute()로 하는 것 생각해보기
+        try {
+            TokenResponse tokenResponse = service.requestRefreshToken(new TokenRequestDto(oldToken)).execute().body();
+            String newToken = tokenResponse.getTokenData().getAccessToken();
+            Log.d("MyStudy", "token success" + newToken);
+            preferences.edit().putString(AuthActivity.ACCESS_TOKEN, newToken).apply();
+        } catch (IOException e) {
+            DialogUtil.DialogLogoutOnOk(activity, "토큰 오류",
+                    "토큰이 만료되었습니다. 다시 로그인해주세요");
+        }
+        DialogUtil.DialogLogoutOnOk(activity, "토큰 오류",
+                "토큰이 만료되었습니다. 다시 로그인해주세요");
+
         service.requestRefreshToken(new TokenRequestDto(oldToken)).enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {

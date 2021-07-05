@@ -33,9 +33,11 @@ public class StudyActivity extends AppCompatActivity {
         setUpNavigationBar();
 
         MyStudyService myStudyService = ServiceGenerator.createService(MyStudyService.class,
-                getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", null));
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.ACCESS_TOKEN, null),
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null));
         CommonService commonService = ServiceGenerator.createService(CommonService.class,
-                getSharedPreferences("auth", MODE_PRIVATE).getString("accessToken", null));
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.ACCESS_TOKEN, null),
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null));
         // API : userid바꿔주기
         int userId = getSharedPreferences(AuthActivity.SHARED_AUTH_ID, MODE_PRIVATE).getInt(AuthActivity.USER_ID, -1);
         Log.d("MyStudy", userId + " id");

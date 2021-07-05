@@ -50,6 +50,8 @@ public class MyStudyRequest {
                 switch (response.code()) {
                     case 200:
                         fragment.drawChartByTime(response.body().getData());
+                    case 401:
+
                 }
             }
 

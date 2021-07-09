@@ -1,6 +1,9 @@
 package com.example.pacemaker.util.service;
 
+import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Log;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,12 +20,15 @@ public class ServiceGenerator {
     private static Retrofit retrofit = builder.build();
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null);
+        Log.d("MyStudy", "create empty createService");
+        return createService(serviceClass, null, null, null);
     }
-    //-----------------------------------------------------sharedpreferences 받아서 업데이트된 accesstoken 적용해줘야함. 또한 현재 refresh token을 사용하여 accestoken받는 과정에서 401에러남. 로그아웃 호출해야함
-    public static <S> S createService(Class<S> serviceClass, String authToken, String refreshToken) {
+
+    public static <S> S createService(Class<S> serviceClass, String authToken, String refreshToken, SharedPreferences.Editor editor) {
+        Log.d("MyStudy", "token : " + authToken);
         if (!TextUtils.isEmpty(authToken)) {
-            RequestInterceptor interceptor = new RequestInterceptor(BASE_URL, authToken, refreshToken);
+            Log.d("MyStudy", "attach interceptor");
+            RequestInterceptor interceptor = new RequestInterceptor(BASE_URL, authToken, refreshToken, editor);
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor);
 

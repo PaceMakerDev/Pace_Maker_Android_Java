@@ -2,7 +2,10 @@ package com.example.pacemaker.util.service;
 
 
 
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.example.pacemaker.auth.AuthActivity;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -24,37 +27,36 @@ public class RequestInterceptor implements Interceptor {
     private String accessToken;
     private String BASE_URL;
     private String refreshToken;
+    private SharedPreferences.Editor editor;
 
-    public RequestInterceptor(String BASE_URL, String accessToken,  String refreshToken) {
+    public RequestInterceptor(String BASE_URL, String accessToken, String refreshToken, SharedPreferences.Editor editor) {
         this.accessToken = accessToken;
         this.BASE_URL = BASE_URL;
         this.refreshToken = refreshToken;
+        this.editor = editor;
     }
     @NotNull
     @Override
     public Response intercept(@NotNull Chain chain) throws IOException {
-
         Request request = newRequestWithAccessToken(chain.request());
         Response response = chain.proceed(request);
-        Log.d("MyStudy", "AccessToken : " + accessToken);
-        Log.d("MyStudy", "refreshToken : " + refreshToken);
         if (response.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+            Log.d("MyStudy", "refreshing token");
             synchronized (this) {
                 response.close();
                 Response refreshResponse = chain.proceed(requestWithRefreshToken(request));
                 String newToken = "";
                 try {
                     JSONObject jsonObject = new JSONObject(refreshResponse.body().string());
-                    Log.d("MyStudy", "JSON : " + jsonObject.toString());
                     newToken = jsonObject.getString("data");
-                    Log.d("MyStudy", "NewToken : " + newToken);
                 } catch (JSONException e) {
                     Log.d("MyStudy", e.getLocalizedMessage());
                 }
 
                 if (!accessToken.equals(newToken)) {
                     this.accessToken = newToken;
-                    Log.d("MyStudy", "afterChanged : " + accessToken);
+                    editor.putString(AuthActivity.ACCESS_TOKEN, newToken);
+                    editor.apply();
                     return chain.proceed(newRequestWithAccessToken(request));
                 }
             }
@@ -71,7 +73,7 @@ public class RequestInterceptor implements Interceptor {
     @NonNull
     private Request newRequestWithAccessToken(@NonNull Request request) {
         return request.newBuilder()
-                .header("Authorization", "Bearer" + accessToken)
+                .header("Authorization", "Bearer " + accessToken)
                 .build();
     }
 

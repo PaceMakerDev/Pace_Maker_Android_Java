@@ -31,13 +31,15 @@ public class StudyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.study_activity_main);
         setUpNavigationBar();
-
+        SharedPreferences.Editor editor = getSharedPreferences("auth", MODE_PRIVATE).edit();
         MyStudyService myStudyService = ServiceGenerator.createService(MyStudyService.class,
                 getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.ACCESS_TOKEN, null),
-                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null));
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null),
+                editor);
         CommonService commonService = ServiceGenerator.createService(CommonService.class,
                 getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.ACCESS_TOKEN, null),
-                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null));
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null),
+                editor);
         // API : userid바꿔주기
         int userId = getSharedPreferences(AuthActivity.SHARED_AUTH_ID, MODE_PRIVATE).getInt(AuthActivity.USER_ID, -1);
         Log.d("MyStudy", userId + " id");

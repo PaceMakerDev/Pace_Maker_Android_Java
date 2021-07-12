@@ -43,17 +43,23 @@ public class RequestInterceptor implements Interceptor {
         if (response.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
             Log.d("MyStudy", "refreshing token");
             synchronized (this) {
+
                 response.close();
                 Response refreshResponse = chain.proceed(requestWithRefreshToken(request));
                 String newToken = "";
                 try {
                     JSONObject jsonObject = new JSONObject(refreshResponse.body().string());
                     newToken = jsonObject.getString("data");
+                    Log.d("MyStudy", "sync");
                 } catch (JSONException e) {
                     Log.d("MyStudy", e.getLocalizedMessage());
                 }
-
+                Log.d("MyStudy", refreshResponse.code()+"");
+                Log.d("MyStudy", "previous token : " + this.accessToken);
+                Log.d("MyStudy", "new token : " + newToken);
                 if (!accessToken.equals(newToken)) {
+                    Log.d("MyStudy", "previous token : " + this.accessToken);
+                    Log.d("MyStudy", "new token : " + newToken);
                     this.accessToken = newToken;
                     editor.putString(AuthActivity.ACCESS_TOKEN, newToken);
                     editor.apply();

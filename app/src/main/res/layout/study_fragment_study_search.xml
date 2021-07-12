@@ -39,16 +39,18 @@
                     <EditText
                         android:layout_width="0dp"
                         android:layout_height="45dp"
-                        android:layout_weight="10"
+                        android:layout_weight="8"
+                        android:layout_margin="0dp"
                         android:hint="원하는 스터디를 검색해보세요"
                         android:drawableRight="@drawable/ic_edittext_search"
                         style="@style/AuthSignUpEditViewStyle" />
 
                     <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/ic_create_class" />
+                        android:layout_width="45dp"
+                        android:layout_height="43dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_create_class" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

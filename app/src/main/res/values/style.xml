@@ -62,6 +62,15 @@
         <item name="android:textColorHint">@color/loginHint</item>
         <item name="android:layout_marginBottom">7dp</item>
     </style>
+    <style name="EditTextStudyCreate">
+        <item name="android:background">@color/edit_text_study</item>
+        <item name="android:textColorHint">@color/textEditTextHint</item>
+        <item name="android:fontFamily">@font/nanum_gothic</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/text_general</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
 
     <!--TextView-->
     <style name="ErrorText">
@@ -74,19 +83,19 @@
         <item name="android:paddingEnd">20dp</item>
         <item name="fontFamily">@font/nanum_gothic_font</item>
     </style>
-    <style name="AuthTitle">
+    <style name="Title">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/title</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/title</item>
         <item name="fontFamily">@font/nanum_gothic_font</item>
     </style>
-    <style name="AuthInputText">
+    <style name="TextInput">
         <item name="android:fontFamily">@font/nanum_gothic_font</item>
         <item name="android:textColor">@color/inputText</item>
         <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
-    <style name="AuthInputGuideStyle" parent="AuthInputText">
+    <style name="TextInputTitle" parent="TextInput">
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/nanum_gothic_extra_bold_font</item>
     </style>

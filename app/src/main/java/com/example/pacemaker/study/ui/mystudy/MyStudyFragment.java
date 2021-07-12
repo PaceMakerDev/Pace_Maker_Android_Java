@@ -37,7 +37,7 @@ public class MyStudyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.study_fragment_my_study, container, false);
+        View rootView = inflater.inflate(R.layout.study_fragment_study_create, container, false);
         setUpGraphButtons(rootView);
         chart = rootView.findViewById(R.id.chart_study_time);
         horizontalChart = rootView.findViewById(R.id.horizontal_chart_study_time);

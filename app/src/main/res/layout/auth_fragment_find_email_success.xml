@@ -22,7 +22,7 @@
             android:id="@+id/auth_title_login"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/auth_find_email"
-            style="@style/AuthTitle"/>
+            style="@style/Title"/>
 
         <TextView
             android:layout_width="match_parent"

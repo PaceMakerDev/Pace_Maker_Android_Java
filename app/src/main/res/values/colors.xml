@@ -31,7 +31,7 @@
 
     <!-- Study -->
     <color name="tagEdge">@color/mainTheme2</color>
-
+    <color name="edit_text_study">#21292D</color>
 
     <!--Nav-->
     <color name="nav_background">#171C1E</color>
@@ -41,6 +41,7 @@
     <!--Text-->
     <color name="textMain">#FFFFFF</color>
     <color name="textSub">#C4C4C4</color>
+    <color name="textEditTextHint">#C4C4C4</color>
     <color name="error">#FF0A0A</color>
     <color name="my_study_ranking_background">#4D4D4D</color>
 

@@ -48,6 +48,7 @@
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="43dp"
+                        android:id="@+id/btn_create_study"
                         android:layout_marginTop="2dp"
                         android:layout_marginStart="10dp"
                         android:src="@drawable/ic_create_class" />

@@ -20,6 +20,8 @@
     <color name="buttonDisabledText">#DCDCDC</color>
     <color name="buttonChartSelected">@color/mainTheme2</color>
     <color name="buttonChartUnselected">#C4C4C4</color>
+    <color name="buttonStudyCreateAlarmUnselected">#21292D</color>
+    <color name="buttonStudyCreateAlarmSelected">#212727</color>
 
     <!-- Chart -->
     <color name="axisLabel">#838383</color>
@@ -32,6 +34,10 @@
     <!-- Study -->
     <color name="tagEdge">@color/mainTheme2</color>
     <color name="edit_text_study">#21292D</color>
+    <color name="studyCreateDetailBtnUnselected">#838383</color>
+    <color name="studyCreateSelected">@color/mainTheme2</color>
+    <color name="studyCreateAlarmSeparate">#292929</color>
+    <color name="pop_layout">#21292D</color>
 
     <!--Nav-->
     <color name="nav_background">#171C1E</color>

@@ -54,16 +54,26 @@ public class RequestInterceptor implements Interceptor {
                 } catch (JSONException e) {
                     Log.d("MyStudy", e.getLocalizedMessage());
                 }
-                Log.d("MyStudy", refreshResponse.code()+"");
-                Log.d("MyStudy", "previous token : " + this.accessToken);
-                Log.d("MyStudy", "new token : " + newToken);
-                if (!accessToken.equals(newToken)) {
+
+                Log.d("MyStudy", "refresh token : " + refreshToken);
+                if (refreshResponse.code() == 200) {
+                    Log.d("MyStudy", "-----------------------intercepter---------------------------");
+                    Log.d("MyStudy", refreshResponse.code()+"");
+
                     Log.d("MyStudy", "previous token : " + this.accessToken);
                     Log.d("MyStudy", "new token : " + newToken);
-                    this.accessToken = newToken;
-                    editor.putString(AuthActivity.ACCESS_TOKEN, newToken);
-                    editor.apply();
-                    return chain.proceed(newRequestWithAccessToken(request));
+                    if (!accessToken.equals(newToken)) {
+                        Log.d("MyStudy", "----------------after getting new token---------------");
+                        Log.d("MyStudy", "previous token : " + this.accessToken);
+                        Log.d("MyStudy", "new token : " + newToken);
+                        this.accessToken = newToken;
+                        editor.putString(AuthActivity.ACCESS_TOKEN, newToken);
+                        editor.apply();
+                        return chain.proceed(newRequestWithAccessToken(request));
+                    }
+                }
+                else {
+                    Log.d("MyStudy", "refreshResponseCode : " + refreshResponse.code());
                 }
             }
         }
@@ -82,10 +92,10 @@ public class RequestInterceptor implements Interceptor {
                 .header("Authorization", "Bearer " + accessToken)
                 .build();
     }
-
+    //지금 request body가 잘못된 듯!
     private Request requestWithRefreshToken(Request request) {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        String item = "{\"refreshToken\": " + refreshToken;
+        String item = "{\"refreshToken\": " + "\"" + refreshToken + "\"" + "}";
         /*
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("http")
@@ -96,6 +106,7 @@ public class RequestInterceptor implements Interceptor {
          */
         RequestBody requestBody = RequestBody.create(item, JSON);
         String url = BASE_URL + "v1/auth/token/refresh";
+        Log.d("MyStudy", "item : " + item);
         return request.newBuilder()
                 .url(url)
                 .post(requestBody)

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
+import com.example.pacemaker.auth.models.EmailCertificateRequestDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
 import com.example.pacemaker.auth.models.SignInDto;
@@ -21,6 +22,7 @@ import com.example.pacemaker.auth.ui.findinfos.FindPasswordFragment;
 import com.example.pacemaker.auth.ui.findinfos.FindPasswordSuccessFragment;
 import com.example.pacemaker.auth.ui.login.ChangePasswordFragment;
 import com.example.pacemaker.auth.ui.login.LoginFragment;
+import com.example.pacemaker.auth.ui.signup.EmailCertificationFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpSuccessFragment;
 import com.example.pacemaker.util.DialogUtil;
@@ -37,12 +39,14 @@ public class AuthActivity extends AppCompatActivity {
     private Fragment mainFragment;
     private Fragment loginFragment;
     private Fragment signUpFragment;
-    private Fragment singUpSuccessFragment;
+    private Fragment signUpSuccessFragment;
     private Fragment findEmailFragment;
     private Fragment findEmailSuccessFragment;
     private Fragment findPasswordFragment;
     private Fragment findPasswordSuccessFragment;
     private Fragment changePasswordFragment;
+    private Fragment emailSendingCodeFragment;
+    private Fragment emailCertificationFragment;
 
     private RequestProcess request;
 
@@ -52,7 +56,7 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.auth_activity);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         checkAccessToken();
-        setFragment(FragmentTypes.MAIN);
+        setFragment(FragmentTypes.MAIN, null);
         AuthService service = ServiceGenerator.createService(AuthService.class);
         request = new RequestProcess(service, getSharedPreferences(SHARED_AUTH_ID, MODE_PRIVATE));
     }
@@ -75,7 +79,7 @@ public class AuthActivity extends AppCompatActivity {
         bundle.putString("email", email);
         findEmailSuccessFragment = new FindEmailSuccessFragment();
         findEmailSuccessFragment.setArguments(bundle);
-        setFragment(FragmentTypes.FIND_EMAIL_SUCCESS);
+        setFragment(FragmentTypes.FIND_EMAIL_SUCCESS, null);
     }
 
     public void showSuccessfulPasswordFind(String name, String email) {
@@ -84,11 +88,11 @@ public class AuthActivity extends AppCompatActivity {
         bundle.putString("email", email);
         findPasswordSuccessFragment = new FindPasswordSuccessFragment();
         findPasswordSuccessFragment.setArguments(bundle);
-        setFragment(FragmentTypes.FIND_PW_SUCCESS);
+        setFragment(FragmentTypes.FIND_PW_SUCCESS, null);
     }
 
 
-    public void setFragment(FragmentTypes frag) {
+    public void setFragment(FragmentTypes frag, Bundle bundle) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (frag == FragmentTypes.MAIN) {
             mainFragment = new MainFragment();
@@ -103,39 +107,46 @@ public class AuthActivity extends AppCompatActivity {
                     R.anim.from_center_to_right);
             transaction.addToBackStack(null);
             transaction.setReorderingAllowed(true);
-
+        Fragment fragment = null;
             switch(frag) {
                 case LOGIN:
                     loginFragment = new LoginFragment();
-                    transaction.replace(R.id.auth_main_frame, loginFragment);
+                    fragment = loginFragment;
                     break;
                 case SIGNUP:
-                    signUpFragment = new SignUpFragment();
-                    transaction.replace(R.id.auth_main_frame, signUpFragment);
+                    emailSendingCodeFragment = new EmailCertificationFragment();
+                    fragment = emailSendingCodeFragment;
                     break;
                 case SIGN_UP_SUCCESS:
-                    singUpSuccessFragment = new SignUpSuccessFragment();
-                    transaction.replace(R.id.auth_main_frame, singUpSuccessFragment);
+                    signUpSuccessFragment = new SignUpSuccessFragment();
+                    fragment = signUpSuccessFragment;
                     break;
                 case FIND_EMAIL:
                     findEmailFragment = new FindEmailFragment();
-                    transaction.replace(R.id.auth_main_frame, findEmailFragment);
+                    fragment = findEmailFragment;
                     break;
                 case FIND_EMAIL_SUCCESS:
-                    transaction.replace(R.id.auth_main_frame, findEmailSuccessFragment);
+                    fragment = findEmailSuccessFragment;
                     break;
                 case FIND_PW:
                     findPasswordFragment = new FindPasswordFragment();
-                    transaction.replace(R.id.auth_main_frame, findPasswordFragment);
+                    fragment = findPasswordFragment;
                     break;
                 case FIND_PW_SUCCESS:
-                    transaction.replace(R.id.auth_main_frame, findPasswordSuccessFragment);
+                    fragment = findPasswordSuccessFragment;
                     break;
                 case CHANGE_PASSWORD:
                     changePasswordFragment = new ChangePasswordFragment();
-                    transaction.replace(R.id.auth_main_frame, changePasswordFragment);
+                    fragment = changePasswordFragment;
+                    break;
+                case AUTHENTICATE_EMAIL:
+                    emailCertificationFragment = new EmailCertificationFragment();
+                    fragment = emailCertificationFragment;
                     break;
             }
+            if (bundle != null)
+                fragment.setArguments(bundle);
+            transaction.replace(R.id.auth_main_frame, fragment);
         }
         transaction.commit();
     }
@@ -158,5 +169,7 @@ public class AuthActivity extends AppCompatActivity {
         request.findPassword(findPwRequestDto, findPasswordFragment.requireContext(), this);
     }
 
-    public void requestChangePassword() {}
+    public void requestCertificateEmail(EmailCertificateRequestDto emailCertificateRequestDto) {
+        request.requestEmailCertification(emailCertificateRequestDto, emailSendingCodeFragment.getContext(), this);
+    }
 }

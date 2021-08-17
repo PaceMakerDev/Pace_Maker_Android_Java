@@ -55,7 +55,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="41dp"
-                android:id="@+id/auth_text_email"
+                android:id="@+id/auth_edit_email"
                 android:layout_weight="3"
                 android:inputType="text"
                 style="@style/AuthLoginEditViewStyle" />
@@ -83,11 +83,11 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/button_login"
+            android:id="@+id/btn_authenticate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="50dp"
             style="@style/ButtonDisabled"
             android:text="@string/authenticate" />
 

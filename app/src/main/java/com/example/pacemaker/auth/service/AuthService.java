@@ -1,6 +1,7 @@
 package com.example.pacemaker.auth.service;
 
 import com.example.pacemaker.auth.models.AuthResponseDto;
+import com.example.pacemaker.auth.models.EmailCertificateRequestDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindEmailResponseDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
@@ -24,4 +25,7 @@ public interface AuthService {
 
     @POST("/v1/auth/password/find")
     Call<FindPwResponseDto> findPassword(@Body FindPwRequestDto findPwRequestDto);
+
+    @POST("/v1/auth/email/send-code")
+    Call<Object> requestCertificateEmail(@Body EmailCertificateRequestDto emailCertificateRequestDto);
 }

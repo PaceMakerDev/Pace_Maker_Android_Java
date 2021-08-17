@@ -3,11 +3,13 @@ package com.example.pacemaker.auth.service.request;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.AuthResponseDto;
+import com.example.pacemaker.auth.models.EmailCertificateRequestDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindEmailResponseDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
@@ -53,7 +55,7 @@ public class RequestProcess {
                         //로그인 성공
                         Log.d(AuthActivity.TAG, "Login Successful");
                         if (response.body().getData().isShouldChangePassword()) {
-                            activity.setFragment(FragmentTypes.CHANGE_PASSWORD);
+                            activity.setFragment(FragmentTypes.CHANGE_PASSWORD, null);
                         }
                         else {
                             updateSharedPreference(response.body());
@@ -92,7 +94,7 @@ public class RequestProcess {
                         //회원가입 성공
                         updateSharedPreference(response.body());
                         Log.d(AuthActivity.TAG, "Signup Successful");
-                        activity.setFragment(FragmentTypes.SIGN_UP_SUCCESS);
+                        activity.setFragment(FragmentTypes.SIGN_UP_SUCCESS, null);
                         break;
                     case 400:
                         //요청 바디 형식 오류
@@ -209,6 +211,29 @@ public class RequestProcess {
             public void onFailure(Call<FindPwResponseDto> call, Throwable t) {
                 Log.d(AuthActivity.TAG, "Find Password Fail : 서버다운");
                 DialogUtil.showOkDialog(findPwFragmentContext, "서버 오류", "서버가 응답하지 않습니다");
+            }
+        });
+    }
+
+    public void requestEmailCertification(EmailCertificateRequestDto emailCertificateRequestDto, Context context, AuthActivity activity) {
+        Call<Object> call = service.requestCertificateEmail(emailCertificateRequestDto);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("Auth", response.code() + "");
+                if (response.code() == 204) {
+                    String email = emailCertificateRequestDto.getEmail();
+                    Bundle bundle= new Bundle();
+                    bundle.putString("email", email);
+                    activity.setFragment(FragmentTypes.AUTHENTICATE_EMAIL, bundle);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Log.d(AuthActivity.TAG, "SignUp Fail : 서버다운");
+                DialogUtil.showOkDialog(context, "서버 오류", "서버가 응답하지 않습니다");
+                Log.d("Auth", t.getLocalizedMessage());
             }
         });
     }

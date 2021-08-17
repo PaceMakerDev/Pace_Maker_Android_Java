@@ -24,7 +24,7 @@ public class MainFragment extends Fragment {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AuthActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
+                ((AuthActivity)requireActivity()).setFragment(FragmentTypes.LOGIN, null);
                 //((MainActivity)requireActivity()).setFragment(FragmentTypes.SIGN_UP_SUCCESS);
             }
         });
@@ -32,7 +32,7 @@ public class MainFragment extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AuthActivity)requireActivity()).setFragment(FragmentTypes.SIGNUP);
+                ((AuthActivity)requireActivity()).setFragment(FragmentTypes.SIGNUP, null);
 
             }
         });

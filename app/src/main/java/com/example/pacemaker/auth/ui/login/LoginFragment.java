@@ -35,12 +35,12 @@ public class LoginFragment extends Fragment {
 
         TextView findEmail = rootView.findViewById(R.id.auth_button_forgot_email);
         findEmail.setOnClickListener((view) -> {
-            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.FIND_EMAIL);
+            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.FIND_EMAIL, null);
         });
 
         TextView findPassword = rootView.findViewById(R.id.auth_button_forgot_pw);
         findPassword.setOnClickListener((view) -> {
-            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.FIND_PW);
+            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.FIND_PW, null);
         });
 
         return rootView;

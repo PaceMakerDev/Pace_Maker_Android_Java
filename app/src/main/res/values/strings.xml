@@ -230,6 +230,8 @@ Pace Maker의 부정이용기록(아이디, 이름, 휴대폰번호, 주소, IP�
     <string name="auth_error_password_check">비밀번호가 다릅니다</string>
     <string name="auth_camera_instruction">학생증을 화면에 맞춰주세요</string>
 
+    <!-- others -->
+    <string name="email_address">\@soongsil.ac.kr</string>
 
 
 </resources>

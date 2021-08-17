@@ -30,7 +30,7 @@ public class FindEmailSuccessFragment extends Fragment {
 
         Button loginBtn = rootView.findViewById(R.id.button_login);
         loginBtn.setOnClickListener((view) -> {
-            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.LOGIN);
+            ((AuthActivity)requireActivity()).setFragment(FragmentTypes.LOGIN, null);
         });
         return rootView;
     }

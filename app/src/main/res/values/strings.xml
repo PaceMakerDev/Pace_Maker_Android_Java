@@ -5,11 +5,15 @@
     <string name="title_study_league">스터디 리그</string>
     <string name="title_my_page">마이페이지</string>
 
+    <!-- Button -->
+    <string name="authenticate">인증하기</string>
+
     <!-- Common -->
     <string name="app_name_ko">페이스메이커</string>
 
     <!-- Title -->
     <string name="title_scan">학생증 스캔하기</string>
+    <string name="title_email_certification">학생 인증하기</string>
 
     <!-- Auth -->
     <string name="auth_missing_info">아이디 혹은 비밀번호를 잊으셨나요?</string>

@@ -35,9 +35,11 @@
     <color name="tagEdge">@color/mainTheme2</color>
     <color name="edit_text_study">#21292D</color>
     <color name="studyCreateDetailBtnUnselected">#838383</color>
+    <color name="studyCreateDetailBtnSelected">@color/mainTheme2</color>
     <color name="studyCreateSelected">@color/mainTheme2</color>
     <color name="studyCreateAlarmSeparate">#292929</color>
     <color name="pop_layout">#21292D</color>
+    <color name="studyCreateCategorySelected">@color/mainTheme2</color>
 
     <!--Nav-->
     <color name="nav_background">#171C1E</color>

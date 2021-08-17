@@ -13,13 +13,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.MainFragment;
-import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.ui.findinfos.FindEmailFragment;
 import com.example.pacemaker.auth.ui.findinfos.FindPasswordFragment;
 import com.example.pacemaker.auth.ui.login.ChangePasswordFragment;
 import com.example.pacemaker.auth.ui.login.LoginFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpSuccessFragment;
+import com.example.pacemaker.study.StudyActivity;
+import com.example.pacemaker.study.enums.FragmentTypes;
 
 public class StudySearchFragment extends Fragment {
     @Nullable
@@ -29,14 +30,22 @@ public class StudySearchFragment extends Fragment {
 
         ImageView view = rootView.findViewById(R.id.btn_create_study);
         view.setOnClickListener(view1 -> {
+            /*
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
 
             StudyCreateFragment fragment = new StudyCreateFragment();
+            StudyCreateMediator studyCreateMediator = ((StudyActivity)requireActivity()).getStudyCreateMediator();
+            studyCreateMediator.setStudyCreateFragment(fragment);
             transaction.addToBackStack(null);
             transaction.replace(R.id.nav_host_fragment, fragment);
             transaction.commit();
+
+             */
+            ((StudyActivity)requireActivity()).setFragment(FragmentTypes.STUDY_CREATE);
         });
+
 
         return rootView;
     }
+
 }

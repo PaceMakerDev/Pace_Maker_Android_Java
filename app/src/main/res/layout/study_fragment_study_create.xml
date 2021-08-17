@@ -20,6 +20,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:id="@+id/nestedScrollView"
             android:fillViewport="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,9 +28,10 @@
             app:layout_constraintEnd_toEndOf="parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/container"
                 android:paddingTop="@dimen/padding_top"
-                android:paddingBottom="40dp"
-                android:layout_height="0dp" >
+                android:paddingBottom="40dp" >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -58,14 +60,16 @@
                     style="@style/EditTextStudyCreate"/>
 
                 <TextView
+                    android:id="@+id/subtitle2"
+                    style="@style/TextInputTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/subtitle2"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="80dp"
                     android:text="스터디룸 메이커"
                     app:layout_constraintTop_toBottomOf="@id/study_create_edit_study_name"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginHorizontal="30dp"
-                    style="@style/TextInputTitle" />
+                    tools:layout_editor_absoluteX="60dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,6 +121,7 @@
                     <EditText
                         android:layout_width="100dp"
                         android:layout_height="41dp"
+                        android:id="@+id/edit_study_create_member_count"
                         android:background="@drawable/edittext_with_hint"
                         android:layout_marginHorizontal="5dp"
                         android:text="0"
@@ -144,17 +149,18 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginHorizontal="30dp"
                     style="@style/TextInputTitle" />
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="41dp"
                     android:id="@+id/edit_study_category"
                     app:layout_constraintTop_toBottomOf="@id/subtitle5"
                     android:layout_marginTop="5dp"
                     android:layout_marginHorizontal="30dp"
-                    android:maxLines="1"
                     android:paddingStart="20dp"
                     android:hint="종류를 선택해주세요"
                     style="@style/EditTextStudyCreate"
+                    android:gravity="center_vertical"
+                    android:focusable="true"
                     android:drawableEnd="@drawable/reversed_triangle"/>
 
                 <TextView
@@ -180,7 +186,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/layout2"
+                    android:id="@+id/layout_study_create_alarm"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     app:layout_constraintTop_toBottomOf="@id/view1"
@@ -330,358 +336,366 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:id="@+id/separate_detail"
-                    app:layout_constraintTop_toBottomOf="@id/layout2"
+                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_alarm"
                     android:layout_marginTop="34dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_mon_detail"
+                    android:id="@+id/layout_study_create_alarm_detail"
                     app:layout_constraintTop_toBottomOf="@id/separate_detail"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginHorizontal="30dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="월"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_mon_detail"
+                        app:layout_constraintTop_toBottomOf="@id/separate_detail"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="월"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_mon_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_mon_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_mon_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text="9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_mon_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_mon_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_mon_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_mon"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_mon_detail"
-                    android:layout_marginTop="15dp"
-                    android:visibility="gone"
-                    android:background="@color/studyCreateAlarmSeparate" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_tue_detail"
-                    app:layout_constraintTop_toBottomOf="@id/line_mon"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_mon"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_mon_detail"
+                        android:layout_marginTop="15dp"
+                        android:visibility="gone"
+                        android:background="@color/studyCreateAlarmSeparate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="화"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_tue_detail"
+                        app:layout_constraintTop_toBottomOf="@id/line_mon"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="화"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_tue_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_tue_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_tue_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text=" 9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_tue_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_tue_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_tue_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_tue"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_tue_detail"
-                    android:visibility="gone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/studyCreateAlarmSeparate" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_wed_detail"
-                    app:layout_constraintTop_toBottomOf="@id/line_tue"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_tue"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_tue_detail"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/studyCreateAlarmSeparate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="수"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_wed_detail"
+                        app:layout_constraintTop_toBottomOf="@id/line_tue"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="수"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_wed_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_wed_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_wed_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text=" 9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_wed_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_wed_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_wed_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_wed"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_wed_detail"
-                    android:visibility="gone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/studyCreateAlarmSeparate" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_thu_detail"
-                    app:layout_constraintTop_toBottomOf="@id/line_wed"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_wed"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_wed_detail"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/studyCreateAlarmSeparate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="목"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_thu_detail"
+                        app:layout_constraintTop_toBottomOf="@id/line_wed"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="목"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_thu_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_thu_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_thu_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text=" 9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_thu_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_thu_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_thu_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_thu"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_thu_detail"
-                    android:visibility="gone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/studyCreateAlarmSeparate" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_fri_detail"
-                    app:layout_constraintTop_toBottomOf="@id/line_thu"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_thu"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_thu_detail"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/studyCreateAlarmSeparate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="금"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_fri_detail"
+                        app:layout_constraintTop_toBottomOf="@id/line_thu"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="금"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_fri_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_fri_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_fri_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text=" 9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_fri_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_fri_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_fri_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_fri"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_fri_detail"
-                    android:visibility="gone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/studyCreateAlarmSeparate" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_sat_detail"
-                    app:layout_constraintTop_toBottomOf="@id/line_fri"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_fri"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_fri_detail"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/studyCreateAlarmSeparate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="토"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_sat_detail"
+                        app:layout_constraintTop_toBottomOf="@id/line_fri"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="토"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_sat_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_sat_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_sat_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text=" 9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_sat_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_sat_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_sat_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_sat"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_sat_detail"
-                    android:visibility="gone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/studyCreateAlarmSeparate" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/layout_study_create_sun_detail"
-                    app:layout_constraintTop_toBottomOf="@id/line_sat"
-                    android:visibility="gone"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_sat"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_sat_detail"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/studyCreateAlarmSeparate" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="일"
-                        style="@style/TextStudyCreateAlarmDetail" />
+                        android:id="@+id/layout_study_create_sun_detail"
+                        app:layout_constraintTop_toBottomOf="@id/line_sat"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="일"
+                            style="@style/TextStudyCreateAlarmDetail" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_sun_am"
+                            android:text="오전"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/btn_sun_pm"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="오후"
+                            style="@style/TextStudyCreateAlarmDetailBtn"/>
+                        <TextView
+                            android:layout_width="109dp"
+                            android:layout_height="41dp"
+                            android:id="@+id/text_study_create_sun_time"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:text=" 9   :   00"
+                            style="@style/TextStudyCreateAlarmTime" />
+                    </LinearLayout>
                     <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_sun_am"
-                        android:text="오전"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="55dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/btn_sun_pm"
-                        android:layout_marginHorizontal="10dp"
-                        android:text="오후"
-                        style="@style/TextStudyCreateAlarmDetailBtn"/>
-                    <TextView
-                        android:layout_width="109dp"
-                        android:layout_height="41dp"
-                        android:id="@+id/text_study_create_sun_time"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="center"
-                        android:text=" 9   :   00"
-                        style="@style/TextStudyCreateAlarmTime" />
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/line_sun"
+                        app:layout_constraintTop_toBottomOf="@id/layout_study_create_sun_detail"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/studyCreateAlarmSeparate" />
+
                 </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:id="@+id/line_sun"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_sun_detail"
-                    android:visibility="gone"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/studyCreateAlarmSeparate" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/subtitle7"
                     android:text="스터디룸 목적"
-                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_sun_detail"
+                    app:layout_constraintTop_toBottomOf="@id/layout_study_create_alarm_detail"
                     android:layout_marginTop="50dp"
                     android:layout_marginHorizontal="30dp"
                     style="@style/TextInputTitle" />
@@ -777,18 +791,152 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:gravity="center"
+            android:id="@+id/layout_study_create_category"
+            android:gravity="center_vertical"
             android:elevation="3dp"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@drawable/bg_pop_layout" >
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="어학"
-                android:gravity="center"
-                android:textSize="@dimen/normal_text_size"
-                android:textColor="@color/text_general" />
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_study_create_category_language"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/study_category_language"
+                    style="@style/TextPopLayoutCategory" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/ic_study_create_check_language"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_study_create_category_language"
+                    android:visibility="gone"
+                    style="@style/ImageCategoryCheck"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_study_create_category_it"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/study_category_it"
+                    style="@style/TextPopLayoutCategory" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/ic_study_create_check_it"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_study_create_category_it"
+                    android:visibility="gone"
+                    style="@style/ImageCategoryCheck"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_study_create_category_public_test"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/study_category_public_test"
+                    style="@style/TextPopLayoutCategory" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/ic_study_create_check_public_test"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_study_create_category_public_test"
+                    android:visibility="gone"
+                    style="@style/ImageCategoryCheck"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_study_create_category_certificate"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/study_category_certificate"
+                    style="@style/TextPopLayoutCategory" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/ic_study_create_check_public_certificate"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_study_create_category_certificate"
+                    android:visibility="gone"
+                    style="@style/ImageCategoryCheck"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_study_create_category_job"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/study_category_job"
+                    style="@style/TextPopLayoutCategory" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/ic_study_create_check_public_job"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_study_create_category_job"
+                    android:visibility="gone"
+                    style="@style/ImageCategoryCheck"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_study_create_category_others"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/study_category_others"
+                    style="@style/TextPopLayoutCategory" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/ic_study_create_check_public_others"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_study_create_category_others"
+                    android:visibility="gone"
+                    style="@style/ImageCategoryCheck"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

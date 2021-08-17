@@ -74,7 +74,8 @@
     <item>
         <shape>
             <solid android:color="@color/pop_layout" />
-            <corners android:radius="20dp" />
+            <corners android:topLeftRadius="20dp"
+                android:topRightRadius="20dp" />
         </shape>
     </item>
 </layer-list>

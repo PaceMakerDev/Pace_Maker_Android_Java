@@ -1,5 +1,6 @@
 package com.example.pacemaker.study;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,16 +12,25 @@ import com.example.pacemaker.R;
 import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.study.commonservice.CommonRequest;
 import com.example.pacemaker.study.commonservice.CommonService;
+import com.example.pacemaker.study.enums.FragmentTypes;
 import com.example.pacemaker.study.ui.mystudy.MyStudyFragment;
 import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.request.MyStudyRequest;
 import com.example.pacemaker.study.ui.mystudy.service.MyStudyService;
+import com.example.pacemaker.study.ui.studysearch.StudyCreateFragment;
+import com.example.pacemaker.study.ui.studysearch.StudyCreateMediator;
+import com.example.pacemaker.study.ui.studysearch.StudyCreateSuccessFragment;
+import com.example.pacemaker.study.ui.studysearch.models.StudyCreateRequestDto;
+import com.example.pacemaker.study.ui.studysearch.service.StudyCreateRequest;
+import com.example.pacemaker.study.ui.studysearch.service.StudySearchService;
 import com.example.pacemaker.util.service.ServiceGenerator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,7 +38,10 @@ import androidx.navigation.ui.NavigationUI;
 
 public class StudyActivity extends AppCompatActivity {
     private MyStudyRequest myStudyRequest;
+    private StudyCreateRequest studyCreateRequest;
     private CommonRequest commonRequest;
+    private StudyCreateMediator studyCreateMediator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +56,18 @@ public class StudyActivity extends AppCompatActivity {
                 getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.ACCESS_TOKEN, null),
                 getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null),
                 editor);
+        StudySearchService studySearchService = ServiceGenerator.createService(StudySearchService.class,
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.ACCESS_TOKEN, null),
+                getSharedPreferences("auth", MODE_PRIVATE).getString(AuthActivity.REFRESH_TOKEN, null),
+                editor);
         // API : userid바꿔주기
         int userId = getSharedPreferences(AuthActivity.SHARED_AUTH_ID, MODE_PRIVATE).getInt(AuthActivity.USER_ID, -1);
         Log.d("MyStudy", userId + " id");
         myStudyRequest = new MyStudyRequest(myStudyService, userId);
         commonRequest = new CommonRequest(commonService, getSharedPreferences("auth", MODE_PRIVATE));
+        studyCreateRequest = new StudyCreateRequest(studySearchService);
+
+        studyCreateMediator = new StudyCreateMediator();
     }
 
     private void setUpNavigationBar() {
@@ -82,12 +102,6 @@ public class StudyActivity extends AppCompatActivity {
         myStudyRequest.drawChart(fragment, type);
     }
 
-    public void refreshToken() {
-        String oldToken = getSharedPreferences(AuthActivity.SHARED_AUTH_ID, MODE_PRIVATE).getString("refreshToken", null);
-        if (oldToken != null)
-            commonRequest.refreshToken(this);
-    }
-
     public void requestTodayRecord() {
         MyStudyFragment fragment = (MyStudyFragment)getCurrentFragment();
         myStudyRequest.showTodayRecord(fragment);
@@ -96,6 +110,10 @@ public class StudyActivity extends AppCompatActivity {
     public void requestStudyList() {
         MyStudyFragment fragment = (MyStudyFragment)getCurrentFragment();
         myStudyRequest.showUserStudy(fragment);
+    }
+
+    public void requestStudyCreate(StudyCreateRequestDto studyCreateRequestDto, Context context) {
+        studyCreateRequest.createStudy(studyCreateRequestDto, context, this);
     }
 
     public void logout() {
@@ -108,6 +126,28 @@ public class StudyActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.example.pacemaker.auth.AuthActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    public StudyCreateMediator getStudyCreateMediator() {
+        return studyCreateMediator;
+    }
+
+    public void setFragment(FragmentTypes type) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment fragment = null;
+        switch (type) {
+            case STUDY_CREATE:
+                fragment = new StudyCreateFragment();
+                StudyCreateMediator studyCreateMediator = getStudyCreateMediator();
+                studyCreateMediator.setStudyCreateFragment((StudyCreateFragment)fragment);
+                transaction.addToBackStack(null);
+                break;
+            case STUDY_CREATE_SUCCESS:
+                fragment = new StudyCreateSuccessFragment();
+        }
+
+        transaction.replace(R.id.nav_host_fragment, fragment);
+        transaction.commit();
     }
 
     private Fragment getCurrentFragment() {

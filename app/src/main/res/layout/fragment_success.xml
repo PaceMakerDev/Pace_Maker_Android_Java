@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/signup_title"
+            android:id="@+id/title"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/auth_signup"
             style="@style/Title"/>
@@ -41,6 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/message"
                 android:text="가입 성공!"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/inputText"

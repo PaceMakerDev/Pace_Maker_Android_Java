@@ -6,6 +6,12 @@
     <style name="SpinnerDatePicker" parent="android:Widget.Material.DatePicker">
         <item name="android:datePickerMode">spinner</item>
     </style>
+    <style name="SpinnerTimePickerStyle" parent="android:Theme.Material.Dialog">
+        <item name="android:timePickerStyle">@style/SpinnerTimePickerTheme</item>
+    </style>
+    <style name="SpinnerTimePickerTheme" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
 
 
 
@@ -98,6 +104,13 @@
         <item name="android:textColor">@color/inputText</item>
         <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
+    <style name="TextPopLayoutCategory" parent="TextInputTitle">
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="TextPopLayoutCategorySelected" parent="TextPopLayoutCategory">
+        <item name="android:textColor">@color/studyCreateCategorySelected</item>
+        <item name="android:textSize">@dimen/large_text_size</item>
+    </style>
     <style name="TextInputTitle" parent="TextInput">
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/nanum_gothic_extra_bold_font</item>
@@ -136,6 +149,12 @@
         <item name="android:textSize">@dimen/large_text_size</item>
     </style>
 
+    <!-- ImageView -->
+    <style name="ImageCategoryCheck" >
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:src">@drawable/ic_category_check</item>
+    </style>
+
     <!-- Base -->
     <style name="nanum_bold_small_white">
         <item name="android:fontFamily">@font/nanum_gothic</item>
@@ -143,5 +162,7 @@
         <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:textColor">#ffffff</item>
     </style>
+
+
 
 </resources>

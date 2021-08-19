@@ -30,8 +30,10 @@
             android:layout_marginTop="30dp"
             android:layout_marginStart="5dp"
             app:layout_constraintTop_toBottomOf="@id/title"
-            android:text="학생 인증을 위해 학교 이메일 인증을 해주세요"
+            android:text="@string/auth_sending_code_message"
+            android:lineHeight="22dp"
             style="@style/NormalMessage" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +64,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/text_email_fixed"
                 android:layout_weight="2"
                 android:textAlignment="center"
                 android:text="\@ soongsil.ac.kr"
@@ -79,7 +82,38 @@
             android:background="@drawable/btn_bg_transparent_border_maintheme"
             style="@style/NormalMainThemeMessageAccent" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_code_subtitle"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/edit_code"
+            android:textAlignment="center"
+            android:text="인증코드"
+            android:visibility="gone"
+            style="@style/NormalMessageAccent" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:id="@+id/edit_code"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_authenticate"
+            android:inputType="text"
+            android:visibility="gone"
+            style="@style/AuthLoginEditViewStyle" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_error"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            android:text="인증코드가 올바르지 않습니다"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/btn_authenticate"
+            style="@style/NormalErrorMessage" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -88,6 +122,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="50dp"
+            android:enabled="false"
             style="@style/ButtonDisabled"
             android:text="@string/authenticate" />
 

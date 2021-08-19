@@ -104,6 +104,12 @@
         <item name="android:paddingEnd">20dp</item>
         <item name="fontFamily">@font/nanum_gothic_font</item>
     </style>
+    <style name="NormalErrorMessage">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="fontFamily">@font/nanum_gothic_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="Title">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/title</item>

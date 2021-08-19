@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.pacemaker.R;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.EmailCertificateRequestDto;
+import com.example.pacemaker.auth.models.EmailCodeVerificationRequestDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
 import com.example.pacemaker.auth.models.SignInDto;
@@ -100,11 +101,13 @@ public class AuthActivity extends AppCompatActivity {
         }
 
         else {
-            transaction.setCustomAnimations(
-                    R.anim.from_right_to_center,
-                    R.anim.from_center_to_left,
-                    R.anim.from_left_to_center,
-                    R.anim.from_center_to_right);
+            if (frag != FragmentTypes.AUTHENTICATE_EMAIL) {
+                transaction.setCustomAnimations(
+                        R.anim.from_right_to_center,
+                        R.anim.from_center_to_left,
+                        R.anim.from_left_to_center,
+                        R.anim.from_center_to_right);
+            }
             transaction.addToBackStack(null);
             transaction.setReorderingAllowed(true);
         Fragment fragment = null;
@@ -114,6 +117,10 @@ public class AuthActivity extends AppCompatActivity {
                     fragment = loginFragment;
                     break;
                 case SIGNUP:
+                    signUpFragment = new SignUpFragment();
+                    fragment = signUpFragment;
+                    break;
+                case SENDING_EMAIL_CODE:
                     emailSendingCodeFragment = new EmailCertificationFragment();
                     fragment = emailSendingCodeFragment;
                     break;
@@ -171,5 +178,9 @@ public class AuthActivity extends AppCompatActivity {
 
     public void requestCertificateEmail(EmailCertificateRequestDto emailCertificateRequestDto) {
         request.requestEmailCertification(emailCertificateRequestDto, emailSendingCodeFragment.getContext(), this);
+    }
+
+    public void requestVerifyEmail(EmailCodeVerificationRequestDto emailCodeVerificationRequestDto) {
+        request.requestEmailVerification(emailCodeVerificationRequestDto, (EmailCertificationFragment)emailCertificationFragment, this);
     }
 }

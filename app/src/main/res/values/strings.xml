@@ -208,6 +208,8 @@ Pace Maker의 부정이용기록(아이디, 이름, 휴대폰번호, 주소, IP�
 
 이 개인정보수집방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지 할 것입니다.</string>
     <string name="auth_show_agreement"><u>내용보기</u></string>
+    <string name="auth_sending_code_message">학생 인증을 위해 학교 이메일 인증을 해주세요</string>
+    <string name="auth_authenticate_email_message">해당 이메일로 인증코드가 발송되었습니다\n<br/>하단 입력칸에 인증코드를 입력해주세요</string>
 
     <!-- Study -->
     <string name="study_create_object_hint">우리 스터디룸의 목적을 소개해주세요\n<br/>예) 매달 하나의 코딩 포트폴리오 만들기</string>

@@ -2,6 +2,7 @@ package com.example.pacemaker.auth.service;
 
 import com.example.pacemaker.auth.models.AuthResponseDto;
 import com.example.pacemaker.auth.models.EmailCertificateRequestDto;
+import com.example.pacemaker.auth.models.EmailCodeVerificationRequestDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindEmailResponseDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
@@ -28,4 +29,7 @@ public interface AuthService {
 
     @POST("/v1/auth/email/send-code")
     Call<Object> requestCertificateEmail(@Body EmailCertificateRequestDto emailCertificateRequestDto);
+
+    @POST("/v1/auth/email/verify-code")
+    Call<Object> requestVerifyEmailCode(@Body EmailCodeVerificationRequestDto emailCodeVerificationRequestDto);
 }

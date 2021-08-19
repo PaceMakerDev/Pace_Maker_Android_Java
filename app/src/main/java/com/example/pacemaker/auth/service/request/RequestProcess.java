@@ -10,6 +10,7 @@ import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.auth.enums.FragmentTypes;
 import com.example.pacemaker.auth.models.AuthResponseDto;
 import com.example.pacemaker.auth.models.EmailCertificateRequestDto;
+import com.example.pacemaker.auth.models.EmailCodeVerificationRequestDto;
 import com.example.pacemaker.auth.models.FindEmailRequestDto;
 import com.example.pacemaker.auth.models.FindEmailResponseDto;
 import com.example.pacemaker.auth.models.FindPwRequestDto;
@@ -19,6 +20,7 @@ import com.example.pacemaker.auth.models.SignUpDto;
 import com.example.pacemaker.auth.models.SuccessResponseData;
 import com.example.pacemaker.auth.models.User;
 import com.example.pacemaker.auth.service.AuthService;
+import com.example.pacemaker.auth.ui.signup.EmailCertificationFragment;
 import com.example.pacemaker.util.DialogUtil;
 
 import java.io.IOException;
@@ -233,6 +235,31 @@ public class RequestProcess {
             public void onFailure(Call<Object> call, Throwable t) {
                 Log.d(AuthActivity.TAG, "SignUp Fail : 서버다운");
                 DialogUtil.showOkDialog(context, "서버 오류", "서버가 응답하지 않습니다");
+                Log.d("Auth", t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void requestEmailVerification(EmailCodeVerificationRequestDto emailCodeVerificationRequestDto, EmailCertificationFragment fragment, AuthActivity activity) {
+        Call<Object> call = service.requestVerifyEmailCode(emailCodeVerificationRequestDto);
+        call.enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                Log.d("Auth", response.code() + "");
+                switch (response.code()) {
+                    case 204:
+                        activity.setFragment(FragmentTypes.SIGNUP, null);
+                        break;
+                    case 404:
+                        fragment.showNoValidCodeError();
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
+                Log.d(AuthActivity.TAG, "SignUp Fail : 서버다운");
+                DialogUtil.showOkDialog(fragment.requireContext(), "서버 오류", "서버가 응답하지 않습니다");
                 Log.d("Auth", t.getLocalizedMessage());
             }
         });

@@ -32,7 +32,7 @@ public class MainFragment extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((AuthActivity)requireActivity()).setFragment(FragmentTypes.SIGNUP, null);
+                ((AuthActivity)requireActivity()).setFragment(FragmentTypes.SENDING_EMAIL_CODE, null);
 
             }
         });

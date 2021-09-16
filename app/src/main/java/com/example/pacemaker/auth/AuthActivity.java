@@ -25,6 +25,7 @@ import com.example.pacemaker.auth.ui.login.ChangePasswordFragment;
 import com.example.pacemaker.auth.ui.login.LoginFragment;
 import com.example.pacemaker.auth.ui.signup.EmailCertificationFragment;
 import com.example.pacemaker.auth.ui.signup.SignUpFragment;
+import com.example.pacemaker.auth.ui.signup.SignUpMediator;
 import com.example.pacemaker.auth.ui.signup.SignUpSuccessFragment;
 import com.example.pacemaker.util.DialogUtil;
 import com.example.pacemaker.util.service.ServiceGenerator;
@@ -48,6 +49,8 @@ public class AuthActivity extends AppCompatActivity {
     private Fragment changePasswordFragment;
     private Fragment emailSendingCodeFragment;
     private Fragment emailCertificationFragment;
+
+    private SignUpMediator signUpMediator;
 
     private RequestProcess request;
 
@@ -119,6 +122,7 @@ public class AuthActivity extends AppCompatActivity {
                 case SIGNUP:
                     signUpFragment = new SignUpFragment();
                     fragment = signUpFragment;
+                    signUpMediator = new SignUpMediator((SignUpFragment)signUpFragment);
                     break;
                 case SENDING_EMAIL_CODE:
                     emailSendingCodeFragment = new EmailCertificationFragment();
@@ -183,4 +187,6 @@ public class AuthActivity extends AppCompatActivity {
     public void requestVerifyEmail(EmailCodeVerificationRequestDto emailCodeVerificationRequestDto) {
         request.requestEmailVerification(emailCodeVerificationRequestDto, (EmailCertificationFragment)emailCertificationFragment, this);
     }
+
+    public SignUpMediator getSignUpMediator() {return signUpMediator;}
 }

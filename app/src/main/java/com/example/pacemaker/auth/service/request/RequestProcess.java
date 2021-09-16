@@ -87,6 +87,16 @@ public class RequestProcess {
     }
 
     public void signUp(SignUpDto signUpDto, Context signUpFragmentContext, AuthActivity activity) {
+        Log.d("Auth", signUpDto.getAcademicStatus());
+        Log.d("Auth", signUpDto.getBirthday());
+        Log.d("Auth", signUpDto.getEmail());
+        Log.d("Auth", signUpDto.getMajor());
+        Log.d("Auth", signUpDto.getName());
+        Log.d("Auth", signUpDto.getPassword());
+        Log.d("Auth", signUpDto.getStudentId());
+
+
+
         Call<AuthResponseDto> call = service.signUpUser(signUpDto);
         call.enqueue(new Callback<AuthResponseDto>() {
             @Override
@@ -100,6 +110,11 @@ public class RequestProcess {
                         break;
                     case 400:
                         //요청 바디 형식 오류
+                        try {
+                            Log.d(AuthActivity.TAG, response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         Log.d(AuthActivity.TAG, "SignUp Fail : 요청바디형식오류(400)");
                         break;
                     case 409:

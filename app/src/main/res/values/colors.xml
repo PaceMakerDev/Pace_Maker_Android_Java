@@ -52,13 +52,14 @@
     <color name="textEditTextHint">#C4C4C4</color>
     <color name="error">#FF0A0A</color>
     <color name="my_study_ranking_background">#4D4D4D</color>
+    <color name="textUnselected">#929292</color>
 
     <!-- Auth -->
     <color name="loginHint">#929292</color>
     <color name="signUpHint">#C4C4C4</color>
     <color name="inputText">#FFFFFF</color>
 
-    <color name="editTextWithHint">#212727</color>
+    <color name="editTextWithHint">#21292d</color>
 
     <color name="gray">#808080</color>
     <color name="black">#000000</color>

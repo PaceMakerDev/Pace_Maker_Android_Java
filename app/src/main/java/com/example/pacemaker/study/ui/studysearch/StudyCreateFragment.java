@@ -165,12 +165,9 @@ public class StudyCreateFragment extends Fragment {
                 hideCategoryList(layoutCategory);
                 isCategoryLayoutUp = false;
             }
-
         });
-
         TextView editCategory = view.findViewById(R.id.edit_study_category);
         categoryClickSetUp(layoutCategory, editCategory);
-
     }
 
     private void showCategoryList(LinearLayout layoutCategory) {

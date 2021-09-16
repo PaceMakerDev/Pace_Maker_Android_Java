@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:id="@+id/container"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,74 +38,107 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:text="@string/auth_signup"
                     style="@style/Title"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toBottomOf="@id/signup_title"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/layout_idcard_info"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="90dp"
-                            android:layout_height="wrap_content"
-                            android:text="이름"
-                            style="@style/TextInputTitle" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/signup_edit_name"
-                            style="@style/TextInput" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="90dp"
-                            android:layout_height="wrap_content"
-                            android:text="학부/학과"
-                            style="@style/TextInputTitle" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/signup_edit_major"
-                            style="@style/TextInput" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="90dp"
-                            android:layout_height="wrap_content"
-                            android:text="학번"
-                            style="@style/TextInputTitle" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/signup_edit_student_id"
-                            android:maxLength="8"
-                            android:inputType="number"
-                            style="@style/TextInput" />
-                    </LinearLayout>
 
-
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/auth_layout_signup_info"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_idcard_info"
+                    app:layout_constraintTop_toBottomOf="@+id/signup_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이름"
+                            style="@style/TextInputTitle" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:text="*"
+                            android:textColor="@color/error"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:id="@+id/edit_auth_name"
+                        android:inputType="textEmailAddress"
+                        style="@style/AuthSignUpEditViewStyle"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_auth_name_error"
+                        style="@style/ErrorText"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="학번"
+                            style="@style/TextInputTitle" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:text="*"
+                            android:textColor="@color/error"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:id="@+id/edit_auth_student_id"
+                        android:inputType="textEmailAddress"
+                        style="@style/AuthSignUpEditViewStyle"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_auth_student_id_error"
+                        style="@style/ErrorText"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="학과"
+                            style="@style/TextInputTitle" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:text="*"
+                            android:textColor="@color/error"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:id="@+id/text_subject"
+                        app:layout_constraintTop_toBottomOf="@id/subtitle5"
+                        android:layout_marginTop="5dp"
+                        android:paddingStart="20dp"
+                        android:hint="종류를 선택해주세요"
+                        style="@style/EditTextStudyCreate"
+                        android:gravity="center_vertical"
+                        android:focusable="true"
+                        android:drawableEnd="@drawable/reversed_triangle"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -377,4 +411,52 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/layout_popup"
+        android:gravity="center_vertical"
+        android:elevation="3dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/bg_pop_layout" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/btn_subject_category"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_subject_humanity"
+                android:text="인문"
+                style="@style/TextPopLayoutCategory" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_subject_business"
+                android:layout_marginStart="20dp"
+                android:text="경상"
+                style="@style/TextPopLayoutCategoryUnselected" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_subject_nature"
+                android:layout_marginStart="20dp"
+                android:text="자연"
+                style="@style/TextPopLayoutCategoryUnselected" />
+
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:paddingBottom="60dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_subject_category"
+            android:id="@+id/recyclerview_subject" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

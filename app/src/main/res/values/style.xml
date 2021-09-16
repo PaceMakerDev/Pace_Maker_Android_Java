@@ -125,6 +125,10 @@
     <style name="TextPopLayoutCategory" parent="TextInputTitle">
         <item name="android:gravity">center</item>
     </style>
+    <style name="TextPopLayoutCategoryUnselected" parent="TextInputTitle">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/textUnselected</item>
+    </style>
     <style name="TextPopLayoutCategorySelected" parent="TextPopLayoutCategory">
         <item name="android:textColor">@color/studyCreateCategorySelected</item>
         <item name="android:textSize">@dimen/large_text_size</item>

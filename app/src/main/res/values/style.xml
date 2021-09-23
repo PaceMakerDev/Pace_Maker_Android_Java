@@ -82,6 +82,9 @@
 
 
     <!--TextView-->
+    <style name="SubTitleMessage" parent="NormalMessage">
+        <item name="android:textSize">@dimen/sub_title</item>
+    </style>
     <style name="NormalMessage">
         <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:textColor">@color/text_general</item>

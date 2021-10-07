@@ -1,7 +1,5 @@
-package com.example.pacemaker.study.ui.studysearch;
+package com.example.pacemaker.study.ui.studysearch.studycreate;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 

@@ -1,8 +1,6 @@
-package com.example.pacemaker.study.ui.studysearch;
+package com.example.pacemaker.study.ui.studysearch.studycreate;
 
 import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
 
 public class StudyCreateMediator {
     StudyCreateFragment studyCreateFragment;

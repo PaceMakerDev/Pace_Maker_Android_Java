@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.example.pacemaker.R;
@@ -17,19 +16,18 @@ import com.example.pacemaker.study.ui.mystudy.MyStudyFragment;
 import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.request.MyStudyRequest;
 import com.example.pacemaker.study.ui.mystudy.service.MyStudyService;
-import com.example.pacemaker.study.ui.studysearch.StudyCreateFragment;
-import com.example.pacemaker.study.ui.studysearch.StudyCreateMediator;
-import com.example.pacemaker.study.ui.studysearch.StudyCreateSuccessFragment;
+import com.example.pacemaker.study.ui.studysearch.StudySearchFragment;
+import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateFragment;
+import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateMediator;
+import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateSuccessFragment;
 import com.example.pacemaker.study.ui.studysearch.models.StudyCreateRequestDto;
-import com.example.pacemaker.study.ui.studysearch.service.StudyCreateRequest;
+import com.example.pacemaker.study.ui.studysearch.service.StudySearchRequest;
 import com.example.pacemaker.study.ui.studysearch.service.StudySearchService;
 import com.example.pacemaker.util.service.ServiceGenerator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -38,7 +36,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class StudyActivity extends AppCompatActivity {
     private MyStudyRequest myStudyRequest;
-    private StudyCreateRequest studyCreateRequest;
+    private StudySearchRequest studySearchRequest;
     private CommonRequest commonRequest;
     private StudyCreateMediator studyCreateMediator;
 
@@ -65,7 +63,7 @@ public class StudyActivity extends AppCompatActivity {
         Log.d("MyStudy", userId + " id");
         myStudyRequest = new MyStudyRequest(myStudyService, userId);
         commonRequest = new CommonRequest(commonService, getSharedPreferences("auth", MODE_PRIVATE));
-        studyCreateRequest = new StudyCreateRequest(studySearchService);
+        studySearchRequest = new StudySearchRequest(studySearchService);
 
         studyCreateMediator = new StudyCreateMediator();
     }
@@ -113,7 +111,15 @@ public class StudyActivity extends AppCompatActivity {
     }
 
     public void requestStudyCreate(StudyCreateRequestDto studyCreateRequestDto, Context context) {
-        studyCreateRequest.createStudy(studyCreateRequestDto, context, this);
+        studySearchRequest.createStudy(studyCreateRequestDto, context, this);
+    }
+
+    public void requestGetRecentStudy(Context context) {
+        studySearchRequest.requestRecentStudy(context, (StudySearchFragment)getCurrentFragment());
+    }
+
+    public void requestGetRecommendStudy(Context context) {
+        studySearchRequest.requestRecommendStudy(context, (StudySearchFragment)getCurrentFragment());
     }
 
     public void logout() {

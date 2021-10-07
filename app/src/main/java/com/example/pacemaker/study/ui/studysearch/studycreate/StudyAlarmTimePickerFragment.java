@@ -1,17 +1,13 @@
-package com.example.pacemaker.study.ui.studysearch;
+package com.example.pacemaker.study.ui.studysearch.studycreate;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.pacemaker.R;

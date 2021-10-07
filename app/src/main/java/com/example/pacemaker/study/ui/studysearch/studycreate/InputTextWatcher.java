@@ -1,10 +1,7 @@
-package com.example.pacemaker.study.ui.studysearch;
+package com.example.pacemaker.study.ui.studysearch.studycreate;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-
-import com.example.pacemaker.auth.enums.SignUpInputs;
-import com.example.pacemaker.auth.ui.signup.SignUpFragment;
 
 public class InputTextWatcher implements TextWatcher {
     private String tag;

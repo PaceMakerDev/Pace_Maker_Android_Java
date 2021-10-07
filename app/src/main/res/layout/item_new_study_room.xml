@@ -27,7 +27,7 @@
                         android:id="@+id/study_room_tag"
                         android:background="@drawable/study_room_tag"
                         android:fontFamily="@font/nanum_gothic_extra_bold_font"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textColor="@color/tagEdge"
                         android:gravity="center"
                         android:text="어학" />

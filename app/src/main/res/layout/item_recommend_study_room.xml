@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="91dp"
-    android:layout_marginVertical="10dp"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <FrameLayout
@@ -22,7 +21,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:background="@drawable/bg_dark_study_room_tag"
                         android:fontFamily="@font/nanum_gothic_extra_bold_font"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textColor="@color/tagEdge"
                         android:gravity="center"
                         android:text="어학" />

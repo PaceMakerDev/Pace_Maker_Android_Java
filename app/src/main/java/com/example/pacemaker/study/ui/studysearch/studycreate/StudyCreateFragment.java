@@ -1,4 +1,4 @@
-package com.example.pacemaker.study.ui.studysearch;
+package com.example.pacemaker.study.ui.studysearch.studycreate;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -32,8 +32,7 @@ import com.example.pacemaker.auth.AuthActivity;
 import com.example.pacemaker.study.StudyActivity;
 import com.example.pacemaker.study.ui.studysearch.models.StudyCreateRequestDto;
 import com.example.pacemaker.study.ui.studysearch.models.StudySchedule;
-import com.example.pacemaker.study.ui.studysearch.service.StudyCreateRequest;
-import com.example.pacemaker.study.ui.studysearch.service.StudySearchService;
+import com.example.pacemaker.study.ui.studysearch.service.StudySearchRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +49,7 @@ public class StudyCreateFragment extends Fragment {
 
     private boolean isCategoryLayoutUp = false;
     private OnBackPressedCallback backPressedCallback;
-    private StudyCreateRequest requestProcess;
+    private StudySearchRequest requestProcess;
     private Map<String, Boolean> validMap = new HashMap<String, Boolean>();
     private Map<String, Boolean> alarmDetailValidMap = new HashMap<String, Boolean>();
     private Map<String, Boolean> alarmDetailIsPM = new HashMap<String, Boolean>();

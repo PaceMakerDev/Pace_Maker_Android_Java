@@ -1,4 +1,4 @@
-package com.example.pacemaker.study.ui.studysearch;
+package com.example.pacemaker.study.ui.studysearch.studycreate;
 
 import android.content.Intent;
 import android.os.Bundle;

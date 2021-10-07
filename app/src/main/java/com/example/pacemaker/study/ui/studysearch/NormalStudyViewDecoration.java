@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-public class RecommentStudyViewDecoration extends RecyclerView.ItemDecoration {
+public class NormalStudyViewDecoration extends RecyclerView.ItemDecoration {
     private final int height;
 
-    public RecommentStudyViewDecoration(int height) {
+    public NormalStudyViewDecoration(int height) {
         this.height = height;
     }
 

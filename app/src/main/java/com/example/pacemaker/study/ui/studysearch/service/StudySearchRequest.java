@@ -1,41 +1,21 @@
 package com.example.pacemaker.study.ui.studysearch.service;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.pacemaker.auth.AuthActivity;
-import com.example.pacemaker.auth.models.AuthResponseDto;
-import com.example.pacemaker.auth.models.FindEmailRequestDto;
-import com.example.pacemaker.auth.models.FindEmailResponseDto;
-import com.example.pacemaker.auth.models.FindPwRequestDto;
-import com.example.pacemaker.auth.models.FindPwResponseDto;
-import com.example.pacemaker.auth.models.SignInDto;
-import com.example.pacemaker.auth.models.SignUpDto;
-import com.example.pacemaker.auth.models.SuccessResponseData;
-import com.example.pacemaker.auth.models.User;
-import com.example.pacemaker.auth.service.AuthService;
 import com.example.pacemaker.study.StudyActivity;
 import com.example.pacemaker.study.enums.FragmentTypes;
-import com.example.pacemaker.study.ui.mystudy.models.Study;
 import com.example.pacemaker.study.ui.studysearch.StudySearchFragment;
 import com.example.pacemaker.study.ui.studysearch.models.NewStudy;
-import com.example.pacemaker.study.ui.studysearch.models.RecommendStudy;
+import com.example.pacemaker.study.ui.studysearch.models.NormalStudy;
 import com.example.pacemaker.study.ui.studysearch.models.StudyCreateRequestDto;
 import com.example.pacemaker.study.ui.studysearch.models.StudyCreateResponseDto;
 import com.example.pacemaker.study.ui.studysearch.models.StudyListResponse;
 import com.example.pacemaker.study.ui.studysearch.models.StudyOverview;
 import com.example.pacemaker.util.DialogUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import okhttp3.Request;
-import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,8 +77,30 @@ public class StudySearchRequest {
             public void onResponse(Call<StudyListResponse> call, Response<StudyListResponse> response) {
                 switch (response.code()) {
                     case 200:
-                        ArrayList<RecommendStudy> studyList = convertToRecommendStudy(response.body().getData());
+                        ArrayList<NormalStudy> studyList = convertToRecommendStudy(response.body().getData());
                         fragment.setRecommendStudy(studyList);
+                        break;
+                    case 401:
+                        Log.d("MyStudy", "Study create err 401");
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StudyListResponse> call, Throwable t) {
+                DialogUtil.showOkDialog(context, "서버 오류", "서버가 응답하지 않습니다");
+            }
+        });
+    }
+
+    public void requestStudySearch(Context context, StudySearchFragment fragment, String input) {
+        service.requestStudySearchList(input).enqueue(new Callback<StudyListResponse>() {
+            @Override
+            public void onResponse(Call<StudyListResponse> call, Response<StudyListResponse> response) {
+                switch (response.code()) {
+                    case 200:
+                        ArrayList<NormalStudy> studyList = convertToRecommendStudy(response.body().getData());
+                        fragment.setStudySearch(studyList);
                         break;
                     case 401:
                         Log.d("MyStudy", "Study create err 401");
@@ -148,8 +150,8 @@ public class StudySearchRequest {
         return studyList;
     }
 
-    private ArrayList<RecommendStudy> convertToRecommendStudy(ArrayList<StudyOverview> data) {
-        ArrayList<RecommendStudy> studyList = new ArrayList<RecommendStudy>();
+    private ArrayList<NormalStudy> convertToRecommendStudy(ArrayList<StudyOverview> data) {
+        ArrayList<NormalStudy> studyList = new ArrayList<NormalStudy>();
         for (StudyOverview overview : data) {
             String tag = "";
             switch(overview.getCategory()) {
@@ -177,7 +179,7 @@ public class StudySearchRequest {
             String subTitle = overview.getGoal();
             int members = overview.getCapacity();
             int ranking = overview.getRanking();
-            RecommendStudy study = new RecommendStudy(tag, title, subTitle, members, ranking);
+            NormalStudy study = new NormalStudy(tag, title, subTitle, members, ranking);
             studyList.add(study);
         }
 

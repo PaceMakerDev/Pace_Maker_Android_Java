@@ -37,6 +37,7 @@
                     <EditText
                         android:layout_width="0dp"
                         android:layout_height="45dp"
+                        android:id="@+id/edit_study_search"
                         android:layout_weight="8"
                         android:layout_margin="0dp"
                         android:hint="원하는 스터디를 검색해보세요"
@@ -51,11 +52,17 @@
                         android:layout_marginStart="10dp"
                         android:src="@drawable/ic_create_class" />
                 </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/layout_new_recommend_study"
+                app:layout_constraintTop_toBottomOf="@id/layout1"
+                app:layout_constraintBottom_toBottomOf="parent">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_subtitle1"
-                    app:layout_constraintTop_toBottomOf="@id/layout1"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="50dp"
                     android:text="따끈따끈 신상 스터디룸"
                     style="@style/SubTitleMessage" />
@@ -82,10 +89,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_subtitle2"
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recyclerview_search_study_list" />
+                android:layout_height="0dp"
+                android:id="@+id/recyclerview_search_study_list"
+                app:layout_constraintTop_toBottomOf="@id/layout1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

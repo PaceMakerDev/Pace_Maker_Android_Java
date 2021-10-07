@@ -9,27 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pacemaker.R;
-import com.example.pacemaker.study.ui.mystudy.models.Study;
-import com.example.pacemaker.study.ui.studysearch.models.RecommendStudy;
+import com.example.pacemaker.study.ui.studysearch.models.NormalStudy;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
-public class RecommendStudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<RecommendStudy> studyList;
+public class NormalStudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private ArrayList<NormalStudy> studyList;
 
-    public RecommendStudyRecyclerViewAdapter() {
-        this.studyList = new ArrayList<RecommendStudy>();
+    public NormalStudyRecyclerViewAdapter() {
+        this.studyList = new ArrayList<NormalStudy>();
     }
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder viewHolder = new RecommendStudyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recommend_study_room, parent, false));
+        RecyclerView.ViewHolder viewHolder = new NormalStudyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recommend_study_room, parent, false));
         return viewHolder;
     }
 
-    class RecommendStudyViewHolder extends RecyclerView.ViewHolder {
-        public RecommendStudyViewHolder(@NonNull View itemView) {
+    class NormalStudyViewHolder extends RecyclerView.ViewHolder {
+        public NormalStudyViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }
@@ -37,7 +35,7 @@ public class RecommendStudyRecyclerViewAdapter extends RecyclerView.Adapter<Recy
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         View view = holder.itemView;
-        RecommendStudy study = studyList.get(position);
+        NormalStudy study = studyList.get(position);
 
         TextView textTitle = view.findViewById(R.id.study_room_name);
         textTitle.setText(study.getTitle());
@@ -56,7 +54,7 @@ public class RecommendStudyRecyclerViewAdapter extends RecyclerView.Adapter<Recy
         return studyList.size();
     }
 
-    public void setStudy(ArrayList<RecommendStudy> studyList) {
+    public void setStudy(ArrayList<NormalStudy> studyList) {
         this.studyList = studyList;
     }
 }

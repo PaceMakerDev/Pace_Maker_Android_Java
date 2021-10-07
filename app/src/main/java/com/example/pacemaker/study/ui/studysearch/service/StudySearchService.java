@@ -9,6 +9,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface StudySearchService {
     @POST("/v1/studies")
@@ -19,5 +21,8 @@ public interface StudySearchService {
 
     @GET("/v1/studies/recommend")
     Call<StudyListResponse> requestRecommendStudyList();
+
+    @GET("/v1/studies")
+    Call<StudyListResponse> requestStudySearchList(@Query("search") String input);
 
 }

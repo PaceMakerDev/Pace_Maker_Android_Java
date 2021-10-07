@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-public class RecommendStudy {
+public class NormalStudy {
     private String tag;
     private String title;
     private String subTitle;

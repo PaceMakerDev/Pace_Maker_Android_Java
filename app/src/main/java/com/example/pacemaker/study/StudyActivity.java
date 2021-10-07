@@ -17,6 +17,7 @@ import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.request.MyStudyRequest;
 import com.example.pacemaker.study.ui.mystudy.service.MyStudyService;
 import com.example.pacemaker.study.ui.studysearch.StudySearchFragment;
+import com.example.pacemaker.study.ui.studysearch.StudySearchMediator;
 import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateFragment;
 import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateMediator;
 import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateSuccessFragment;
@@ -39,6 +40,7 @@ public class StudyActivity extends AppCompatActivity {
     private StudySearchRequest studySearchRequest;
     private CommonRequest commonRequest;
     private StudyCreateMediator studyCreateMediator;
+    private StudySearchMediator studySearchMediator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class StudyActivity extends AppCompatActivity {
         studySearchRequest = new StudySearchRequest(studySearchService);
 
         studyCreateMediator = new StudyCreateMediator();
+        studySearchMediator = new StudySearchMediator();
     }
 
     private void setUpNavigationBar() {
@@ -122,6 +125,10 @@ public class StudyActivity extends AppCompatActivity {
         studySearchRequest.requestRecommendStudy(context, (StudySearchFragment)getCurrentFragment());
     }
 
+    public void requestStudySearch(Context context, String input) {
+        studySearchRequest.requestStudySearch(context, (StudySearchFragment)getCurrentFragment(), input);
+    }
+
     public void logout() {
         SharedPreferences.Editor editor = getSharedPreferences("auth", MODE_PRIVATE).edit();
         editor.remove(AuthActivity.ACCESS_TOKEN);
@@ -136,6 +143,12 @@ public class StudyActivity extends AppCompatActivity {
 
     public StudyCreateMediator getStudyCreateMediator() {
         return studyCreateMediator;
+    }
+
+    public StudySearchMediator getStudySearchMediator() {
+        StudySearchFragment searchFragment = (StudySearchFragment)getCurrentFragment();
+        studySearchMediator.setStudySearchFragment(searchFragment);
+        return studySearchMediator;
     }
 
     public void setFragment(FragmentTypes type) {
@@ -162,5 +175,6 @@ public class StudyActivity extends AppCompatActivity {
 
         return fragment;
     }
+
 
 }

@@ -113,6 +113,11 @@
         <item name="fontFamily">@font/nanum_gothic_font</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="TextMemberRanking" parent="NormalMessage">
+        <item name="android:fontFamily">@font/nanum_gothic_font</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
     <style name="Title">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/title</item>
@@ -179,6 +184,7 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:src">@drawable/ic_category_check</item>
     </style>
+
 
     <!-- Base -->
     <style name="nanum_bold_small_white">

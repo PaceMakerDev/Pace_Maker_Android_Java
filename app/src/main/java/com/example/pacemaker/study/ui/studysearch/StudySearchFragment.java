@@ -56,18 +56,18 @@ public class StudySearchFragment extends Fragment {
 
     private void setRecyclerView(View view) {
         RecyclerView newStudyRecyclerView = view.findViewById(R.id.recyclerview_new_studyroom);
-        newStudyRecyclerViewAdapter = new NewStudyRecyclerViewAdapter();
+        newStudyRecyclerViewAdapter = new NewStudyRecyclerViewAdapter(this);
         newStudyRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
         newStudyRecyclerView.addItemDecoration(new NewStudyViewDecoration(30));
         newStudyRecyclerView.setAdapter(newStudyRecyclerViewAdapter);
 
         RecyclerView recommendStudyRecyclerView = view.findViewById(R.id.recyclerview_recommend_studyroom);
-        recommendStudyRecyclerViewAdapter = new NormalStudyRecyclerViewAdapter();
+        recommendStudyRecyclerViewAdapter = new NormalStudyRecyclerViewAdapter(this);
         recommendStudyRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         recommendStudyRecyclerView.addItemDecoration(new NormalStudyViewDecoration(30));
         recommendStudyRecyclerView.setAdapter(recommendStudyRecyclerViewAdapter);
 
-        studySearchRecyclerViewAdapter = new NormalStudyRecyclerViewAdapter();
+        studySearchRecyclerViewAdapter = new NormalStudyRecyclerViewAdapter(this);
         studySearchResultView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         studySearchResultView.addItemDecoration(new NormalStudyViewDecoration(30));
         studySearchResultView.setAdapter(studySearchRecyclerViewAdapter);
@@ -106,6 +106,10 @@ public class StudySearchFragment extends Fragment {
 
     public void requestStudySearch(String input) {
         ((StudyActivity)requireActivity()).requestStudySearch(requireContext(), input);
+    }
+
+    public void requestStudyDetail(NewStudy study) {
+        ((StudyActivity)requireActivity()).requestStudyDetail(study);
     }
 
 }

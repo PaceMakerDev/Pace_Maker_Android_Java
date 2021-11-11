@@ -17,6 +17,7 @@ import com.example.pacemaker.studyoverview.models.UserRankingDto;
 import com.example.pacemaker.studyoverview.ui.overview.OverviewFragment;
 import com.example.pacemaker.util.DialogUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -34,10 +35,18 @@ public class StudyOverviewRequest {
         service.requestUserRankingList(studyId).enqueue(new Callback<UserRankingDto>() {
             @Override
             public void onResponse(Call<UserRankingDto> call, Response<UserRankingDto> response) {
+                Log.d("MyStudy", "overview code : " + response.code());
                 switch (response.code()) {
                     case 200:
                         fragment.setUserRanking(response.body().getData());
                         break;
+                    default:
+                        try {
+                            Log.d("MyStudy", "msg : " + response.errorBody().string());
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                    }
                 }
             }
 

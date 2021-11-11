@@ -17,9 +17,11 @@ import java.util.Locale;
 
 public class NewStudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<NewStudy> studyList;
+    private StudySearchFragment fragment;
 
-    public NewStudyRecyclerViewAdapter() {
+    public NewStudyRecyclerViewAdapter(StudySearchFragment fragment) {
         this.studyList = new ArrayList<NewStudy>();
+        this.fragment = fragment;
     }
     @NonNull
     @Override
@@ -38,6 +40,14 @@ public class NewStudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         View view = holder.itemView;
         NewStudy study = studyList.get(position);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = Integer.toString(study.getId());
+                fragment.requestStudyDetail(study);
+            }
+        });
 
         TextView textTitle = view.findViewById(R.id.study_room_name);
         textTitle.setText(study.getTitle());

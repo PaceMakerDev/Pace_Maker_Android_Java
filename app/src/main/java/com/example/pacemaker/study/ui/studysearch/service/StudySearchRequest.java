@@ -143,7 +143,8 @@ public class StudySearchRequest {
             String title = overview.getTitle();
             int members = overview.getCapacity();
             int ranking = overview.getRanking();
-            NewStudy study = new NewStudy(tag, title, members, ranking);
+            int id = overview.getId();
+            NewStudy study = new NewStudy(tag, title, members, ranking, id);
             studyList.add(study);
         }
 
@@ -179,7 +180,8 @@ public class StudySearchRequest {
             String subTitle = overview.getGoal();
             int members = overview.getCapacity();
             int ranking = overview.getRanking();
-            NormalStudy study = new NormalStudy(tag, title, subTitle, members, ranking);
+            int id = overview.getId();
+            NormalStudy study = new NormalStudy(tag, title, subTitle, members, ranking, id);
             studyList.add(study);
         }
 

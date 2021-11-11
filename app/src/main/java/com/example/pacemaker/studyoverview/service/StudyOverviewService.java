@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface StudyOverviewService {
@@ -20,6 +21,6 @@ public interface StudyOverviewService {
     Call<StudyListResponse> requestStudySearchList(@Query("search") String input);
      */
     @GET("/studies/{studyId}/user-rankings")
-    Call<UserRankingDto> requestUserRankingList(@Query("studyId") String input);
+    Call<UserRankingDto> requestUserRankingList(@Path("studyId") String input);
 
 }

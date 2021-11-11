@@ -12,7 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
     //private static final String BASE_URL = "http://13.124.194.199:8080/";
     //private static final String BASE_URL = "http://13.209.98.129/";
-    private static final String BASE_URL = "http://ec2-13-209-98-129.ap-northeast-2.compute.amazonaws.com";
+    //private static final String BASE_URL = "http://ec2-13-209-98-129.ap-northeast-2.compute.amazonaws.com";
+    private static final String BASE_URL = "http://13.124.138.39/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static Retrofit.Builder builder = new Retrofit.Builder()

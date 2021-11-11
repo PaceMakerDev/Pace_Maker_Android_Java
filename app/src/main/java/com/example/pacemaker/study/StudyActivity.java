@@ -18,12 +18,14 @@ import com.example.pacemaker.study.ui.mystudy.request.MyStudyRequest;
 import com.example.pacemaker.study.ui.mystudy.service.MyStudyService;
 import com.example.pacemaker.study.ui.studysearch.StudySearchFragment;
 import com.example.pacemaker.study.ui.studysearch.StudySearchMediator;
+import com.example.pacemaker.study.ui.studysearch.models.NewStudy;
 import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateFragment;
 import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateMediator;
 import com.example.pacemaker.study.ui.studysearch.studycreate.StudyCreateSuccessFragment;
 import com.example.pacemaker.study.ui.studysearch.models.StudyCreateRequestDto;
 import com.example.pacemaker.study.ui.studysearch.service.StudySearchRequest;
 import com.example.pacemaker.study.ui.studysearch.service.StudySearchService;
+import com.example.pacemaker.studyoverview.StudyOverviewActivity;
 import com.example.pacemaker.util.service.ServiceGenerator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -127,6 +129,18 @@ public class StudyActivity extends AppCompatActivity {
 
     public void requestStudySearch(Context context, String input) {
         studySearchRequest.requestStudySearch(context, (StudySearchFragment)getCurrentFragment(), input);
+    }
+
+    public void requestStudyDetail(NewStudy study) {
+        Bundle bundle = new Bundle();
+        bundle.putString("stringId", Integer.toString(study.getId()));
+        bundle.putString("title", study.toString());
+        bundle.putString("memberCount", Integer.toString(study.getMembers()));
+        bundle.putString("ranking", Integer.toString(study.getRanking()));
+        Intent intent = new Intent(this, StudyOverviewActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public void logout() {

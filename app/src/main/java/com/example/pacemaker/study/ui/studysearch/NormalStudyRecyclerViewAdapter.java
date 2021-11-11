@@ -15,9 +15,11 @@ import java.util.ArrayList;
 
 public class NormalStudyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<NormalStudy> studyList;
+    private StudySearchFragment fragment;
 
-    public NormalStudyRecyclerViewAdapter() {
+    public NormalStudyRecyclerViewAdapter(StudySearchFragment fragment) {
         this.studyList = new ArrayList<NormalStudy>();
+        this.fragment = fragment;
     }
     @NonNull
     @Override
@@ -36,6 +38,14 @@ public class NormalStudyRecyclerViewAdapter extends RecyclerView.Adapter<Recycle
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         View view = holder.itemView;
         NormalStudy study = studyList.get(position);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = Integer.toString(study.getId());
+                fragment.requestStudyDetail(study);
+            }
+        });
 
         TextView textTitle = view.findViewById(R.id.study_room_name);
         textTitle.setText(study.getTitle());

@@ -2,15 +2,15 @@ package com.example.pacemaker.study.ui.studysearch.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
-public class NormalStudy {
-    private String tag;
-    private String title;
+public class NormalStudy extends NewStudy{
     private String subTitle;
-    private int members;
-    private int ranking;
+    public NormalStudy(String tag, String title, String subTitle, int members, int ranking, int id) {
+        super(tag, title, members, ranking, id);
+        this.subTitle = subTitle;
+    }
 }

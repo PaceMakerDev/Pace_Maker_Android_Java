@@ -1,5 +1,6 @@
 package com.example.pacemaker.study.ui.mystudy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.pacemaker.study.ui.mystudy.chart.ChartAdapter;
 import com.example.pacemaker.study.ui.mystudy.enums.GraphType;
 import com.example.pacemaker.study.ui.mystudy.models.BarGraphData;
 import com.example.pacemaker.study.ui.mystudy.models.Study;
+import com.example.pacemaker.studyoverview.ui.studyroom.StudyRoomActivity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 
@@ -58,7 +60,7 @@ public class MyStudyFragment extends Fragment {
         });
 
         RecyclerView studyRecyclerView = rootView.findViewById(R.id.study_list_recycler_view);
-        adapter = new StudyRoomRecyclerViewAdapter();
+        adapter = new StudyRoomRecyclerViewAdapter(this);
         studyRecyclerView.setAdapter(adapter);
         studyRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         ((StudyActivity)requireActivity()).requestStudyList();
@@ -105,6 +107,15 @@ public class MyStudyFragment extends Fragment {
         emptyStudyListLayout.setVisibility(View.GONE);
         studyRecyclerView.setVisibility(View.VISIBLE);
         background.setVisibility(View.VISIBLE);
+    }
+
+    public void showStudyRoom(int studyId) {
+        Intent intent = new Intent(requireContext(), StudyRoomActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("studyId", Integer.toString(studyId));
+        intent.putExtras(bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 

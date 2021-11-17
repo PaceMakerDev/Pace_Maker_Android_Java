@@ -12,6 +12,10 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,32 +48,22 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.auth_activity_camera);
+        setContentView(R.layout.studyroom_camera_activity);
 
+        startCamera();
+
+        Button btnCamera = findViewById(R.id.btn_camera);
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                captureImage();
+            }
+        });
 
 
     }
 
-    private void editBackground() {
-        Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.camera_background);
-        Bitmap bitmap = Bitmap.createBitmap(background.getWidth(), background.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
 
-        canvas.drawBitmap(background, 0f, 0f, paint);
-        paint.setAntiAlias(true);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-
-        left = (int)(background.getWidth() / 12f);
-        top = (int)(background.getHeight() / 4f);
-        right = (int)(background.getWidth() / 12f * 11);
-        bottom = (int)(top + (right - left)*0.7f);
-        bgHeight = background.getHeight();
-
-        canvas.drawRect(left, top, right, bottom, paint);
-        findViewById(R.id.camera_background).setBackground(new BitmapDrawable(getResources(), bitmap));
-
-    }
 
     private void startCamera() {
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture = ProcessCameraProvider.getInstance(this);
@@ -113,14 +107,17 @@ public class CameraActivity extends AppCompatActivity {
                             matrix.postRotate(90f);
                             bmp = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
 
+                            /*
                             float scale = (float) (right - left) / bgHeight;
                             int scaledWidth = (int) (bmp.getHeight() * scale);
                             int scaledHeight = (int) (((float) bottom - top) / bgHeight * bmp.getHeight());
                             int scaledX = (int) ((bmp.getWidth() - scaledWidth) / 2);
                             int scaledY = (int) ((float) top / bgHeight * bmp.getHeight());
+                                                        bmp = Bitmap.createBitmap(bmp, (int) scaledX, scaledY, (int) scaledWidth, scaledHeight);
 
-                            bmp = Bitmap.createBitmap(bmp, (int) scaledX, scaledY, (int) scaledWidth, scaledHeight);
+                             */
                             card = bmp;
+                            verifyImage();
                             //sendImage()
                         }
 
@@ -133,8 +130,22 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void verifyImage() {
+        TextView text1 = findViewById(R.id.text1);
+        TextView text2 = findViewById(R.id.text2);
+        Button btnCamera = findViewById(R.id.btn_camera);
+        text1.setVisibility(View.GONE);
+        text2.setVisibility(View.GONE);
+        btnCamera.setVisibility(View.GONE);
+        Button btnVerify = findViewById(R.id.btn_verification);
+        ImageView imgVerify = findViewById(R.id.img_result);
+        btnVerify.setVisibility(View.VISIBLE);
+        imgVerify.setVisibility(View.VISIBLE);
+        imgVerify.setImageBitmap(card);
+    }
 
 
+/*
     public void sendImage() {
         Intent intent = new Intent();
         intent.putExtra(NAME, "고길동");
@@ -143,11 +154,33 @@ public class CameraActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+    private void editBackground() {
+        Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.camera_background);
+        Bitmap bitmap = Bitmap.createBitmap(background.getWidth(), background.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+
+        canvas.drawBitmap(background, 0f, 0f, paint);
+        paint.setAntiAlias(true);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+
+        left = (int)(background.getWidth() / 12f);
+        top = (int)(background.getHeight() / 4f);
+        right = (int)(background.getWidth() / 12f * 11);
+        bottom = (int)(top + (right - left)*0.7f);
+        bgHeight = background.getHeight();
+
+        canvas.drawRect(left, top, right, bottom, paint);
+        findViewById(R.id.camera_background).setBackground(new BitmapDrawable(getResources(), bitmap));
+
+    }
 
     public Bitmap getCard() {
         return card;
     }
 
+
+ */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

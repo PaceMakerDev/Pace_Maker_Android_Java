@@ -37,8 +37,9 @@ public class FileUpload {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                Log.d("MyStudy", "sent Successful");
+                Log.d("MyStudy", "sent Successful, code : " + response.code());
+                //502 error
             }
-        })
+        });
     }
 }

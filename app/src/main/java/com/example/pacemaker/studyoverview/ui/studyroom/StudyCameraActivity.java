@@ -63,7 +63,7 @@ public class StudyCameraActivity extends AppCompatActivity {
         //startCamera();
 
         Button btnCamera = findViewById(R.id.btn_camera);
-        Button btnVerify = findViewById(R.id.btn_verification);
+        btnVerify = findViewById(R.id.btn_verification);
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,8 @@ public class StudyCameraActivity extends AppCompatActivity {
             }
         });
         btnVerify.setOnClickListener(view -> {
-
+            saveImage();
+            FileUpload.sendFile(tempFile);
         });
 
 
@@ -84,12 +85,16 @@ public class StudyCameraActivity extends AppCompatActivity {
 
     private void saveImage() {
         String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
-        tempFile = new File(Environment.getExternalStorageDirectory() + "/Pacemaker/", "temp_" + date + ".jpeg");
+        tempFile = new File(Environment.getExternalStorageDirectory() + "/PaceMaker/", "temp_" + date + ".jpeg");
+
         try {
+            tempFile.getParentFile().mkdirs();
+            tempFile.createNewFile();
             OutputStream out = new FileOutputStream(tempFile);
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
         } catch (IOException e) {
             Log.d("MyStudy", "image Save Error");
+            Log.d("MyStudy", e.getLocalizedMessage());
         }
         //https://derveljunit.tistory.com/302
     }
